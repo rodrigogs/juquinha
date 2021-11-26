@@ -1,0 +1,1 @@
+# Specialized errors goes here

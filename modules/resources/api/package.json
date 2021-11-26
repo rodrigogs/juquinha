@@ -1,0 +1,7 @@
+{
+  "name": "sls-resources-api",
+  "version": "0.0.1",
+  "devDependencies": {
+    "serverless-domain-manager": "^5.1.0"
+  }
+}

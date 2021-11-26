@@ -1,0 +1,26 @@
+import createRolePermission from 'lib/services/role-permissions/create'
+import updatePermission from 'lib/services/permissions/update'
+import { default as Router, responseBuilder } from 'lib/helpers/router'
+
+export const handler = async (event, context) => {
+  return await new Router(event, context)
+
+    .put('/permissions/:id', (request) => {
+      const { pathParameters, body } = request
+      return updatePermission(pathParameters.id, body).then((updatedPermission) =>
+        responseBuilder.success.ok({ body: updatedPermission }),
+      )
+    })
+
+    .put('/permissions/:id/roles/:roleId', (request) => {
+      const { pathParameters } = request
+      return createRolePermission({
+        permissionId: pathParameters.id,
+        roleId: pathParameters.roleId,
+      }).then((updatedPermissionRole) =>
+        responseBuilder.success.ok({ body: updatedPermissionRole }),
+      )
+    })
+
+    .dispatch()
+}

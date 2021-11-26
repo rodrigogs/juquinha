@@ -1,0 +1,46 @@
+{
+  "name": "juquinha",
+  "version": "0.0.1",
+  "scripts": {
+    "init": "npx cross-env INIT=true node scripts/init.js",
+    "bootstrap": "npx lerna bootstrap",
+    "clean": "npx lerna clean -y && npx lerna exec -- rm -rf .serverless",
+    "build": "npx lerna exec --scope sls-* sls package",
+    "build:api": "npx lerna exec --scope sls-api-* sls package",
+    "build:resources": "npx lerna exec --scope sls-resources-* sls package",
+    "build:resources:api": "npx lerna exec --scope sls-resources-api sls package",
+    "deploy": "npx lerna exec --scope sls-* sls deploy",
+    "deploy:fresh": "npm run clean && npm run bootstrap && npm run deploy",
+    "deploy:api": "npx lerna exec --scope sls-api-* sls deploy",
+    "deploy:resources": "npx lerna exec --scope sls-resources-* sls deploy",
+    "deploy:resources:api": "npx lerna exec --scope sls-resources-api sls deploy",
+    "remove": "npm run remove:api && npm run remove:resources",
+    "remove:api": "npx lerna exec --scope sls-api-* sls remove",
+    "remove:resources:api": "npx lerna exec --scope sls-resources-api sls remove",
+    "remove:resources": "npx lerna exec --scope sls-resources-* sls remove",
+    "docker:build": "docker build . -t juquinha:latest",
+    "docker:run": "docker run --rm juquinha:latest",
+    "docker:deploy": "docker run --rm juquinha:latest npm run deploy",
+    "web:dev": "(cd modules/web && npm run dev)"
+  },
+  "dependencies": {
+    "config": "^0.0.1",
+    "lib": "^0.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "loading-cli": "^1.1.0",
+    "prettier": "^2.4.1",
+    "serverless": "^2.65.0",
+    "serverless-bundle": "^4.4.0",
+    "serverless-offline": "^8.2.0",
+    "serverless-scriptable-plugin": "^1.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

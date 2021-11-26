@@ -1,0 +1,56 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - prod
+      - dev
+      - test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: actions/cache@v2.1.2
+        with:
+          path: '**/node_modules/*'
+      - run: npm run bootstrap
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: nelonoel/branch-name@v1
+      - run: npm run bootstrap
+      - run: npm run deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          REGION: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_REGION }}
+          SERVERLESS_ACCESS_KEY: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.SERVERLESS_ACCESS_KEY }}
+          APP_NAME: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.APP_NAME }}
+          SERVICE_NAME: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.SERVICE_NAME }}
+          STAGE: ${{ steps.extract_branch.outputs.branch }}
+          REGION: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_REGION }}
+          LANGUAGE: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.LANGUAGE }}
+          AUTH0_DOMAIN: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_DOMAIN }}
+          AUTH0_CLIENT_ID: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_CLIENT_ID }}
+          AUTH0_CLIENT_SECRET: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_CLIENT_SECRET }}
+          AUTH0_API_AUDIENCE: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_API_AUDIENCE }}
+          AUTH0_MTM_CLIENT_ID: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_MTM_CLIENT_ID }}
+          AUTH0_MTM_CLIENT_SECRET: ${{  steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_MTM_CLIENT_SECRET }}
+          OPENTOK_API_KEY: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.OPENTOK_API_KEY }}
+          OPENTOK_API_SECRET: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.OPENTOK_API_SECRET }}
+          OPENTOK_TOKEN_EXPIRATION_IN_SECONDS: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.OPENTOK_TOKEN_EXPIRATION_IN_SECONDS }}
