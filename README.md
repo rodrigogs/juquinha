@@ -1,5 +1,5 @@
-# My Microservicing Way
-## This is a **very opinionated wat** to microservicing using [Serverless Framework](https://github.com/serverless/serverless), JavaScript and [AWS](https://aws.amazon.com/).
+Juquinha
+## This is a **very opinionated way** of microservicing with a full serverless approach, featuring [Serverless Framework](https://github.com/serverless/serverless), JavaScript and [AWS](https://aws.amazon.com/).
 
 ## Setup
 ```bash
