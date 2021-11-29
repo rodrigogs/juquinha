@@ -8,7 +8,7 @@ $ npm run bootstrap
 
 ## First deploy
 ```bash
-$ npm run deploy:init
+$ npm run init
 ```
 
 ## Deploy options
