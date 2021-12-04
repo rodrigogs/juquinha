@@ -113,4 +113,9 @@ export default defineNuxtConfig({
       }
     },
   },
+
+  // See https://github.com/nuxt/framework/issues/886
+  bridge: {
+    nitro: false
+  },
 })

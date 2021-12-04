@@ -1,7 +1,7 @@
 #!/usr/bin/env nodejs
-/* eslint-disable no-console */
 const loading = require('loading-cli')
 const ensureDeploymentBucket = require('lib/helpers/ensure-deployment-bucket')
+const ensureWebAppBucket = require('lib/helpers/ensure-web-app-bucket')
 const runNpmScript = require('lib/helpers/run-npm-script')
 
 const retry = (fn, arg, retries = 3, err = null) => {
@@ -33,9 +33,14 @@ const loader = loading({
     loader.start()
     await retry(runNpmScript, 'deploy:resources', 3)
     loader.succeed('Resources deployed 🪐')
-    loader.text = 'Deploying everything...'
+    loader.text = 'Deploying API endpoints...'
     loader.start()
-    await retry(runNpmScript, 'deploy', 3)
+    await retry(runNpmScript, 'deploy:api', 3)
+    loader.succeed('API endpoints deployed 🦄')
+    loader.text = 'Deploying frontend...'
+    loader.start()
+    await ensureWebAppBucket()
+    await retry(runNpmScript, 'deploy:web', 3)
     loader.succeed('Successfully deployed 🌈')
     console.log(`Your application is available at: ${extractApiUrl(apiOutput)}`)
   } catch (err) {
