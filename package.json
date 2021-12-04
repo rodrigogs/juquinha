@@ -24,13 +24,16 @@
     "docker:build": "docker build . -t juquinha:latest",
     "docker:run": "docker run --rm juquinha:latest",
     "docker:deploy": "docker run --rm juquinha:latest npm run deploy",
-    "web:dev": "(cd modules/web && npm run dev)"
+    "web:dev": "(cd modules/web && npm run dev)",
+    "test:integration": "npx jest@27.4.3 ./tests/integration/**/*.spec.js"
   },
   "dependencies": {
     "config": "^0.0.1",
     "lib": "^0.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "@rodrigogs/serverless-finch": "^3.0.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
