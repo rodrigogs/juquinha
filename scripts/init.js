@@ -27,7 +27,7 @@ const loader = loading({
     await ensureDeploymentBucket()
     loader.text = 'Deploying API base...'
     loader.start()
-    const apiOutput = await retry(runNpmScript, 'deploy:resources:api', 3)
+    const apiUrl = extractApiUrl(await retry(runNpmScript, 'deploy:resources:api', 3))
     loader.succeed('API base deployed 🚀')
     loader.text = 'Deploying resources...'
     loader.start()
@@ -42,7 +42,7 @@ const loader = loading({
     await ensureWebAppBucket()
     await retry(runNpmScript, 'deploy:web', 3)
     loader.succeed('Successfully deployed 🌈')
-    console.log(`Your application is available at: ${extractApiUrl(apiOutput)}`)
+    console.log(`Your application is available at: ${apiUrl}`)
   } catch (err) {
     console.error(err)
     loader.fail()
