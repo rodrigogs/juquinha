@@ -27,7 +27,7 @@ const loader = loading({
     await ensureDeploymentBucket()
     loader.text = 'Deploying API base...'
     loader.start()
-    const { stdout: apiOutput } = await retry(runNpmScript, 'deploy:resources:api', 3)
+    const apiOutput = await retry(runNpmScript, 'deploy:resources:api', 3)
     loader.succeed('API base deployed 🚀')
     loader.text = 'Deploying resources...'
     loader.start()
