@@ -23,7 +23,7 @@ const {
   STAGE = getEnv('STAGE', 'dev'),
   API_URL = getEnv('API_URL', 'https://my-api.com/dev'),
   SERVICE_NAME = getEnv('SERVICE_NAME', ''),
-  DEPLOYMENT_BUCKET_NAME = getEnv('DEPLOYMENT_BUCKET_NAME', 'mmw-deployments'),
+  DEPLOYMENT_BUCKET_NAME = getEnv('DEPLOYMENT_BUCKET_NAME', 'ju-deployments'),
   WEB_APP_BUCKET_NAME = getEnv('WEB_APP_BUCKET_NAME', `${APP_NAME}-${STAGE}-webapp`),
   REGION = getEnv('AWS_REGION', getEnv('REGION', 'us-east-2')),
   DEFAULT_LANGUAGE = getEnv('DEFAULT_LANGUAGE', 'en'),
