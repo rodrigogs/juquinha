@@ -1,5 +1,6 @@
-Juquinha
-## This is a **very opinionated way** of microservicing with a full serverless approach, featuring [Serverless Framework](https://github.com/serverless/serverless), JavaScript and [AWS](https://aws.amazon.com/).
+# Juquinha
+
+## This is a **very opinionated way** of microservicing with a full serverless approach, featuring [Serverless Framework](https://github.com/serverless/serverless), [JavaScript](https://www.javascript.com/) and [AWS](https://aws.amazon.com/).
 
 ## Setup
 Copy `.env.sample` to a new file called `.env` and populate the environment variables.
