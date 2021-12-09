@@ -1,6 +1,5 @@
-/* eslint-disable import/no-commonjs, import/no-commonjs */
-const { APP_PREFIX } = require('config/env')
-const RecipeBuilder = require('lib/helpers/recipe-builder')
+import { APP_PREFIX } from 'config/env'
+import RecipeBuilder from 'lib/helpers/recipe-builder'
 
 const domainName = '' // <- Your api domain name goes here, like: 'api.example.com'
 
