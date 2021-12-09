@@ -1,43 +1,41 @@
-const { APP_PREFIX } = require('config/env')
-const RecipeBuilder = require('lib/helpers/recipe-builder')
+import { APP_PREFIX } from 'config/env'
+import RecipeBuilder from 'lib/helpers/recipe-builder'
 
 module.exports = new RecipeBuilder()
   .forApi()
-  .setService(`${APP_PREFIX}-api-roles`)
-  .setMemorySize(256)
+  .setService(`${APP_PREFIX}-api-users`)
+  .setMemorySize(1024)
   .usesDynamoTable('users')
   .usesDynamoTable('roles')
-  .usesDynamoTable('permissions')
   .usesDynamoTable('user-roles')
-  .usesDynamoTable('role-permissions')
   .addFunction('get', {
     handler: 'get.handler',
     events: [
       {
         http: {
           method: 'get',
-          path: '/roles',
+          path: '/users',
           cors: true,
         },
       },
       {
         http: {
           method: 'get',
-          path: '/roles/{id}',
+          path: '/users/id/{id}',
           cors: true,
         },
       },
       {
         http: {
           method: 'get',
-          path: '/roles/{id}/users',
+          path: '/users/username/{username}',
           cors: true,
         },
       },
       {
         http: {
           method: 'get',
-          path: '/roles/{id}/permissions',
+          path: '/users/{id}/roles',
           cors: true,
         },
       },
@@ -49,21 +47,14 @@ module.exports = new RecipeBuilder()
       {
         http: {
           method: 'post',
-          path: '/roles',
+          path: '/users',
           cors: true,
         },
       },
       {
         http: {
           method: 'post',
-          path: '/roles/{id}/users',
-          cors: true,
-        },
-      },
-      {
-        http: {
-          method: 'post',
-          path: '/roles/{id}/permissions',
+          path: '/users/{id}/roles',
           cors: true,
         },
       },
@@ -75,7 +66,7 @@ module.exports = new RecipeBuilder()
       {
         http: {
           method: 'put',
-          path: '/roles/{id}',
+          path: '/users/{id}',
           cors: true,
         },
       },
@@ -87,21 +78,14 @@ module.exports = new RecipeBuilder()
       {
         http: {
           method: 'delete',
-          path: '/roles/{id}',
+          path: '/users/{id}',
           cors: true,
         },
       },
       {
         http: {
           method: 'delete',
-          path: '/roles/{id}/users/{userId}',
-          cors: true,
-        },
-      },
-      {
-        http: {
-          method: 'delete',
-          path: '/roles/{id}/permissions/{permissionId}',
+          path: '/users/{id}/roles/{roleId}',
           cors: true,
         },
       },
