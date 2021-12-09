@@ -1,50 +1,15 @@
-/* eslint-disable import/no-commonjs, import/no-commonjs */
 const { APP_PREFIX } = require('config/env')
 const RecipeBuilder = require('lib/helpers/recipe-builder')
 
 module.exports = new RecipeBuilder()
   .forApi()
   .setService(`${APP_PREFIX}-api-roles`)
-  .setProvider({
-    runtime: 'nodejs14.x',
-    memorySize: 256,
-    iam: {
-      role: {
-        statements: [
-          {
-            Effect: 'Allow',
-            Action: ['logs:*'],
-            Resource: '*',
-          },
-          {
-            Effect: 'Allow',
-            Action: ['dynamodb:*'],
-            Resource: [
-              'arn:aws:dynamodb:${self:custom.region}:*:table/${self:custom.appPrefix}-${self:custom.stage}-users-*',
-              'arn:aws:dynamodb:${self:custom.region}:*:table/${self:custom.appPrefix}-${self:custom.stage}-roles-*',
-              'arn:aws:dynamodb:${self:custom.region}:*:table/${self:custom.appPrefix}-${self:custom.stage}-permissions-*',
-              'arn:aws:dynamodb:${self:custom.region}:*:table/${self:custom.appPrefix}-${self:custom.stage}-user-roles-*',
-              'arn:aws:dynamodb:${self:custom.region}:*:table/${self:custom.appPrefix}-${self:custom.stage}-role-permissions-*',
-            ],
-          },
-        ],
-      },
-    },
-    environment: {
-      USERS_TABLE_NAME: '${self:custom.usersTableName}',
-      ROLES_TABLE_NAME: '${self:custom.rolesTableName}',
-      PERMISSIONS_TABLE_NAME: '${self:custom.permissionsTableName}',
-      USER_ROLES_TABLE_NAME: '${self:custom.userRolesTableName}',
-      ROLE_PERMISSIONS_TABLE_NAME: '${self:custom.rolePermissionsTableName}',
-    },
-  })
-  .addPlugin('serverless-bundle')
-  .setPackage({ individually: true })
-  .setCustom('usersTableName', '${self:custom.appPrefix}-${self:provider.stage}-users-table')
-  .setCustom('rolesTableName', '${self:custom.appPrefix}-${self:provider.stage}-roles-table')
-  .setCustom('permissionsTableName', '${self:custom.appPrefix}-${self:provider.stage}-permissions-table')
-  .setCustom('userRolesTableName', '${self:custom.appPrefix}-${self:provider.stage}-user-roles-table')
-  .setCustom('rolePermissionsTableName', '${self:custom.appPrefix}-${self:provider.stage}-role-permissions-table')
+  .setMemorySize(256)
+  .usesDynamoTable('users')
+  .usesDynamoTable('roles')
+  .usesDynamoTable('permissions')
+  .usesDynamoTable('user-roles')
+  .usesDynamoTable('role-permissions')
   .addFunction('get', {
     handler: 'get.handler',
     events: [

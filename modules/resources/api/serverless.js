@@ -12,10 +12,7 @@ if (domainName.length > 0) plugins.push('serverless-domain-manager')
 
 module.exports = new RecipeBuilder()
   .setService(`${APP_PREFIX}-resources-api`)
-  .setProvider({
-    runtime: 'nodejs14.x',
-    memorySize: 128,
-  })
+  .setMemorySize(128)
   .addPlugins(plugins)
   .setCustom('customDomain', {
     domainName,
