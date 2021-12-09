@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
-    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27296423.f3082ca",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27313139.1c88580",
     "@nuxt/types": "^2.15.7",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
