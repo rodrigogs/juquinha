@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-commonjs
 module.exports = {
   root: true,
   env: {
@@ -16,6 +17,7 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
     'no-template-curly-in-string': 'off',
     'import/no-named-default': 'off',
+    'import/no-commonjs': 'error',
   },
   globals: {
     afterEach: true,
@@ -28,5 +30,17 @@ module.exports = {
     suite: true,
     test: true,
     it: true,
+    beforeAll: true,
   },
+  overrides: [
+    {
+      files: ['**/serverless.js'],
+      parserOptions: {
+        sourceType: 'script',
+      },
+      rules: {
+        'import/no-commonjs': 'off',
+      },
+    },
+  ],
 }

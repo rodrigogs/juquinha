@@ -1,20 +1,9 @@
-/* eslint-disable no-process-env,import/no-commonjs */
-const path = require('path')
-const dotenv = require('dotenv')
+const { environment } = require('./resolve-dotenv')()
 
-if (process.env.STAGE === 'dev') Error.stackTraceLimit = Infinity
-
-const dotenvFile =
-  {
-    prod: '.env.prod',
-    dev: '.env',
-    test: '.env.test',
-  }[process.env.STAGE] || '.env'
-
-dotenv.config({ path: path.resolve(__dirname, '..', dotenvFile) })
+if (environment.STAGE === 'dev') Error.stackTraceLimit = Infinity
 
 // Resolve hoisted properties
-const getEnv = (envName, defaultValue) => process.env[envName] || defaultValue
+const getEnv = (envName, defaultValue) => environment[envName] || defaultValue
 
 const {
   ORG_NAME = getEnv('ORG_NAME', undefined),
@@ -22,8 +11,9 @@ const {
   APP_PREFIX = getEnv('APP_PREFIX', 'ju'),
   STAGE = getEnv('STAGE', 'dev'),
   API_URL = getEnv('API_URL', 'https://my-api.com/dev'),
+  DOMAIN_NAME = getEnv('DOMAIN_NAME', ''),
   SERVICE_NAME = getEnv('SERVICE_NAME', ''),
-  DEPLOYMENT_BUCKET_NAME = getEnv('DEPLOYMENT_BUCKET_NAME', 'ju-deployments'),
+  DEPLOYMENT_BUCKET_NAME = getEnv('DEPLOYMENT_BUCKET_NAME', 'juquinha-deployments'),
   WEB_APP_BUCKET_NAME = getEnv('WEB_APP_BUCKET_NAME', `${APP_NAME}-${STAGE}-webapp`),
   REGION = getEnv('AWS_REGION', getEnv('REGION', 'us-east-2')),
   DEFAULT_LANGUAGE = getEnv('DEFAULT_LANGUAGE', 'en'),
@@ -42,7 +32,7 @@ const {
     'ACCESS_LOGS_TABLE_NAME',
     `${APP_PREFIX}-${STAGE}-access-logs-table`,
   ),
-} = process.env
+} = environment
 
 module.exports = Object.freeze({
   ORG_NAME,
@@ -50,6 +40,7 @@ module.exports = Object.freeze({
   APP_PREFIX,
   STAGE,
   API_URL,
+  DOMAIN_NAME,
   SERVICE_NAME,
   DEPLOYMENT_BUCKET_NAME,
   WEB_APP_BUCKET_NAME,

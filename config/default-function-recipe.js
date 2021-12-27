@@ -1,4 +1,3 @@
-/* eslint-disable import/no-commonjs,no-process-env */
 module.exports = {
   runtime: 'nodejs14.x',
   // vpc: {

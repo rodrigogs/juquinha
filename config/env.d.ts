@@ -1,6 +1,7 @@
 export declare let ORG_NAME: string
 export declare let APP_NAME: string
 export declare let APP_PREFIX: string
+export declare let DOMAIN_NAME: string
 export declare let REGION: string
 export declare let API_URL: string
 export declare let SERVICE_NAME: string

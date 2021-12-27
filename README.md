@@ -4,6 +4,11 @@
 
 ## Setup
 Copy `.env.sample` to a new file called `.env` and populate the environment variables.
+Or:
+```bash
+$ npm run setup
+```
+And then you can run
 ```bash
 $ npm run bootstrap
 ```

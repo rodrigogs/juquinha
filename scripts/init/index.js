@@ -3,16 +3,14 @@ const loading = require('loading-cli')
 const ensureDeploymentBucket = require('lib/helpers/ensure-deployment-bucket')
 const ensureWebAppBucket = require('lib/helpers/ensure-web-app-bucket')
 const runNpmScript = require('lib/helpers/run-npm-script')
+const extractWebAppUrl = require('./extract-web-app-url')
+const extractApiUrl = require('./extract-api-url')
+const setupEnv = require('./setup-env')
+const welcome = require('./welcome')
 
 const retry = (fn, arg, retries = 3, err = null) => {
   if (!retries) return Promise.reject(err)
   return fn(arg).catch((err) => retry(fn, arg, retries - 1, err))
-}
-
-const extractApiUrl = (string) => {
-  const match = string.match(/https:\/\/[a-z0-9].+([\\-\\.]amazonaws+)\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?/g)
-  if (!match) return null
-  return match[0]
 }
 
 const loader = loading({
@@ -24,6 +22,8 @@ const loader = loading({
 
 ;(async () => {
   try {
+    await welcome()
+    await setupEnv()
     await ensureDeploymentBucket()
     loader.text = 'Deploying API base...'
     loader.start()
@@ -40,9 +40,10 @@ const loader = loading({
     loader.text = 'Deploying frontend...'
     loader.start()
     await ensureWebAppBucket()
-    await retry(runNpmScript, 'deploy:web', 3)
+    const webAppUrl = extractWebAppUrl(await retry(runNpmScript, 'deploy:web', 3))
     loader.succeed('Successfully deployed 🌈')
-    console.log(`Your application is available at: ${apiUrl}`)
+    console.log(`Your API is available at: ${apiUrl}`)
+    console.log(`Your web app is available at: ${webAppUrl}`)
   } catch (err) {
     console.error(err)
     loader.fail()

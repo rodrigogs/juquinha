@@ -1,4 +1,3 @@
-/* eslint-disable import/no-commonjs */
 const {
   name: rootPackageName,
   devDependencies: { serverless: serverlessVersion },

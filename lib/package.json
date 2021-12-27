@@ -22,11 +22,11 @@
     "nedb-promises": "^4.1.0",
     "pluralize": "^8.0.0",
     "tinyurl": "^1.1.7",
+    "unzipper": "^0.10.11",
     "url-glob": "^1.0.3",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "jest": "^26.6.3",
     "mock-fs": "^4.13.0"
   },
   "jest": {
