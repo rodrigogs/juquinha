@@ -1,4 +1,4 @@
-import createPermission from 'lib/services/permissions/create'
+import PermissionsService from 'lib/services/permissions'
 import createRolePermission from 'lib/services/role-permissions/create'
 import { default as Router, responseBuilder } from 'lib/helpers/router'
 
@@ -7,7 +7,7 @@ export const handler = async (event, context) => {
 
     .post('/permissions', (request) => {
       const { body } = request
-      return createPermission(body).then((createdPermission) =>
+      return PermissionsService.create(body).then((createdPermission) =>
         responseBuilder.success.created({ body: createdPermission }),
       )
     })

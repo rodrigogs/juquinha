@@ -1,4 +1,4 @@
-import removePermission from 'lib/services/permissions/remove'
+import PermissionService from 'lib/services/permissions'
 import removeRolePermission from 'lib/services/role-permissions/remove'
 import { default as Router, responseBuilder } from 'lib/helpers/router'
 
@@ -7,7 +7,7 @@ export const handler = async (event, context) => {
 
     .delete('/permissions/:id', (request) => {
       const { pathParameters } = request
-      return removePermission(pathParameters.id).then(() => responseBuilder.success.noContent())
+      return PermissionService.remove(pathParameters.id).then(() => responseBuilder.success.noContent())
     })
 
     .delete('/permissions/:id/roles/:roleId', (request) => {

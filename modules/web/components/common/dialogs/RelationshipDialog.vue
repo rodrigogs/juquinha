@@ -66,11 +66,8 @@ v-dialog(
 
 <script>
 import Vue from 'vue'
-import { pluralize } from 'lib/common/helpers/string'
+import { pluralize , capitalizeFirstLetter, kebabToCamel } from 'lib/common/helpers/string'
 import CRUD from '@/components/CRUD'
-
-const capitalizeFirstLetter = (string) =>
-  string.charAt(0).toUpperCase() + string.slice(1)
 
 export default {
   name: 'RelationshipDialog',
@@ -135,7 +132,7 @@ export default {
     },
     computedEntityName() {
       return `${this.entityName}${capitalizeFirstLetter(
-        this.relationshipEntityName
+        kebabToCamel(this.relationshipEntityName)
       )}`
     },
     relationshipsCount() {
@@ -149,7 +146,7 @@ export default {
       return pluralize(this.relationshipEntityName)
     },
     pluralizedRelationshipFirstLetterUpperCase() {
-      return capitalizeFirstLetter(this.pluralizedRelationshipEntityName)
+      return capitalizeFirstLetter(kebabToCamel(this.pluralizedRelationshipEntityName))
     },
   },
   methods: {

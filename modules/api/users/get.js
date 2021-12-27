@@ -9,10 +9,7 @@ export const handler = async (event, context) => {
 
     .get('/users', (request) => {
       const { queryStringParameters } = request
-      const { limit, lastKey: lastKeyRaw, filter } = queryStringParameters
-      const lastKey = lastKeyRaw
-        ? JSON.parse(Buffer.from(lastKeyRaw, 'base64').toString())
-        : undefined
+      const { limit, lastKey, filter } = queryStringParameters
       return listUsers({ filter, lastKey, limit }).then((page) =>
         responseBuilder.success.ok({ body: page }),
       )
@@ -38,10 +35,7 @@ export const handler = async (event, context) => {
 
     .get('/users/:id/roles', (request) => {
       const { pathParameters, queryStringParameters } = request
-      const { limit, lastKey: lastKeyRaw } = queryStringParameters
-      const lastKey = lastKeyRaw
-        ? JSON.parse(Buffer.from(lastKeyRaw, 'base64').toString())
-        : undefined
+      const { limit, lastKey } = queryStringParameters
       return listRolesByUserId(pathParameters.id, {
         lastKey,
         limit,

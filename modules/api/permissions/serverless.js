@@ -1,5 +1,5 @@
-import { APP_PREFIX } from 'config/env'
-import RecipeBuilder from 'lib/helpers/recipe-builder'
+const { APP_PREFIX } = require('config/env')
+const RecipeBuilder = require('lib/helpers/recipe-builder')
 
 module.exports = new RecipeBuilder()
   .forApi()

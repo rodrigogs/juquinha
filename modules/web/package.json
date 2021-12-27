@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "npm install @nuxt/bridge",
     "dev": "nuxi dev",
     "build": "nuxi generate",
     "start": "node .output/server/index.mjs",
@@ -25,7 +26,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
-    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27313139.1c88580",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27338323.1e98259",
     "@nuxt/types": "^2.15.7",
     "@nuxtjs/eslint-config-typescript": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",

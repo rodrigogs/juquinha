@@ -1,4 +1,3 @@
-/* eslint-disable import/no-commonjs */
 module.exports = {
   package: { individually: true },
   plugins: ['serverless-bundle'],

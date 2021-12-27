@@ -1,6 +1,6 @@
-import listPermissions from 'lib/services/permissions/list'
-import listRolePermissionsByPermissionId from 'lib/services/role-permissions/list-roles-by-permission-id'
-import getOnePermissionById from 'lib/services/permissions/get-one-by-id'
+import PermissionsService from 'lib/services/permissions'
+import RolePermissionsService from 'lib/services/role-permissions'
+
 import { default as Router, responseBuilder } from 'lib/helpers/router'
 
 export const handler = async (event, context) => {
@@ -8,18 +8,15 @@ export const handler = async (event, context) => {
 
     .get('/permissions', (request) => {
       const { queryStringParameters } = request
-      const { limit, lastKey: lastKeyRaw, filter } = queryStringParameters
-      const lastKey = lastKeyRaw
-        ? JSON.parse(Buffer.from(lastKeyRaw, 'base64').toString())
-        : undefined
-      return listPermissions({ filter, lastKey, limit }).then((permissions) =>
+      const { limit, lastKey, nameContains } = queryStringParameters
+      return PermissionsService.list({ nameContains, lastKey, limit }).then((permissions) =>
         responseBuilder.success.ok({ body: permissions }),
       )
     })
 
     .get('/permissions/:id', (request) => {
       const { pathParameters } = request
-      return getOnePermissionById(pathParameters.id).then((permission) =>
+      return PermissionsService.getOneById(pathParameters.id).then((permission) =>
         permission
           ? responseBuilder.success.ok({ body: permission })
           : responseBuilder.errors.notFound('Permission not found'),
@@ -28,11 +25,8 @@ export const handler = async (event, context) => {
 
     .get('/permissions/:id/roles', (request) => {
       const { pathParameters, queryStringParameters } = request
-      const { limit, lastKey: lastKeyRaw } = queryStringParameters
-      const lastKey = lastKeyRaw
-        ? JSON.parse(Buffer.from(lastKeyRaw, 'base64').toString())
-        : undefined
-      return listRolePermissionsByPermissionId(pathParameters.id, {
+      const { limit, lastKey } = queryStringParameters
+      return RolePermissionsService.listRolesByPermissionId(pathParameters.id, {
         lastKey,
         limit,
       }).then((permissions) => responseBuilder.success.ok({ body: permissions }))

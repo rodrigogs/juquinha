@@ -1,23 +1,20 @@
-import { APP_PREFIX } from 'config/env'
-import RecipeBuilder from 'lib/helpers/recipe-builder'
+const { APP_PREFIX, DOMAIN_NAME } = require('config/env')
+const RecipeBuilder = require('lib/helpers/recipe-builder')
 
-const domainName = '' // <- Your api domain name goes here, like: 'api.example.com'
-
-const shouldCreateDomain =
-  // eslint-disable-next-line no-process-env
-  String(process.env.INIT).toLowerCase() === 'true' && domainName.length > 0
+// eslint-disable-next-line no-process-env
+const shouldCreateDomain = String(process.env.INIT).toLowerCase() === 'true' && DOMAIN_NAME.length > 0
 const plugins = ['serverless-scriptable-plugin', 'serverless-bundle']
-if (domainName.length > 0) plugins.push('serverless-domain-manager')
+if (DOMAIN_NAME.length > 0) plugins.push('serverless-domain-manager')
 
 module.exports = new RecipeBuilder()
   .setService(`${APP_PREFIX}-resources-api`)
   .setMemorySize(128)
   .addPlugins(plugins)
   .setCustom('customDomain', {
-    domainName,
+    domainName: DOMAIN_NAME,
     basePath: '${self:provider.stage}',
     stage: '${self:provider.stage}',
-    certificateName: '*.my-domain.com',
+    certificateName: `*.${DOMAIN_NAME}`,
     createRoute53Record: true,
   })
   .setCustom('scriptHooks', {
