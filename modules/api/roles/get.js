@@ -1,7 +1,7 @@
 import listRoles from 'lib/services/roles/list'
 import listRoleUsersByRoleId from 'lib/services/user-roles/list-users-by-role-id'
 import listRolePermissionsByRoleId from 'lib/services/role-permissions/list-permissions-by-role-id'
-import getOneRoleById from 'lib/services/users/get-one-by-id'
+import getOneRoleById from 'lib/services/roles/get-one-by-id'
 import { default as Router, responseBuilder } from 'lib/helpers/router'
 
 export const handler = async (event, context) => {

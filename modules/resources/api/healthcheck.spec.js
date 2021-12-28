@@ -21,6 +21,9 @@ describe('Healthcheck', function () {
   it('should answer a get request at "/" with 200 status', async function () {
     const event = {
       httpMethod: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       path: '/',
     }
     const response = await handler(event)
