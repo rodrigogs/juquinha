@@ -5,27 +5,23 @@ import faker from 'faker'
 // import RolePermissionsService from 'lib/services/role-permissions'
 import { handler } from './post'
 
-const TYPES = ['ALLOW', 'DENY']
-const METHODS = ['ALL', 'GET', 'POST', 'PUT', 'DELETE']
+// const TYPES = ['ALLOW', 'DENY']
+// const METHODS = ['ALL', 'GET', 'POST', 'PUT', 'DELETE']
 
-describe('API: Permissions(POST)', () => {
+describe('API: Roles(POST)', () => {
   it('create', async () => {
     const payload = {
       name: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
-      description: faker.name.lastName(),
-      type: TYPES[Math.floor(Math.random() * TYPES.length)],
-      method: METHODS[Math.floor(Math.random() * METHODS.length)],
-      path: faker.internet.url(),
+      description: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
     }
     const event = {
-      path: '/permissions',
+      path: '/roles',
       httpMethod: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     }
-
     const context = {}
 
     const response = await handler(event, context)
@@ -33,6 +29,10 @@ describe('API: Permissions(POST)', () => {
   })
 
   // it('removePermissionRole', async () => {
+  //   const role = await RolesService.create({
+  //     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  //     description: faker.random.words(),
+  //   })
   //   const permission = await PermissionsService.create({
   //     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
   //     description: faker.random.words(),
@@ -40,28 +40,23 @@ describe('API: Permissions(POST)', () => {
   //     method: METHODS[Math.floor(Math.random() * METHODS.length)],
   //     path: faker.internet.url(),
   //   })
-  //   const role = await RolesService.create({
-  //     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-  //     description: faker.random.words(),
-  //   })
   //   await RolePermissionsService.create({
-  //     roleId: role.id,
   //     permissionId: permission.id,
+  //     roleId: role.id,
   //   })
   //   const event = {
-  //     path: `/permissions/${permission.id}/roles`,
+  //     path: `/roles/${role.id}/permissions`,
   //     pathParameters: {
-  //       id: permission.id,
+  //       id: role.id,
   //     },
   //     httpMethod: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json',
   //     },
   //     body: JSON.stringify({
-  //       roleId: role.id,
+  //       permissionId: permission.id,
   //     }),
   //   }
-
   //   const context = {}
 
   //   const response = await handler(event, context)

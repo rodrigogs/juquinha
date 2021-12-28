@@ -5,8 +5,8 @@ import RolesService from 'lib/services/roles'
 import RolePermissionsService from 'lib/services/role-permissions'
 import { handler } from './get'
 
-describe('API', () => {
-  it('permissions list', async () => {
+describe('API: Permissions(GET)', () => {
+  it('list', async () => {
     try {
       const event = {
         resource: '/permissions',
@@ -59,7 +59,7 @@ describe('API', () => {
     }
   })
 
-  it('permissions getOneById', async () => {
+  it('getOneById', async () => {
     try {
       const permission = (await PermissionsService.list({ limit: 1 })).data[0]
       const event = {
@@ -113,7 +113,7 @@ describe('API', () => {
 
   it('permissions getRolesByPermissionId', async () => {
     try {
-      const roleName = faker.name.firstName()
+      const roleName = faker.lorem.words(3 + Math.floor(Math.random() * 8))
       const roleDescription = faker.name.lastName()
       const permission = (await PermissionsService.list({ limit: 1 })).data[0]
       const role = await RolesService.create({ name: roleName, description: roleDescription })
