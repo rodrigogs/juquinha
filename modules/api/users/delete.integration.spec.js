@@ -29,7 +29,7 @@ describe('API: Users(DELETE)', () => {
   })
 
   it('removePermissionRole', async () => {
-    const roleName = faker.name.firstName()
+    const roleName = faker.lorem.words(3 + Math.floor(Math.random() * 7))
     const roleDescription = faker.name.lastName()
     const user = (await UsersService.list({ limit: 1 })).data[0]
     const role = await RolesService.create({ name: roleName, description: roleDescription })
