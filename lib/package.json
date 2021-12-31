@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.45.0",
     "@everestate/serverless-router": "^0.6.0",
     "@everestate/serverless-router-aws": "^0.3.0",
     "@rodrigogs/dynamoose-plugin-optimistic-locking": "^0.0.1",

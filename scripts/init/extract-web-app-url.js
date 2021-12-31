@@ -2,10 +2,12 @@ const { STAGE } = require('config/env')
 const resolveDotenvFilePath = require('config/resolve-dotenv-file-path')
 const writeDotenv = require('config/write-dotenv')
 const resolveDotenv = require('config/resolve-dotenv')
+const stripAnsi = require('strip-ansi')
 
 module.exports = (string) => {
+  const normalizedString = stripAnsi(string)
   const separator = 'Serverless: Success! Your site should be available at '
-  const line = string
+  const line = normalizedString
     .split('\n')
     .find((line) => line.startsWith(separator))
   if (!line) return null

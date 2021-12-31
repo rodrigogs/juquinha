@@ -18,7 +18,7 @@ jobs:
       - uses: actions/cache@v2.1.2
         with:
           path: '**/node_modules/*'
-      - run: npm run bootstrap
+      - run: npx pnpm run bootstrap
 
   deploy:
     needs: build
@@ -33,8 +33,8 @@ jobs:
         with:
           node-version: 14
       - uses: nelonoel/branch-name@v1
-      - run: npm run bootstrap
-      - run: npm run deploy
+      - run: npx pnpm run bootstrap
+      - run: npx pnpm run deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_SECRET_ACCESS_KEY }}
