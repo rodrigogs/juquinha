@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "postinstall": "npm install @nuxt/bridge",
     "dev": "nuxi dev",
     "build": "nuxi generate",
     "start": "node .output/server/index.mjs",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
-    "lint": "npm run lint:js && npm run lint:style",
+    "lint": "npx pnpm run lint:js && npx pnpm run lint:style",
     "test:e2e": "nightwatch"
   },
   "dependencies": {

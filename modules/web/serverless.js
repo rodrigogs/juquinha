@@ -10,7 +10,7 @@ module.exports = new RecipeBuilder()
     distributionFolder: 'dist',
   })
   .setCustom('scriptHooks', {
-    'before:package:createDeploymentArtifacts': [`npm run build`],
+    'before:package:createDeploymentArtifacts': [`npx pnpm run build`],
     'after:deploy:finalize': [`(cd ${__dirname} && npx cross-env NO_CONFIRM=true sls client deploy)`],
     'before:remove:remove': [`(cd ${__dirname} && npx cross-env NO_CONFIRM=true sls client remove)`],
   })

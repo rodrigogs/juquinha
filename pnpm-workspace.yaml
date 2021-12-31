@@ -1,0 +1,5 @@
+packages:
+  - 'powerdynamo'
+  - 'config'
+  - 'lib'
+  - 'modules/**'
