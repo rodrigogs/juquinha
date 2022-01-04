@@ -3,16 +3,13 @@ import faker from 'faker'
 import PermissionsService from 'lib/services/permissions'
 import { handler } from './put'
 
-const TYPES = ['ALLOW', 'DENY']
-const METHODS = ['ALL', 'GET', 'POST', 'PUT', 'DELETE']
-
 describe('API: Permissions(PUT)', () => {
   it('update', async () => {
     const payload = {
-      name: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+      name: global.createRandomName(),
       description: faker.lorem.sentence(),
-      type: TYPES[Math.floor(Math.random() * TYPES.length)],
-      method: METHODS[Math.floor(Math.random() * METHODS.length)],
+      type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+      method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
       path: faker.internet.url(),
     }
     const permission = await PermissionsService.create(payload)
@@ -24,10 +21,10 @@ describe('API: Permissions(PUT)', () => {
       },
       pathParameters: { id: permission.id },
       body: JSON.stringify({
-        name: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+        name: global.createRandomName(),
         description: faker.name.lastName(),
-        type: TYPES[Math.floor(Math.random() * TYPES.length)],
-        method: METHODS[Math.floor(Math.random() * METHODS.length)],
+        type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+        method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
         path: faker.internet.url(),
       }),
     }

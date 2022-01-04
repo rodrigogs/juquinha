@@ -27,8 +27,17 @@ describe('API: Roles(DELETE)', () => {
   })
 
   it('removePermissionRole', async () => {
-    const role = (await RolesService.list({ limit: 1 })).data[0]
-    const user = (await UsersService.list({ limit: 1 })).data[0]
+    const role = await RolesService.create({
+      name: global.createRandomName(),
+      description: faker.lorem.sentence(),
+    })
+    const user = await UsersService.create({
+      username: global.createRandomName().split(' ').join('').toLowerCase().substring(0, 15),
+      name: global.createRandomName(),
+      email: faker.internet.email(),
+      picture: faker.internet.url(),
+      password: faker.internet.password(),
+    })
     await UserRolesService.create({ roleId: role.id, userId: user.id })
 
     const event = {

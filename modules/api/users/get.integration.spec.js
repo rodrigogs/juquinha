@@ -55,7 +55,13 @@ describe('API: Users(GET)', () => {
   })
 
   it('getOneById', async () => {
-    const user = (await UsersService.list({ limit: 1 })).data[0]
+    const user = await UsersService.create({
+      username: global.createRandomName().split(' ').join('').toLowerCase().substring(0, 15),
+      name: global.createRandomName(),
+      email: faker.internet.email(),
+      picture: faker.internet.url(),
+      password: faker.internet.password(),
+    })
     const event = {
       resource: '/users/id/:id',
       path: `/users/id/${user.id}`,
@@ -105,7 +111,13 @@ describe('API: Users(GET)', () => {
   it('getRolesByUserId', async () => {
     const roleName = faker.lorem.words(3 + Math.floor(Math.random() * 8))
     const roleDescription = faker.name.lastName()
-    const user = (await UsersService.list({ limit: 1 })).data[0]
+    const user = await UsersService.create({
+      username: global.createRandomName().split(' ').join('').toLowerCase().substring(0, 15),
+      name: global.createRandomName(),
+      email: faker.internet.email(),
+      picture: faker.internet.url(),
+      password: faker.internet.password(),
+    })
     const role = await RolesService.create({ name: roleName, description: roleDescription })
     await UserRolesService.create({ roleId: role.id, userId: user.id })
 

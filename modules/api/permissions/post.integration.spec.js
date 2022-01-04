@@ -5,16 +5,13 @@ import faker from 'faker'
 // import RolePermissionsService from 'lib/services/role-permissions'
 import { handler } from './post'
 
-const TYPES = ['ALLOW', 'DENY']
-const METHODS = ['ALL', 'GET', 'POST', 'PUT', 'DELETE']
-
 describe('API: Permissions(POST)', () => {
   it('create', async () => {
     const payload = {
-      name: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+      name: global.createRandomName(),
       description: faker.name.lastName(),
-      type: TYPES[Math.floor(Math.random() * TYPES.length)],
-      method: METHODS[Math.floor(Math.random() * METHODS.length)],
+      type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+      method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
       path: faker.internet.url(),
     }
     const event = {
@@ -34,14 +31,14 @@ describe('API: Permissions(POST)', () => {
 
   // it('removePermissionRole', async () => {
   //   const permission = await PermissionsService.create({
-  //     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  //     name: global.createRandomName(),
   //     description: faker.random.words(),
-  //     type: TYPES[Math.floor(Math.random() * TYPES.length)],
-  //     method: METHODS[Math.floor(Math.random() * METHODS.length)],
+  //     type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+  //     method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
   //     path: faker.internet.url(),
   //   })
   //   const role = await RolesService.create({
-  //     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  //     name: global.createRandomName(),
   //     description: faker.random.words(),
   //   })
   //   await RolePermissionsService.create({

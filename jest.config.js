@@ -7,4 +7,7 @@ module.exports = {
   testPathIgnorePatterns: [
     'modules/web',
   ],
+  setupFiles: [
+    'lib/helpers/jest-helpers.js',
+  ],
 }

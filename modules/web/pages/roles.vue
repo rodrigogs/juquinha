@@ -6,8 +6,8 @@ v-container
 </template>
 
 <script>
-import RolesCRUD from '@/components/roles/RolesCRUD'
 import i18n from 'lib/i18n'
+import RolesCRUD from '@/components/roles/RolesCRUD'
 
 export default {
   components: { RolesCRUD },

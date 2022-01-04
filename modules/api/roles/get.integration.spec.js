@@ -5,9 +5,6 @@ import PermissionsService from 'lib/services/permissions'
 import RolePermissionsService from 'lib/services/role-permissions'
 import { handler } from './get'
 
-const TYPES = ['ALLOW', 'DENY']
-const METHODS = ['ALL', 'GET', 'POST', 'PUT', 'DELETE']
-
 describe('API: Roles(GET)', () => {
   it('list', async () => {
     const event = {
@@ -26,7 +23,10 @@ describe('API: Roles(GET)', () => {
   })
 
   it('getOneById', async () => {
-    const role = (await RolesService.list({ limit: 1 })).data[0]
+    const role = await RolesService.create({
+      name: global.createRandomName(),
+      description: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+    })
     const event = {
       resource: '/roles/:id',
       path: `/roles/${role.id}`,
@@ -44,12 +44,15 @@ describe('API: Roles(GET)', () => {
   })
 
   it('permissions getRolesByPermissionId', async () => {
-    const role = (await RolesService.list({ limit: 1 })).data[0]
+    const role = await RolesService.create({
+      name: global.createRandomName(),
+      description: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+    })
     const permission = await PermissionsService.create({
-      name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      name: global.createRandomName(),
       description: faker.lorem.sentence(),
-      type: TYPES[Math.floor(Math.random() * TYPES.length)],
-      method: METHODS[Math.floor(Math.random() * METHODS.length)],
+      type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+      method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
       path: faker.internet.url(),
     })
     await RolePermissionsService.create({ roleId: role.id, permissionId: permission.id })

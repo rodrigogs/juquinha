@@ -61,7 +61,13 @@ describe('API: Permissions(GET)', () => {
 
   it('getOneById', async () => {
     try {
-      const permission = (await PermissionsService.list({ limit: 1 })).data[0]
+      const permission = await PermissionsService.create({
+        name: global.createRandomName(),
+        description: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+        type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+        method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
+        path: faker.internet.url(),
+      })
       const event = {
         resource: '/permissions/:id',
         path: `/permissions/${permission.id}`,
@@ -113,9 +119,15 @@ describe('API: Permissions(GET)', () => {
 
   it('permissions getRolesByPermissionId', async () => {
     try {
-      const roleName = faker.lorem.words(3 + Math.floor(Math.random() * 8))
+      const roleName = global.createRandomName()
       const roleDescription = faker.name.lastName()
-      const permission = (await PermissionsService.list({ limit: 1 })).data[0]
+      const permission = await PermissionsService.create({
+        name: global.createRandomName(),
+        description: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+        type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+        method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
+        path: faker.internet.url(),
+      })
       const role = await RolesService.create({ name: roleName, description: roleDescription })
       await RolePermissionsService.create({ roleId: role.id, permissionId: permission.id })
 

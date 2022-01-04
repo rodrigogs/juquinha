@@ -30,14 +30,14 @@ describe('API: Roles(POST)', () => {
 
   // it('removePermissionRole', async () => {
   //   const role = await RolesService.create({
-  //     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  //     name: global.createRandomName(),
   //     description: faker.random.words(),
   //   })
   //   const permission = await PermissionsService.create({
-  //     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+  //     name: global.createRandomName(),
   //     description: faker.random.words(),
-  //     type: TYPES[Math.floor(Math.random() * TYPES.length)],
-  //     method: METHODS[Math.floor(Math.random() * METHODS.length)],
+  //     type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+  //     method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
   //     path: faker.internet.url(),
   //   })
   //   await RolePermissionsService.create({
