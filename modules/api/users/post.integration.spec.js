@@ -8,10 +8,11 @@ import { handler } from './post'
 describe('API: Users(POST)', () => {
   it('create', async () => {
     const payload = {
-      username: faker.lorem.words(3 + Math.floor(Math.random() * 7)).replace(/ /g, '').substring(0, 15),
-      name: faker.lorem.words(3 + Math.floor(Math.random() * 7)),
+      username: global.createRandomName().split(' ').join('').toLowerCase().substring(0, 15),
+      name: global.createRandomName(),
       email: faker.internet.email(),
       picture: faker.internet.url(),
+      password: faker.internet.password(),
     }
     const event = {
       path: '/users',
@@ -30,13 +31,14 @@ describe('API: Users(POST)', () => {
 
   it('removeRole', async () => {
     const user = await UsersService.create({
-      username: faker.lorem.words(3 + Math.floor(Math.random() * 7)).replace(/ /g, '').substring(0, 15),
-      name: faker.lorem.words(3 + Math.floor(Math.random() * 7)),
+      username: global.createRandomName().split(' ').join('').toLowerCase().substring(0, 15),
+      name: global.createRandomName(),
       email: faker.internet.email(),
       picture: faker.internet.url(),
+      password: faker.internet.password(),
     })
     const role = await RolesService.create({
-      name: faker.lorem.words(3 + Math.floor(Math.random() * 7)),
+      name: global.createRandomName(),
       description: faker.random.words(),
     })
     await UserRolesService.create({

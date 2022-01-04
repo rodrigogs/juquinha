@@ -5,16 +5,13 @@ import RolesService from 'lib/services/roles'
 import RolePermissionsService from 'lib/services/role-permissions'
 import { handler } from './delete'
 
-const TYPES = ['ALLOW', 'DENY']
-const METHODS = ['ALL', 'GET', 'POST', 'PUT', 'DELETE']
-
 describe('API: Permissions(DELETE)', () => {
   it('delete', async () => {
     const permission = await PermissionsService.create({
-      name: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
-      description: faker.name.lastName(),
-      type: TYPES[Math.floor(Math.random() * TYPES.length)],
-      method: METHODS[Math.floor(Math.random() * METHODS.length)],
+      name: global.createRandomName(),
+      description: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+      type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+      method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
       path: faker.internet.url(),
     })
     const event = {
@@ -33,9 +30,15 @@ describe('API: Permissions(DELETE)', () => {
   })
 
   it('removePermissionRole', async () => {
-    const roleName = faker.lorem.words(3 + Math.floor(Math.random() * 8))
+    const roleName = global.createRandomName()
     const roleDescription = faker.name.lastName()
-    const permission = (await PermissionsService.list({ limit: 1 })).data[0]
+    const permission = await PermissionsService.create({
+      name: global.createRandomName(),
+      description: faker.lorem.words(3 + Math.floor(Math.random() * 8)),
+      type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
+      method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
+      path: faker.internet.url(),
+    })
     const role = await RolesService.create({ name: roleName, description: roleDescription })
     await RolePermissionsService.create({ roleId: role.id, permissionId: permission.id })
 
