@@ -40,5 +40,4 @@ jobs:
           APP_NAME: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.APP_NAME }}
           SERVICE_NAME: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.SERVICE_NAME }}
           STAGE: ${{ steps.extract_branch.outputs.branch }}
-          REGION: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_REGION }}
           LANGUAGE: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.LANGUAGE }}
