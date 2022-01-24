@@ -33,6 +33,7 @@ jobs:
       - run: npx pnpm run bootstrap
       - run: npx pnpm run deploy
         env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           AWS_ACCESS_KEY_ID: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_SECRET_ACCESS_KEY }}
           REGION: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_REGION }}
