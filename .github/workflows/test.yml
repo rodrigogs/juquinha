@@ -4,25 +4,23 @@ on:
   push
 
 jobs:
-  test:
+  build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 17.x]
+
     steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6.0.2
-      - run: pnpm run bootstrap
-      - run: pnpm run build
-      - run: pnpm run test:integration
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          REGION: ${{ secrets.AWS_REGION }}
-          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
-          APP_NAME: ${{ secrets.APP_NAME }}
-          SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
-          STAGE: test
-          LANGUAGE: ${{ secrets.LANGUAGE }}
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - uses: pnpm/action-setup@v2.0.1
+      with:
+        version: 6.28.0
+    - run: npx pnpm run bootstrap
+    - run: npx pnpm run deploy
+    - run: npx pnpm test:integration
