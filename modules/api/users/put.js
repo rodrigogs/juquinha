@@ -1,4 +1,4 @@
-import updateUser from 'lib/services/users/update'
+import UsersService from 'lib/services/users'
 import { default as Router, responseBuilder } from 'lib/helpers/router'
 
 export const handler = async (event, context) => {
@@ -6,7 +6,7 @@ export const handler = async (event, context) => {
 
     .put('/users/:id', (request) => {
       const { pathParameters, body } = request
-      return updateUser(pathParameters.id, body).then((updatedUser) =>
+      return UsersService.update(pathParameters.id, body).then((updatedUser) =>
         responseBuilder.success.ok({ body: updatedUser }),
       )
     })

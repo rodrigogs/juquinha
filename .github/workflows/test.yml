@@ -13,7 +13,7 @@ jobs:
           node-version: '14'
       - run: npx pnpm run bootstrap
 
-  deploy:
+  test:
     needs: build
     runs-on: ubuntu-latest
     steps:

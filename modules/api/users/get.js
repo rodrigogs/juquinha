@@ -1,7 +1,5 @@
-import getOneUserById from 'lib/services/users/get-one-by-id'
-import getOneUserByUsername from 'lib/services/users/get-one-by-username'
-import listUsers from 'lib/services/users/list'
-import listRolesByUserId from 'lib/services/user-roles/list-roles-by-user-id'
+import UsersService from 'lib/services/users'
+import UserRolesService from 'lib/services/user-roles'
 import { default as Router, responseBuilder } from 'lib/helpers/router'
 
 export const handler = async (event, context) => {
@@ -10,14 +8,14 @@ export const handler = async (event, context) => {
     .get('/users', (request) => {
       const { queryStringParameters } = request
       const { limit, lastKey, filter } = queryStringParameters
-      return listUsers({ filter, lastKey, limit }).then((page) =>
+      return UsersService.list({ filter, lastKey, limit }).then((page) =>
         responseBuilder.success.ok({ body: page }),
       )
     })
 
     .get('/users/id/:id', (request) => {
       const { pathParameters } = request
-      return getOneUserById(pathParameters.id).then((user) =>
+      return UsersService.getOneById(pathParameters.id).then((user) =>
         user
           ? responseBuilder.success.ok({ body: user })
           : responseBuilder.errors.notFound('User not found'),
@@ -26,7 +24,7 @@ export const handler = async (event, context) => {
 
     .get('/users/username/:username', (request) => {
       const { pathParameters } = request
-      return getOneUserByUsername(pathParameters.username).then((user) =>
+      return UsersService.getOneByUsername(pathParameters.username).then((user) =>
         user
           ? responseBuilder.success.ok({ body: user })
           : responseBuilder.errors.notFound('User not found'),
@@ -36,7 +34,7 @@ export const handler = async (event, context) => {
     .get('/users/:id/roles', (request) => {
       const { pathParameters, queryStringParameters } = request
       const { limit, lastKey } = queryStringParameters
-      return listRolesByUserId(pathParameters.id, {
+      return UserRolesService.listRolesByUserId(pathParameters.id, {
         lastKey,
         limit,
       }).then((roles) => responseBuilder.success.ok({ body: roles }))
