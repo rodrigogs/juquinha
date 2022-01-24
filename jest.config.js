@@ -10,4 +10,5 @@ module.exports = {
   setupFiles: [
     'lib/helpers/jest-helpers.js',
   ],
+  testTimeout: 20000,
 }

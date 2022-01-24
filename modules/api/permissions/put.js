@@ -7,9 +7,10 @@ export const handler = async (event, context) => {
 
     .put('/permissions/:id', (request) => {
       const { pathParameters, body } = request
-      return PermissionsService.update(pathParameters.id, body).then((updatedPermission) =>
-        responseBuilder.success.ok({ body: updatedPermission }),
-      )
+      return PermissionsService.update(pathParameters.id, body).then(async () => {
+        const updatedPermission = await PermissionsService.getOneById(pathParameters.id)
+        return responseBuilder.success.ok({ body: updatedPermission })
+      })
     })
 
     .put('/permissions/:id/roles/:roleId', (request) => {

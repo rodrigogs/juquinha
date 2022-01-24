@@ -27,7 +27,7 @@ describe('API: Users(POST)', () => {
 
     const response = await handler(event, context)
     expect(response.statusCode).toBe(201)
-  }, 10000)
+  })
 
   it('removeRole', async () => {
     const user = await UsersService.create({
@@ -63,5 +63,5 @@ describe('API: Users(POST)', () => {
 
     const response = await handler(event, context)
     expect(response.statusCode).toBe(201)
-  }, 10000)
+  })
 })

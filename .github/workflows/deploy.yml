@@ -19,6 +19,7 @@ jobs:
         with:
           path: '**/node_modules/*'
       - run: npx pnpm run bootstrap
+      - run: npx pnpm run build
 
   deploy:
     needs: build
@@ -45,12 +46,3 @@ jobs:
           STAGE: ${{ steps.extract_branch.outputs.branch }}
           REGION: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_REGION }}
           LANGUAGE: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.LANGUAGE }}
-          AUTH0_DOMAIN: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_DOMAIN }}
-          AUTH0_CLIENT_ID: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_CLIENT_ID }}
-          AUTH0_CLIENT_SECRET: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_CLIENT_SECRET }}
-          AUTH0_API_AUDIENCE: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_API_AUDIENCE }}
-          AUTH0_MTM_CLIENT_ID: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_MTM_CLIENT_ID }}
-          AUTH0_MTM_CLIENT_SECRET: ${{  steps.extract_branch.outputs.branch }}_${{ secrets.AUTH0_MTM_CLIENT_SECRET }}
-          OPENTOK_API_KEY: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.OPENTOK_API_KEY }}
-          OPENTOK_API_SECRET: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.OPENTOK_API_SECRET }}
-          OPENTOK_TOKEN_EXPIRATION_IN_SECONDS: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.OPENTOK_TOKEN_EXPIRATION_IN_SECONDS }}
