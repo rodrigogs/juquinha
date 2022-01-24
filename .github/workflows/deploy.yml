@@ -1,4 +1,4 @@
-name: Deploy
+name: Test
 
 on:
   push:
@@ -8,36 +8,21 @@ on:
       - test
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14
-      - uses: nelonoel/branch-name@v1
       - run: npx pnpm run bootstrap
       - run: npx pnpm run deploy
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-          AWS_ACCESS_KEY_ID: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          REGION: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.AWS_REGION }}
-          SERVERLESS_ACCESS_KEY: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.SERVERLESS_ACCESS_KEY }}
-          APP_NAME: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.APP_NAME }}
-          SERVICE_NAME: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.SERVICE_NAME }}
-          STAGE: ${{ steps.extract_branch.outputs.branch }}
-          LANGUAGE: ${{ steps.extract_branch.outputs.branch }}_${{ secrets.LANGUAGE }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          REGION: ${{ secrets.AWS_REGION }}
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          APP_NAME: ${{ secrets.APP_NAME }}
+          SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
+          STAGE: test
+          LANGUAGE: ${{ secrets.LANGUAGE }}
