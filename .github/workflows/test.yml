@@ -8,12 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 14
-      - uses: actions/cache@v2.1.2
-        with:
-          path: '**/node_modules/*'
+          node-version: '14'
       - run: npx pnpm run bootstrap
 
   deploy:
