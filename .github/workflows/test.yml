@@ -1,4 +1,4 @@
-name: Deploy
+name: Test
 
 on:
   push
@@ -26,6 +26,7 @@ jobs:
           node-version: 14
       - uses: nelonoel/branch-name@v1
       - run: npx pnpm run bootstrap
+      - run: npx pnpm run build
       - run: npx pnpm run test:integration
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
