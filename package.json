@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Tudo na mãozinha",
   "scripts": {
-    "init": "npx pnpm run bootstrap && npx cross-env INIT=true node scripts/init",
+    "setup": "npx pnpm run bootstrap && npx cross-env INIT=true node scripts/setup",
     "bootstrap": "npx pnpm recursive install",
     "clean": "npx pnpm -r exec -- rm -rf node_modules && npx pnpm -r exec -- rm -rf .serverless",
     "build": "npx pnpm -r --filter sls-* exec -- sls package",
