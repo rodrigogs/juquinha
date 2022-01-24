@@ -22,7 +22,10 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'pnpm'
+        cache: 'npm'
+    - uses: pnpm/action-setup@v2.0.1
+      with:
+        version: 6.28.0
     - run: npx pnpm run bootstrap
     - run: npx pnpm run deploy
     - run: npx pnpm test:integration
