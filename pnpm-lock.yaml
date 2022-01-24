@@ -20,7 +20,7 @@ importers:
       lib: ^0.0.1
       loading-cli: ^1.1.0
       prettier: ^2.4.1
-      serverless: ^2.70.0
+      serverless: ^2.72.1
       serverless-bundle: ^4.4.0
       serverless-offline: ^8.2.0
       serverless-scriptable-plugin: ^1.2.2
@@ -44,9 +44,9 @@ importers:
       jest: 27.4.5
       loading-cli: 1.1.0
       prettier: 2.5.1
-      serverless: 2.70.0_inquirer@8.2.0
-      serverless-bundle: 4.4.0_serverless@2.70.0
-      serverless-offline: 8.3.1_serverless@2.70.0
+      serverless: 2.72.1_inquirer@8.2.0
+      serverless-bundle: 4.4.0_serverless@2.72.1
+      serverless-offline: 8.3.1_serverless@2.72.1
       serverless-scriptable-plugin: 1.2.2
       source-map-loader: 3.0.0
       strip-ansi: 6.0.1
@@ -114,7 +114,7 @@ importers:
     specifiers:
       serverless-domain-manager: ^5.1.0
     devDependencies:
-      serverless-domain-manager: 5.2.0_serverless@2.70.0
+      serverless-domain-manager: 5.2.0_serverless@2.72.1
 
   modules/resources/db:
     specifiers: {}
@@ -2717,13 +2717,14 @@ packages:
       detect-libc: 1.0.3
       https-proxy-agent: 5.0.0
       make-dir: 3.1.0
-      node-fetch: 2.6.6
+      node-fetch: 2.6.7
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
       semver: 7.3.5
       tar: 6.1.11
     transitivePeerDependencies:
+      - encoding
       - supports-color
     dev: true
 
@@ -2838,6 +2839,7 @@ packages:
       - '@babel/core'
       - bufferutil
       - debug
+      - encoding
       - esbuild
       - less
       - pug
@@ -2858,7 +2860,7 @@ packages:
       '@nuxt/vue-app-edge': 2.16.0-27358576.777a4b7f
       '@nuxt/webpack-edge': 2.16.0-27358576.777a4b7f
       chalk: 4.1.2
-      chokidar: 3.5.2
+      chokidar: 3.5.3
       consola: 2.15.3
       fs-extra: 10.0.0
       glob: 7.2.0
@@ -2871,6 +2873,7 @@ packages:
     transitivePeerDependencies:
       - acorn
       - bufferutil
+      - encoding
       - supports-color
       - typescript
       - utf-8-validate
@@ -2914,7 +2917,7 @@ packages:
       consola: '*'
     dependencies:
       chalk: 4.1.2
-      chokidar: 3.5.2
+      chokidar: 3.5.3
       glob: 7.2.0
       globby: 11.1.0
       scule: 0.2.1
@@ -3038,7 +3041,7 @@ packages:
       '@vercel/nft': 0.17.2
       archiver: 5.3.0
       chalk: 5.0.0
-      chokidar: 3.5.2
+      chokidar: 3.5.3
       connect: 3.7.0
       consola: 2.15.3
       defu: 5.0.0
@@ -3081,6 +3084,7 @@ packages:
       - acorn
       - bufferutil
       - debug
+      - encoding
       - supports-color
       - utf-8-validate
     dev: true
@@ -3092,7 +3096,9 @@ packages:
     dependencies:
       chalk: 4.1.2
       consola: 2.15.3
-      node-fetch: 2.6.6
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@nuxt/postcss8/1.1.3:
@@ -3163,10 +3169,12 @@ packages:
       is-docker: 2.2.1
       jiti: 1.12.9
       nanoid: 3.1.30
-      node-fetch: 2.6.6
+      node-fetch: 2.6.7
       parse-git-config: 3.0.0
       rc9: 1.2.0
       std-env: 2.3.1
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@nuxt/types/2.15.8:
@@ -3218,7 +3226,7 @@ packages:
   /@nuxt/vue-app-edge/2.16.0-27358576.777a4b7f:
     resolution: {integrity: sha512-3ycm2XO6S+g6oyiMHXLUSyzp1zwxGo/gKPR/FbdXr8DsSmyuSQK1UzOOUqzC+u2Z+ycZH7rFaadnIn5U0axYLg==}
     dependencies:
-      node-fetch: 2.6.6
+      node-fetch: 2.6.7
       ufo: 0.7.9
       unfetch: 4.2.0
       vue: 2.6.14
@@ -3228,6 +3236,8 @@ packages:
       vue-router: 3.5.3
       vue-template-compiler: 2.6.14
       vuex: 3.6.2_vue@2.6.14
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@nuxt/vue-renderer-edge/2.16.0-27358576.777a4b7f:
@@ -3590,8 +3600,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@serverless/cli/1.5.3:
-    resolution: {integrity: sha512-ZJ0Y7CsYoE/i45XkIMl/XBZO4KIlt0XH1qwxxNE2/84bZlih5cgRV6MZ+rKt7GlrD0iDAgQGyGv5dpyt+SGhKw==}
+  /@serverless/cli/1.6.0:
+    resolution: {integrity: sha512-1Muw/KhS4sZ6+ZrXBdmVY9zAwZh03lF7v1DKtaZ0cmxjqQBwPLoO40rOGXlxR97pyufe2NS6rD/p+ri8NGqeXg==}
     hasBin: true
     dependencies:
       '@serverless/core': 1.1.2
@@ -3605,17 +3615,21 @@ packages:
       minimist: 1.2.5
       prettyoutput: 1.2.0
       strip-ansi: 6.0.1
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
   /@serverless/component-metrics/1.0.8:
     resolution: {integrity: sha512-lOUyRopNTKJYVEU9T6stp2irwlTDsYMmUKBOUjnMcwGveuUfIJqrCOtFLtIPPj3XJlbZy5F68l4KP9rZ8Ipang==}
     dependencies:
-      node-fetch: 2.6.6
+      node-fetch: 2.6.7
       shortid: 2.2.16
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
-  /@serverless/components/3.18.1_inquirer@8.2.0:
-    resolution: {integrity: sha512-36XSYHjPkSEiSwWkl/xwWgYXa32Fk1CAbHvtWGheCtKV4+I3Yxzhe7FbgR84O0FeGQ/qM3QI8i5vtPUxeDeB9g==}
+  /@serverless/components/3.18.2_inquirer@8.2.0:
+    resolution: {integrity: sha512-jQSgd3unajU94R6vjzD0l+PS5lVcky0vrE1DOfb28VPgmaS48+I/niavWR7+SOt0mYjIkUlwBI73a2ZuqeYK6Q==}
     engines: {node: '>=10.0'}
     hasBin: true
     dependencies:
@@ -3666,16 +3680,16 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /@serverless/dashboard-plugin/5.5.2:
-    resolution: {integrity: sha512-w//z0A5IJ52kwbHken4QEx+vo/T2WHbmHFR5CblVbe2LpswgSJ2IEUHrbm/Tp9V/1QtGrVVXRVxgOPxoAChFwg==}
+  /@serverless/dashboard-plugin/5.5.4:
+    resolution: {integrity: sha512-qqZnT/RXhBcWXwYnpF+GMeNvSUi6mnyIqsAHj8+f7jJ7N9qa5Qrb14+dUh78sdgRBG5Peub3m3Mlx1n5V9yHDw==}
     engines: {node: '>=10.0'}
     dependencies:
       '@serverless/event-mocks': 1.1.1
       '@serverless/platform-client': 4.3.0
-      '@serverless/utils': 5.20.2
+      '@serverless/utils': 5.20.3
       chalk: 4.1.2
       child-process-ext: 2.1.1
-      chokidar: 3.5.2
+      chokidar: 3.5.3
       cli-color: 2.0.1
       flat: 5.0.2
       fs-extra: 9.1.0
@@ -3685,7 +3699,7 @@ packages:
       memoizee: 0.4.15
       ncjsm: 4.2.0
       node-dir: 0.1.17
-      node-fetch: 2.6.6
+      node-fetch: 2.6.7
       open: 7.4.2
       semver: 7.3.5
       simple-git: 2.48.0
@@ -3694,6 +3708,7 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - debug
+      - encoding
       - supports-color
       - utf-8-validate
     dev: true
@@ -3714,7 +3729,7 @@ packages:
       archiver: 5.3.0
       axios: 0.21.4
       dotenv: 8.6.0
-      fast-glob: 3.2.7
+      fast-glob: 3.2.10
       fs-extra: 9.1.0
       https-proxy-agent: 5.0.0
       js-yaml: 3.14.1
@@ -3738,7 +3753,7 @@ packages:
       adm-zip: 0.5.9
       archiver: 5.3.0
       axios: 0.21.4
-      fast-glob: 3.2.7
+      fast-glob: 3.2.10
       https-proxy-agent: 5.0.0
       ignore: 5.2.0
       isomorphic-ws: 4.0.1_ws@7.5.6
@@ -3765,6 +3780,8 @@ packages:
       graphlib: 2.1.8
       ramda: 0.26.1
       traverse: 0.6.6
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
   /@serverless/utils-china/1.1.4:
@@ -3816,8 +3833,8 @@ packages:
       write-file-atomic: 3.0.3
     dev: true
 
-  /@serverless/utils/5.20.2:
-    resolution: {integrity: sha512-u7+oVwbq1BunmLI0T9egRL93Xg3TGxNsqogXqzxSLtjMWiImsadv3/gUJfXz/wTI9VXfbtQZvsVYMaRpS0JiqA==}
+  /@serverless/utils/5.20.3:
+    resolution: {integrity: sha512-MG3DQJdto+LaeVY9gh/z0xloAfT0h1Y3Pa4/yYcKe8Dy5HYtSujuav0MvTOH18+s2outjKKJDxTh6tZuyNqFDQ==}
     engines: {node: '>=10.0'}
     dependencies:
       archive-type: 4.0.0
@@ -4622,6 +4639,7 @@ packages:
       resolve-from: 5.0.0
       rollup-pluginutils: 2.8.2
     transitivePeerDependencies:
+      - encoding
       - supports-color
     dev: true
 
@@ -5623,6 +5641,21 @@ packages:
       url: 0.10.3
       uuid: 3.3.2
       xml2js: 0.4.19
+
+  /aws-sdk/2.1062.0:
+    resolution: {integrity: sha512-QIU8jwi7Uqyvw2HjsXXXUZv3V/6TinUzLewrdl2EdvonqZCXhwMgnZx2F9I2x62IKH1RqnINwFWdoK+OTgcAjA==}
+    engines: {node: '>= 10.0.0'}
+    dependencies:
+      buffer: 4.9.2
+      events: 1.1.1
+      ieee754: 1.1.13
+      jmespath: 0.16.0
+      querystring: 0.2.0
+      sax: 1.2.1
+      url: 0.10.3
+      uuid: 3.3.2
+      xml2js: 0.4.19
+    dev: true
 
   /aws-sign2/0.7.0:
     resolution: {integrity: sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=}
@@ -6935,6 +6968,20 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
+  /chokidar/3.5.3:
+    resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
+    engines: {node: '>= 8.10.0'}
+    dependencies:
+      anymatch: 3.1.2
+      braces: 3.0.2
+      glob-parent: 5.1.2
+      is-binary-path: 2.1.0
+      is-glob: 4.0.3
+      normalize-path: 3.0.0
+      readdirp: 3.6.0
+    optionalDependencies:
+      fsevents: 2.3.2
+
   /chownr/1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
 
@@ -8095,7 +8142,7 @@ packages:
       decompress-tarbz2: 4.1.1
       decompress-targz: 4.1.1
       decompress-unzip: 4.0.1
-      graceful-fs: 4.2.8
+      graceful-fs: 4.2.9
       make-dir: 1.3.0
       pify: 2.3.0
       strip-dirs: 2.1.0
@@ -9922,6 +9969,7 @@ packages:
 
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
 
   /file-uri-to-path/2.0.0:
     resolution: {integrity: sha512-hjPFI8oE/2iQPVe4gbrJ73Pp+Xfub2+WI2LlXDbsaJBwT5wuMh35WNWVYYTpnz895shtwfyutMFLFywpQAFdLg==}
@@ -9959,8 +10007,8 @@ packages:
       trim-repeated: 1.0.0
     dev: true
 
-  /filesize/8.0.6:
-    resolution: {integrity: sha512-sHvRqTiwdmcuzqet7iVwsbwF6UrV3wIgDf2SHNdY1Hgl8PC45HZg/0xtdw6U2izIV4lccnrY9ftl6wZFNdjYMg==}
+  /filesize/8.0.7:
+    resolution: {integrity: sha512-pjmC+bkIF8XI7fWaH8KxHcZL3DPybs1roSKP4rKDvy20tAWwIObE4+JIseG2byfGKhud5ZnM4YSGKBz7Sh0ndQ==}
     engines: {node: '>= 0.4.0'}
     dev: true
 
@@ -12830,6 +12878,11 @@ packages:
     resolution: {integrity: sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=}
     engines: {node: '>= 0.6.0'}
 
+  /jmespath/0.16.0:
+    resolution: {integrity: sha512-9FzQjJ7MATs1tSpnco1K6ayiYE3figslrXA72G2HQ/n76RzvYlofyi5QM+iX4YRs/pu3yzxlVQSST23+dMDknw==}
+    engines: {node: '>= 0.6.0'}
+    dev: true
+
   /js-object-utilities/2.0.0:
     resolution: {integrity: sha512-d0o5Hnd+9q9mswk8VhU9Fzl+QLce3FvtNlLKV7UTUYjAZuChAKeS/DnuameOpiJAXquqrXLJYUcABxhIWogwpA==}
     dev: false
@@ -14343,6 +14396,18 @@ packages:
     engines: {node: 4.x || >=6.0.0}
     dependencies:
       whatwg-url: 5.0.0
+    dev: true
+
+  /node-fetch/2.6.7:
+    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
 
   /node-fetch/3.1.0:
     resolution: {integrity: sha512-QU0WbIfMUjd5+MUzQOYhenAazakV7Irh1SGkWCsRzBwvm4fAhzEUaHMJ6QLP7gWT6WO9/oH2zhKMMGMuIrDyKw==}
@@ -14643,6 +14708,7 @@ packages:
       - acorn
       - bufferutil
       - consola
+      - encoding
       - supports-color
       - typescript
       - utf-8-validate
@@ -17908,7 +17974,7 @@ packages:
     resolution: {integrity: sha1-8Tv5KOQrnD55OD5hzDmYtdFObN0=}
     dev: false
 
-  /serverless-bundle/4.4.0_serverless@2.70.0:
+  /serverless-bundle/4.4.0_serverless@2.72.1:
     resolution: {integrity: sha512-upzxESCrLOfTaWW/zlqOeIKx7yiY+4o6eTnV6Ts0xA2GsSXreu+5rDy6YyQFdMQDDONZvCU75Do/GxIk6w8s6Q==}
     hasBin: true
     dependencies:
@@ -17950,7 +18016,7 @@ packages:
       resolve: 1.20.0
       sass: 1.45.2
       sass-loader: 10.2.0_sass@1.45.2+webpack@4.46.0
-      serverless-webpack: 5.6.0_5c76a0825486789c25ba6201d673c74b
+      serverless-webpack: 5.6.0_e4c22c089dbf0f266e3d41e8e5d71750
       source-map-support: 0.4.18
       ts-jest: 26.5.6_jest@26.6.3+typescript@4.5.4
       ts-loader: 8.3.0_typescript@4.5.4+webpack@4.46.0
@@ -17978,7 +18044,7 @@ packages:
       - webpack-command
     dev: true
 
-  /serverless-domain-manager/5.2.0_serverless@2.70.0:
+  /serverless-domain-manager/5.2.0_serverless@2.72.1:
     resolution: {integrity: sha512-YeqH8FNPF4VuWy7D9FXl5g2uBDdKuf7idHTsgr+mGAxn4WTFhl0+ql7Yq/LRyV7OHoHX9BzCcrmA+rrw9rL8Hw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -17986,10 +18052,10 @@ packages:
     dependencies:
       aws-sdk: 2.1048.0
       chalk: 4.1.2
-      serverless: 2.70.0_inquirer@8.2.0
+      serverless: 2.72.1_inquirer@8.2.0
     dev: true
 
-  /serverless-offline/8.3.1_serverless@2.70.0:
+  /serverless-offline/8.3.1_serverless@2.72.1:
     resolution: {integrity: sha512-U2HK3uMGUBIAqEXqRf2gKpOP0rDfK0t3LpCnZmtE1nWFd7BLjhuGRbzCXGvrVooGUf9XLlubjFazQ2d4LMpNzg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -18021,7 +18087,7 @@ packages:
       please-upgrade-node: 3.2.0
       portfinder: 1.0.28
       semver: 7.3.5
-      serverless: 2.70.0_inquirer@8.2.0
+      serverless: 2.72.1_inquirer@8.2.0
       update-notifier: 5.1.0
       velocityjs: 2.0.5
       ws: 7.5.6
@@ -18036,7 +18102,7 @@ packages:
       bluebird: 3.7.2
     dev: true
 
-  /serverless-webpack/5.6.0_5c76a0825486789c25ba6201d673c74b:
+  /serverless-webpack/5.6.0_e4c22c089dbf0f266e3d41e8e5d71750:
     resolution: {integrity: sha512-merTpkO+dylC6kUStZ0bOhTVW8hAziVF9A0Jg8rHOxT25IOZviCyaOoLemL84Cvdh7YIEWlCY8UDURBRe3D9hw==}
     engines: {node: '>= 10.12.0'}
     peerDependencies:
@@ -18050,7 +18116,7 @@ packages:
       is-builtin-module: 3.1.0
       lodash: 4.17.21
       semver: 7.3.5
-      serverless: 2.70.0_inquirer@8.2.0
+      serverless: 2.72.1_inquirer@8.2.0
       webpack: 4.46.0
     optionalDependencies:
       ts-node: 10.4.0_typescript@4.5.4
@@ -18061,21 +18127,21 @@ packages:
       - typescript
     dev: true
 
-  /serverless/2.70.0_inquirer@8.2.0:
-    resolution: {integrity: sha512-NoaaylJFgDhbEWLashrerle8jx35b6iGdF3s+gYOzj8wvLhMOF3rfWzeKNyCBVXC0syx1Q5aYgaYVHUMzXzmSw==}
+  /serverless/2.72.1_inquirer@8.2.0:
+    resolution: {integrity: sha512-SxmxyBgWQvcKvEXdP0fR3Y+nljOQ+nWCPDZXnhic//w+k0kNQ/bHcd3S1VZQqU3m7nZZwMsdC5lxB26EpUFELA==}
     engines: {node: '>=10.0'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@serverless/cli': 1.5.3
-      '@serverless/components': 3.18.1_inquirer@8.2.0
-      '@serverless/dashboard-plugin': 5.5.2
+      '@serverless/cli': 1.6.0
+      '@serverless/components': 3.18.2_inquirer@8.2.0
+      '@serverless/dashboard-plugin': 5.5.4
       '@serverless/platform-client': 4.3.0
-      '@serverless/utils': 5.20.2
+      '@serverless/utils': 5.20.3
       ajv: 6.12.6
       ajv-keywords: 3.5.2_ajv@6.12.6
       archiver: 5.3.0
-      aws-sdk: 2.1048.0
+      aws-sdk: 2.1062.0
       bluebird: 3.7.2
       boxen: 5.1.2
       cachedir: 2.3.0
@@ -18091,15 +18157,14 @@ packages:
       essentials: 1.2.0
       ext: 1.6.0
       fastest-levenshtein: 1.0.12
-      filesize: 8.0.6
+      filesize: 8.0.7
       fs-extra: 9.1.0
       get-stdin: 8.0.0
-      globby: 11.0.4
+      globby: 11.1.0
       got: 11.8.3
-      graceful-fs: 4.2.8
+      graceful-fs: 4.2.9
       https-proxy-agent: 5.0.0
       is-docker: 2.2.1
-      is-wsl: 2.2.0
       js-yaml: 4.1.0
       json-cycle: 1.3.0
       json-refs: 3.0.15
@@ -18107,8 +18172,8 @@ packages:
       memoizee: 0.4.15
       micromatch: 4.0.4
       ncjsm: 4.2.0
-      node-fetch: 2.6.6
-      object-hash: 2.2.0
+      node-fetch: 2.6.7
+      open: 7.4.2
       path2: 0.1.0
       process-utils: 4.0.0
       promise-queue: 2.2.5
@@ -18126,6 +18191,7 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - debug
+      - encoding
       - inquirer
       - supports-color
       - utf-8-validate
@@ -18953,6 +19019,7 @@ packages:
   /superagent/3.8.3:
     resolution: {integrity: sha512-GLQtLMCoEIK4eDv6OGtkOoSMt3D+oq0y3dsxMuYuDvaNUvuT8eFBuLmfR0iYYzHC1e8hpzC6ZsxbuP6DIalMFA==}
     engines: {node: '>= 4.0'}
+    deprecated: Please upgrade to v7.0.2+ of superagent.  We have fixed numerous issues with streams, form-data, attach(), filesystem errors not bubbling up (ENOENT on attach()), and all tests are now passing.  See the releases tab for more information at <https://github.com/visionmedia/superagent/releases>. Thanks to @shadowgate15, @spence-s, and @niftylettuce. Superagent is sponsored by Forward Email at <https://forwardemail.net>.
     dependencies:
       component-emitter: 1.3.0
       cookiejar: 2.1.3
@@ -19924,7 +19991,7 @@ packages:
     resolution: {integrity: sha512-hBF0W+YTdu50I6m0In02H/Spq9DOmGymqu92Bo5+om/mW5SDvTn2Lu817TmZWXiOW40dCAJ8/+8ZbhVdXyBxqA==}
     dependencies:
       anymatch: 3.1.2
-      chokidar: 3.5.2
+      chokidar: 3.5.3
       destr: 1.1.0
       h3: 0.3.8
       ioredis: 4.28.2
