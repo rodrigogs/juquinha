@@ -1,15 +1,13 @@
-name: Deploy
+name: "Stage deploy: ${GITHUB_REF##*/}"
 
 on:
   push:
-    branches: [ master, dev, test ]
-  pull_request:
-    branches: [ master ]
-    
+    branches: [ prod, dev, test ]
+
 jobs:
   deploy:
-    environment: Test
-    
+    environment: ${GITHUB_REF##*/}
+
     runs-on: ubuntu-latest
 
     env:
@@ -38,7 +36,6 @@ jobs:
     - uses: pnpm/action-setup@v2.0.1
       with:
         version: 6.28.0
-    - run: env
     - run: pnpm run bootstrap
     - run: pnpm run deploy
     - run: pnpm test:integration
