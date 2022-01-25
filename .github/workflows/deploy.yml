@@ -8,9 +8,22 @@ on:
     
 jobs:
   deploy:
+    environment: Test
+    
     runs-on: ubuntu-latest
 
-    environment: Test
+    env:
+      STAGE: ${{secrets.STAGE}}
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      AWS_REGION: ${{secrets.AWS_REGION}}
+      APP_NAME: ${{secrets.APP_NAME}}
+      APP_PREFIX: ${{secrets.APP_PREFIX}}
+      DEPLOYMENT_BUCKET_NAME: ${{secrets.DEPLOYMENT_BUCKET_NAME}}
+      WEB_APP_BUCKET_NAME: ${{secrets.WEB_APP_BUCKET_NAME}}
+      DEFAULT_LANGUAGE: ${{secrets.DEFAULT_LANGUAGE}}
+      API_URL: ${{secrets.API_URL}}
+      APP_URL: ${{secrets.APP_URL}}
 
     strategy:
       matrix:
