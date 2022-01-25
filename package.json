@@ -47,7 +47,7 @@
     "jest": "^27.4.5",
     "loading-cli": "^1.1.0",
     "prettier": "^2.4.1",
-    "serverless": "^2.72.1",
+    "serverless": "^2.72.2",
     "serverless-bundle": "^4.4.0",
     "serverless-offline": "^8.2.0",
     "serverless-scriptable-plugin": "^1.2.2",
