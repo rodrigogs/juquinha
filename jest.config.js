@@ -11,4 +11,5 @@ module.exports = {
     'lib/helpers/jest-helpers.js',
   ],
   testTimeout: 20000,
+  timers: 'fake',
 }
