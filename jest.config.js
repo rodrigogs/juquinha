@@ -10,9 +10,6 @@ module.exports = {
   setupFiles: [
     '<rootDir>/tests/jest-helpers.js',
   ],
-  reporters: [
-    '<rootDir>/tests/jest-reporter.js',
-  ],
   testTimeout: 20000,
   timers: 'fake',
 }
