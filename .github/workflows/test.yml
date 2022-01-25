@@ -2,13 +2,13 @@ name: Stage deployment
 
 on:
   push:
-    branches: [ prod, dev, test ]
+    branches: [ test ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    environment: CI
+    environment: test
 
     env:
       STAGE: ${{secrets.STAGE}}
@@ -35,12 +35,12 @@ jobs:
     - run: pnpm run bootstrap
     - run: pnpm run deploy
 
-  test:
+  integration tests:
     needs: deploy
 
     runs-on: ubuntu-latest
 
-    environment: CI
+    environment: test
 
     env:
       STAGE: ${{secrets.STAGE}}
