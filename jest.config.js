@@ -8,7 +8,10 @@ module.exports = {
     'modules/web',
   ],
   setupFiles: [
-    'lib/helpers/jest-helpers.js',
+    '<rootDir>/tests/jest-helpers.js',
+  ],
+  reporters: [
+    '<rootDir>/tests/jest-reporter.js',
   ],
   testTimeout: 20000,
   timers: 'fake',
