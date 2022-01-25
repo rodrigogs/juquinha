@@ -35,7 +35,7 @@ jobs:
     - run: pnpm run bootstrap
     - run: pnpm run deploy
 
-  integration tests:
+  integrationTests:
     needs: deploy
 
     runs-on: ubuntu-latest
