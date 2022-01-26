@@ -66,4 +66,4 @@ jobs:
         version: 6.x
     - run: pnpm run bootstrap
     - run: pnpm run build
-    - run: pnpm test:integration
+    - run: pnpm run test:integration
