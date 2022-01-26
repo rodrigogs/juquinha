@@ -66,4 +66,10 @@ jobs:
         version: 6.x
     - run: pnpm run bootstrap
     - run: pnpm run build
-    - run: pnpm run test:integration
+    - run: |
+        pnpm run test:integration
+        retVal=$?
+        if [ $retVal -ne 0 ]; then
+            exit 1
+        fi
+        exit $retVal
