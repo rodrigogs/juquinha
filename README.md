@@ -1,35 +1,35 @@
 # Juquinha
 
-## This is a **very opinionated way** of microservicing with a full serverless approach, featuring [Serverless Framework](https://github.com/serverless/serverless), [JavaScript](https://www.javascript.com/) and [AWS](https://aws.amazon.com/).
+[![Stage deployment](https://github.com/rodrigogs/juquinha/actions/workflows/test.yml/badge.svg?branch=test)](https://github.com/rodrigogs/juquinha/actions/workflows/test.yml)
+#### This is a **very opinionated way** of microservicing with a full serverless approach, featuring [Serverless Framework](https://github.com/serverless/serverless), [JavaScript](https://www.javascript.com/) and [AWS](https://aws.amazon.com/).
+
+## Requirements
+* [Node.js v16.x](https://nodejs.org/download/release/latest-v16.x/)
+* Should work on any platform(including [termux](https://play.google.com/store/apps/details?id=com.termux) 😲)
 
 ## Setup
-Copy `.env.sample` to a new file called `.env` and populate the environment variables.
-Or:
+#### The setup script should literally guide you through all the configuration steps. You don't have to have any specific knowledge in order to setup a stage.
 ```bash
-$ pnpm run setup
-```
-And then you can run
-```bash
-$ pnpm run bootstrap
-```
-
-## First deploy
-```bash
-$ pnpm run init
+$ npm run setup
 ```
 
 ## Deploy options
 #### Full
 ```bash
-$ pnpm run deploy
+$ npm run deploy
 ```
 
 #### Resources only
 ```bash
-$ pnpm run deploy:resources
+$ npm run deploy:resources
 ```
 
 #### API only
 ```bash
-$ pnpm run deploy:api
+$ npm run deploy:api
+```
+
+#### Web APP only
+```bash
+$ npm run deploy:web
 ```
