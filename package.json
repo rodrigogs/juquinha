@@ -2,6 +2,22 @@
   "name": "juquinha",
   "version": "0.0.1",
   "description": "Tudo na mãozinha",
+  "keywords": [
+    "framework",
+    "serverless",
+    "cloud",
+    "aws",
+    "amazon",
+    "dynamodb",
+    "dynamo",
+    "s3",
+    "pnpm",
+    "opinionated",
+    "autoconfig",
+    "zero-config",
+    "multiplatfom",
+    "termux"
+  ],
   "scripts": {
     "setup": "npx pnpm run bootstrap && npx cross-env INIT=true node scripts/setup",
     "bootstrap": "npx pnpm recursive install",
@@ -26,6 +42,7 @@
     "docker:run": "docker run --rm juquinha:latest",
     "docker:deploy": "docker run --rm juquinha:latest npx pnpm run deploy",
     "web:dev": "(cd modules/web && npx pnpm run dev)",
+    "test": "npx jest .",
     "test:integration": "npx jest \"^(.*/)*(.*\\.)*(integration)\\.(spec)\\.js$\""
   },
   "dependencies": {
@@ -33,6 +50,7 @@
     "lib": "^0.0.1"
   },
   "devDependencies": {
+    "@actions/core": "^1.6.0",
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@rodrigogs/serverless-finch": "^3.0.0",
@@ -56,6 +74,6 @@
   },
   "engines": {
     "node": ">=16",
-    "pnpm": ">=6.0.0"
+    "pnpm": ">=6"
   }
 }
