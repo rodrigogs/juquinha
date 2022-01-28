@@ -33,7 +33,6 @@ module.exports = Object.freeze({
     stage: STAGE,
     region: REGION,
     logRetentionInDays: 5,
-    lambdaHashingVersion: '20201221',
     apiGateway: { shouldStartNameWithService: true },
     deploymentBucket: {
       name: DEPLOYMENT_BUCKET_NAME,
