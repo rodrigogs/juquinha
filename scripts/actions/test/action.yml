@@ -2,4 +2,4 @@ name: 'Integration tests'
 description: 'Run integration tests'
 runs:
   using: 'node16'
-  main: './scripts/actions/integration-tests.js'
+  main: './scripts/actions/test/integration-tests.js'
