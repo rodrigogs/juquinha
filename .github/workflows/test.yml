@@ -67,4 +67,4 @@ jobs:
     - run: pnpm run bootstrap
     - run: pnpm run build
     - uses: actions/javascript-action@v1
-    - uses: ./scripts/actions/integration-tests.js
+    - uses: ./scripts/actions/test-action.yml
