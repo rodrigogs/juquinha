@@ -11,12 +11,12 @@ jobs:
     environment: test
 
     env:
-      STAGE: ${{secrets.STAGE}}
+      STAGE: test
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
       AWS_REGION: ${{secrets.AWS_REGION}}
-      APP_NAME: ${{secrets.APP_NAME}}
-      APP_PREFIX: ${{secrets.APP_PREFIX}}
+      APP_NAME: juquinha
+      APP_PREFIX: ju
       DEPLOYMENT_BUCKET_NAME: ${{secrets.DEPLOYMENT_BUCKET_NAME}}
       WEB_APP_BUCKET_NAME: ${{secrets.WEB_APP_BUCKET_NAME}}
       DEFAULT_LANGUAGE: ${{secrets.DEFAULT_LANGUAGE}}
@@ -29,6 +29,12 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 16.x
+    - name: Cache pnpm modules
+      uses: actions/cache@v2
+      with:
+        path: '**/.pnpm-store'
+        key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
     - uses: pnpm/action-setup@v2.0.1
       with:
         version: 6.x
@@ -43,12 +49,12 @@ jobs:
     environment: test
 
     env:
-      STAGE: ${{secrets.STAGE}}
+      STAGE: test
       AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
       AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
       AWS_REGION: ${{secrets.AWS_REGION}}
-      APP_NAME: ${{secrets.APP_NAME}}
-      APP_PREFIX: ${{secrets.APP_PREFIX}}
+      APP_NAME: juquinha
+      APP_PREFIX: ju
       DEPLOYMENT_BUCKET_NAME: ${{secrets.DEPLOYMENT_BUCKET_NAME}}
       WEB_APP_BUCKET_NAME: ${{secrets.WEB_APP_BUCKET_NAME}}
       DEFAULT_LANGUAGE: ${{secrets.DEFAULT_LANGUAGE}}
@@ -61,6 +67,12 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 16.x
+    - name: Cache pnpm modules
+      uses: actions/cache@v2
+      with:
+        path: '**/.pnpm-store'
+        key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
     - uses: pnpm/action-setup@v2.0.1
       with:
         version: 6.x
