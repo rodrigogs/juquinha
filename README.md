@@ -1,7 +1,7 @@
 # Juquinha
 
 [![Stage deployment](https://github.com/rodrigogs/juquinha/actions/workflows/test.yml/badge.svg?branch=test)](https://github.com/rodrigogs/juquinha/actions/workflows/test.yml)
-#### This is a **very opinionated way** of microservicing with a full serverless approach, featuring [Serverless Framework](https://github.com/serverless/serverless), [JavaScript](https://www.javascript.com/) and [AWS](https://aws.amazon.com/).
+#### This is a **very opinionated way** of microservicing with a full serverless approach, featuring [Serverless Framework](https://github.com/serverless/serverless), [AWS](https://aws.amazon.com/), [Node.js](https://nodejs.dev/) and [Nuxt](https://nuxtjs.org/).
 
 ## Requirements
 * [Node.js v16.x](https://nodejs.org/download/release/latest-v16.x/)
