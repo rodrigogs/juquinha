@@ -27,6 +27,8 @@ jobs:
     - run: pnpm run lint
 
   deploy:
+    needs: lint
+
     runs-on: ubuntu-latest
 
     environment: test
