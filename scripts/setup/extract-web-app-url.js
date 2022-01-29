@@ -6,7 +6,7 @@ const stripAnsi = require('strip-ansi')
 
 module.exports = (string) => {
   const normalizedString = stripAnsi(string)
-  const separator = 'Serverless: Success! Your site should be available at '
+  const separator = 'Success! Your site should be available at '
   const line = normalizedString
     .split('\n')
     .find((line) => line.startsWith(separator))
