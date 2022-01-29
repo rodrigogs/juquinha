@@ -6,4 +6,4 @@ then
     exit 1
 fi
 
-(cd ../.. && act --secrets-file .env.test)
+act --secret-file .env.test
