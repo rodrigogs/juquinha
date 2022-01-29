@@ -32,7 +32,7 @@ jobs:
     - name: Cache pnpm modules
       uses: actions/cache@v2
       with:
-        path: '**/.pnpm-store'
+        path: '**/node_modules'
         key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
     - uses: pnpm/action-setup@v2.0.1
@@ -70,7 +70,7 @@ jobs:
     - name: Cache pnpm modules
       uses: actions/cache@v2
       with:
-        path: '**/.pnpm-store'
+        path: '**/node_modules'
         key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
     - uses: pnpm/action-setup@v2.0.1
