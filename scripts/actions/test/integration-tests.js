@@ -4,7 +4,7 @@ const chalk = require('chalk')
 
 async function run () {
   try {
-    const { output } = await runNpmScript('test:integration', { rejectOnNonZeroExitCode: false })
+    const { output } = await runNpmScript('test:integration', { rejectOnNonZeroExitCode: false, printOutput: true })
     // FIXME: this is a hack to get the output of the test script.
     // Even when all the tests passes, in the ci environment, the process returns a non-zero code.
     //
