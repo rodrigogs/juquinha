@@ -1,7 +1,7 @@
 global.PERMISSION_TYPES = ['ALLOW', 'DENY']
 global.PERMISSION_METHODS = ['ALL', 'GET', 'POST', 'PUT', 'DELETE']
 
-global.createRandomName = ({ gender, minLength = 8, maxLength = 25 } = {}) => {
+global.createRandomName = ({ gender, minLength = 8, maxLength = 40 } = {}) => {
   const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789áóãõũúíÀÁÃÓÒÕ '
   let name = ''
   do {
