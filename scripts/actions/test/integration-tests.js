@@ -2,6 +2,8 @@ const core = require('@actions/core')
 const runNpmScript = require('lib/helpers/run-npm-script')
 const chalk = require('chalk')
 
+process.env.STAGE = 'test'
+
 async function run () {
   try {
     const { output } = await runNpmScript('test:integration', { rejectOnNonZeroExitCode: false })
