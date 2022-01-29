@@ -23,6 +23,7 @@ jobs:
     - uses: pnpm/action-setup@v2.0.1
       with:
         version: 6.x
+    - run: pnpm run bootstrap
     - run: pnpm run lint
 
   deploy:
