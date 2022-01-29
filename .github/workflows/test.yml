@@ -27,7 +27,24 @@ jobs:
     - run: pnpm run lint
 
   unitTests:
+    needs: lint
+
     runs-on: ubuntu-latest
+
+    environment: test
+
+    env:
+      STAGE: test
+      AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+      AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+      AWS_REGION: ${{secrets.AWS_REGION}}
+      APP_NAME: juquinha
+      APP_PREFIX: ju
+      DEPLOYMENT_BUCKET_NAME: ${{secrets.DEPLOYMENT_BUCKET_NAME}}
+      WEB_APP_BUCKET_NAME: ${{secrets.WEB_APP_BUCKET_NAME}}
+      DEFAULT_LANGUAGE: ${{secrets.DEFAULT_LANGUAGE}}
+      API_URL: ${{secrets.API_URL}}
+      APP_URL: ${{secrets.APP_URL}}
 
     steps:
     - uses: actions/checkout@v2
@@ -48,7 +65,7 @@ jobs:
     - run: pnpm run test:unit
 
   deploy:
-    needs: lint
+    needs: unitTests
 
     runs-on: ubuntu-latest
 
