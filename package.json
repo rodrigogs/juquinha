@@ -43,7 +43,11 @@
     "docker:deploy": "docker run --rm juquinha:latest npx pnpm run deploy",
     "web:dev": "(cd modules/web && npx pnpm run dev)",
     "test": "npx jest .",
-    "test:integration": "npx jest \"^(.*/)*(.*\\.)*(integration)\\.(spec)\\.js$\""
+    "test:integration": "npx jest \"^(.*/)*(.*\\.)*(integration)\\.(spec)\\.js$\"",
+    "lint": "eslint .",
+    "lint:web": "(cd modules/web && npx pnpm run lint:js)",
+    "lint:web:fix": "(cd modules/web && npx pnpm run lint:js -- --fix)",
+    "lint:fix": "npx pnpm run lint -- --fix && npx pnpm run lint:web:fix"
   },
   "dependencies": {
     "config": "^0.0.1",
