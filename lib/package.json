@@ -16,12 +16,12 @@
     "deepmerge": "^4.2.2",
     "dynamoose": "^3.0.0-beta.1",
     "execa": "^5.1.1",
+    "extract-zip": "^2.0.1",
     "lowdb": "^1.0.0",
     "mustache": "^4.0.1",
     "nedb-promises": "^4.1.0",
     "pluralize": "^8.0.0",
     "tinyurl": "^1.1.7",
-    "unzipper": "^0.10.11",
     "url-glob": "^1.0.3",
     "uuid": "^8.3.0"
   },

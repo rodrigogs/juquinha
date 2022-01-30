@@ -4,7 +4,7 @@ const writeDotenv = require('config/write-dotenv')
 const resolveDotenv = require('config/resolve-dotenv')
 const stripAnsi = require('strip-ansi')
 
-module.exports = (string) => {
+module.exports = ({ output: string }) => {
   const normalizedString = stripAnsi(string)
   const separator = 'Success! Your site should be available at '
   const line = normalizedString
