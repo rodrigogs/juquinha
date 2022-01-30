@@ -7,11 +7,11 @@ let handler = null
 
 describe('Healthcheck', function () {
   beforeAll(async () => {
-    const serverlessDir = path.resolve(__dirname, './.serverless')
-    const zipFilePath = path.resolve(path.resolve(serverlessDir, `${env.APP_PREFIX}-resources-api.zip`))
+    const serverlessDir = path.resolve(__dirname, '.serverless')
+    const zipFilePath = path.resolve(serverlessDir, `${env.APP_PREFIX}-resources-api.zip`)
     const outputDir = path.resolve(serverlessDir, `${env.APP_PREFIX}-resources-api`)
     await unzip(zipFilePath, outputDir)
-    ; ({ handler } = await import(path.resolve(__dirname, `./.serverless/${env.APP_PREFIX}-resources-api/healthcheck.js`)))
+    ; ({ handler } = await import(path.resolve(outputDir, 'healthcheck.js')))
   })
 
   it('should be defined', function () {
