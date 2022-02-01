@@ -21,7 +21,7 @@ importers:
       lib: ^0.0.1
       loading-cli: ^1.1.0
       prettier: ^2.4.1
-      serverless: ^3.0.0
+      serverless: ^3.0.1
       serverless-bundle: ^4.4.0
       serverless-offline: ^8.2.0
       serverless-scriptable-plugin: ^1.2.2
@@ -46,9 +46,9 @@ importers:
       jest: 27.4.5
       loading-cli: 1.1.0
       prettier: 2.5.1
-      serverless: 3.0.0
-      serverless-bundle: 4.4.0_serverless@3.0.0
-      serverless-offline: 8.3.1_serverless@3.0.0
+      serverless: 3.0.1
+      serverless-bundle: 4.4.0_serverless@3.0.1
+      serverless-offline: 8.3.1_serverless@3.0.1
       serverless-scriptable-plugin: 1.2.2
       source-map-loader: 3.0.0
       strip-ansi: 6.0.1
@@ -116,7 +116,7 @@ importers:
     specifiers:
       serverless-domain-manager: ^5.1.0
     devDependencies:
-      serverless-domain-manager: 5.2.0_serverless@3.0.0
+      serverless-domain-manager: 5.2.0_serverless@3.0.1
 
   modules/resources/db:
     specifiers: {}
@@ -17311,7 +17311,7 @@ packages:
     resolution: {integrity: sha1-8Tv5KOQrnD55OD5hzDmYtdFObN0=}
     dev: false
 
-  /serverless-bundle/4.4.0_serverless@3.0.0:
+  /serverless-bundle/4.4.0_serverless@3.0.1:
     resolution: {integrity: sha512-upzxESCrLOfTaWW/zlqOeIKx7yiY+4o6eTnV6Ts0xA2GsSXreu+5rDy6YyQFdMQDDONZvCU75Do/GxIk6w8s6Q==}
     hasBin: true
     dependencies:
@@ -17353,7 +17353,7 @@ packages:
       resolve: 1.20.0
       sass: 1.45.2
       sass-loader: 10.2.0_sass@1.45.2+webpack@4.46.0
-      serverless-webpack: 5.6.0_1a5e14abe770d6b9e2badcf05ca8d489
+      serverless-webpack: 5.6.0_6522a49e9ac669172179c33fe8e300c7
       source-map-support: 0.4.18
       ts-jest: 26.5.6_jest@26.6.3+typescript@4.5.4
       ts-loader: 8.3.0_typescript@4.5.4+webpack@4.46.0
@@ -17381,7 +17381,7 @@ packages:
       - webpack-command
     dev: true
 
-  /serverless-domain-manager/5.2.0_serverless@3.0.0:
+  /serverless-domain-manager/5.2.0_serverless@3.0.1:
     resolution: {integrity: sha512-YeqH8FNPF4VuWy7D9FXl5g2uBDdKuf7idHTsgr+mGAxn4WTFhl0+ql7Yq/LRyV7OHoHX9BzCcrmA+rrw9rL8Hw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -17389,10 +17389,10 @@ packages:
     dependencies:
       aws-sdk: 2.1048.0
       chalk: 4.1.2
-      serverless: 3.0.0
+      serverless: 3.0.1
     dev: true
 
-  /serverless-offline/8.3.1_serverless@3.0.0:
+  /serverless-offline/8.3.1_serverless@3.0.1:
     resolution: {integrity: sha512-U2HK3uMGUBIAqEXqRf2gKpOP0rDfK0t3LpCnZmtE1nWFd7BLjhuGRbzCXGvrVooGUf9XLlubjFazQ2d4LMpNzg==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -17424,7 +17424,7 @@ packages:
       please-upgrade-node: 3.2.0
       portfinder: 1.0.28
       semver: 7.3.5
-      serverless: 3.0.0
+      serverless: 3.0.1
       update-notifier: 5.1.0
       velocityjs: 2.0.5
       ws: 7.5.6
@@ -17439,7 +17439,7 @@ packages:
       bluebird: 3.7.2
     dev: true
 
-  /serverless-webpack/5.6.0_1a5e14abe770d6b9e2badcf05ca8d489:
+  /serverless-webpack/5.6.0_6522a49e9ac669172179c33fe8e300c7:
     resolution: {integrity: sha512-merTpkO+dylC6kUStZ0bOhTVW8hAziVF9A0Jg8rHOxT25IOZviCyaOoLemL84Cvdh7YIEWlCY8UDURBRe3D9hw==}
     engines: {node: '>= 10.12.0'}
     peerDependencies:
@@ -17453,7 +17453,7 @@ packages:
       is-builtin-module: 3.1.0
       lodash: 4.17.21
       semver: 7.3.5
-      serverless: 3.0.0
+      serverless: 3.0.1
       webpack: 4.46.0
     optionalDependencies:
       ts-node: 10.4.0_typescript@4.5.4
@@ -17464,8 +17464,8 @@ packages:
       - typescript
     dev: true
 
-  /serverless/3.0.0:
-    resolution: {integrity: sha512-IFvRnPR25ubx/e8QbN54eTozxqrU/1ZQMjyacz4mEAfTpovL3tGWXaeogVyf/Mp7jIIr2PT3mMkfycPSiRX8eA==}
+  /serverless/3.0.1:
+    resolution: {integrity: sha512-GztUBWbbT5IqTfxbg3vnWYpytGUJbAJLPORHjjKcrYtnUQN/0i4CRPralJN3jndLXxzR2XByhrhhulqrfQPFMg==}
     engines: {node: '>=12.0'}
     hasBin: true
     requiresBuild: true
@@ -19004,6 +19004,7 @@ packages:
 
   /ufo/0.7.9:
     resolution: {integrity: sha512-6t9LrLk3FhqTS+GW3IqlITtfRB5JAVr5MMNjpBECfK827W+Vh5Ilw/LhTcHWrt6b3hkeBvcbjx4Ti7QVFzmcww==}
+    deprecated: 'security: please use latest version'
 
   /uglify-js/3.14.5:
     resolution: {integrity: sha512-qZukoSxOG0urUTvjc2ERMTcAy+BiFh3weWAkeurLwjrCba73poHmG3E36XEjd/JGukMzwTL7uCxZiAexj8ppvQ==}
