@@ -1,5 +1,5 @@
 {
-  "name": "lib",
+  "name": "@juquinha/lib",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -15,7 +15,7 @@
     "axios": "^0.21.1",
     "date-fns": "^2.21.3",
     "deepmerge": "^4.2.2",
-    "dynamoose": "^3.0.0-beta.1",
+    "dynamoose": "^3.0.0-beta.5",
     "execa": "^5.1.1",
     "lowdb": "^1.0.0",
     "mustache": "^4.0.1",

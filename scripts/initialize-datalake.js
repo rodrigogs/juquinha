@@ -1,7 +1,7 @@
 #!/usr/bin/env nodejs
 /* eslint-disable no-console */
 
-require('config/env')
+require('@juquinha/config/env')
 const models = require('../lib/models')
 
 ;(async () => {

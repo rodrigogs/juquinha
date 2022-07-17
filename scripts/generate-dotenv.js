@@ -2,7 +2,7 @@
 const os = require('os')
 const fs = require('fs')
 const path = require('path')
-const config = require('config/env')
+const config = require('@juquinha/config/env')
 
 const backup = (filePath) =>
   fs.promises

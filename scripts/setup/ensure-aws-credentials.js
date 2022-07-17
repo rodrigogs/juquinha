@@ -1,8 +1,8 @@
 const inquirer = require('inquirer')
 const chalk = require('chalk')
-const writeDotenv = require('config/write-dotenv')
-const resolveDotenvFilePath = require('config/resolve-dotenv-file-path')
-const resolveDotenv = require('config/resolve-dotenv')
+const writeDotenv = require('@juquinha/config/write-dotenv')
+const resolveDotenvFilePath = require('@juquinha/config/resolve-dotenv-file-path')
+const resolveDotenv = require('@juquinha/config/resolve-dotenv')
 
 module.exports = async (currentEnv) => {
   const { STAGE, AWS_PROFILE, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION } = currentEnv

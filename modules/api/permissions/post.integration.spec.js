@@ -1,8 +1,8 @@
-import 'config/env'
+import '@juquinha/config/env'
 import faker from 'faker'
-// import PermissionsService from 'lib/services/permissions'
-// import RolesService from 'lib/services/roles'
-// import RolePermissionsService from 'lib/services/role-permissions'
+// import PermissionsService from '@juquinha/lib/services/permissions'
+// import RolesService from '@juquinha/lib/services/roles'
+// import RolePermissionsService from '@juquinha/lib/services/role-permissions'
 import { handler } from './post'
 
 describe('API: Permissions(POST)', () => {

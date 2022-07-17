@@ -1,5 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
-import * as config from 'config/env'
+import * as config from '@juquinha/config/env'
 import { defineNuxtConfig } from '@nuxt/bridge'
 
 export default defineNuxtConfig({

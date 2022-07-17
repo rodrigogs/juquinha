@@ -1,5 +1,5 @@
-const { APP_PREFIX } = require('config/env')
-const RecipeBuilder = require('lib/helpers/recipe-builder')
+const { APP_PREFIX } = require('@juquinha/config/env')
+const RecipeBuilder = require('@juquinha/lib/helpers/recipe-builder')
 
 module.exports = new RecipeBuilder()
   .forApi()

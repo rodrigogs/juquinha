@@ -1,8 +1,8 @@
-import 'config/env'
+import '@juquinha/config/env'
 import faker from 'faker'
-import RolesService from 'lib/services/roles'
-import PermissionsService from 'lib/services/permissions'
-import RolePermissionsService from 'lib/services/role-permissions'
+import RolesService from '@juquinha/lib/services/roles'
+import PermissionsService from '@juquinha/lib/services/permissions'
+import RolePermissionsService from '@juquinha/lib/services/role-permissions'
 import { handler } from './get'
 
 describe('API: Roles(GET)', () => {

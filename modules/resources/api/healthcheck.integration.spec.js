@@ -1,7 +1,7 @@
 import pkg from '../../../package.json'
 import path from 'path'
-import unzip from 'lib/helpers/unzip'
-import env from 'config/env'
+import unzip from '@juquinha/lib/helpers/unzip'
+import env from '@juquinha/config/env'
 
 let handler = null
 

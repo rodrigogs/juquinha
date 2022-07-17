@@ -1,9 +1,9 @@
 const pkg = require('../../package.json')
 const inquirer = require('inquirer')
 const chalk = require('chalk')
-const writeDotenv = require('config/write-dotenv')
-const resolveDotenvFilePath = require('config/resolve-dotenv-file-path')
-const resolveDotenv = require('config/resolve-dotenv')
+const writeDotenv = require('@juquinha/config/write-dotenv')
+const resolveDotenvFilePath = require('@juquinha/config/resolve-dotenv-file-path')
+const resolveDotenv = require('@juquinha/config/resolve-dotenv')
 
 module.exports = async (currentEnv) => {
   let { STAGE, APP_NAME, APP_PREFIX, DEPLOYMENT_BUCKET_NAME, WEB_APP_BUCKET_NAME, DEFAULT_LANGUAGE } = currentEnv

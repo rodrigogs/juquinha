@@ -1,4 +1,4 @@
-const rootConfig = require('config/eslint-root-config')
+const rootConfig = require('@juquinha/config/eslint-root-config')
 const deepmerge = require('deepmerge')
 
 module.exports = deepmerge(rootConfig, {

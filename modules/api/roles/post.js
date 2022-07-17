@@ -1,7 +1,7 @@
-import createRole from 'lib/services/roles/create'
-import createUserRole from 'lib/services/user-roles/create'
-import createRolePermission from 'lib/services/role-permissions/create'
-import { default as Router, responseBuilder } from 'lib/helpers/router'
+import createRole from '@juquinha/lib/services/roles/create'
+import createUserRole from '@juquinha/lib/services/user-roles/create'
+import createRolePermission from '@juquinha/lib/services/role-permissions/create'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router'
 
 export const handler = async (event, context) => {
   return await new Router(event, context)

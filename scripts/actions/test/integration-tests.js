@@ -1,5 +1,5 @@
 const core = require('@actions/core')
-const runNpmScript = require('lib/helpers/run-npm-script')
+const runNpmScript = require('@juquinha/lib/helpers/run-npm-script')
 const chalk = require('chalk')
 
 async function run () {

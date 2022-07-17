@@ -1,7 +1,7 @@
-import removeRole from 'lib/services/roles/remove'
-import removeRoleUser from 'lib/services/user-roles/remove'
-import removeRolePermission from 'lib/services/role-permissions/remove'
-import { default as Router, responseBuilder } from 'lib/helpers/router'
+import removeRole from '@juquinha/lib/services/roles/remove'
+import removeRoleUser from '@juquinha/lib/services/user-roles/remove'
+import removeRolePermission from '@juquinha/lib/services/role-permissions/remove'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router'
 
 export const handler = async (event, context) => {
   return await new Router(event, context)

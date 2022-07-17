@@ -1,7 +1,7 @@
 #!/usr/bin/env nodejs
 /* eslint-disable no-console */
 
-require('config/env')
+require('@juquinha/config/env')
 
 const AWS = require('aws-sdk')
 const promisePool = require('../lib/node_modules/@rodrigogs/promise-pool')

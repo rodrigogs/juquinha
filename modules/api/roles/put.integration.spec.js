@@ -1,6 +1,6 @@
-import 'config/env'
+import '@juquinha/config/env'
 import faker from 'faker'
-import RolesService from 'lib/services/roles'
+import RolesService from '@juquinha/lib/services/roles'
 import { handler } from './put'
 
 describe('API: Roles(PUT)', () => {

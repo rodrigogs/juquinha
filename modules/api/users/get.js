@@ -1,6 +1,6 @@
-import UsersService from 'lib/services/users'
-import UserRolesService from 'lib/services/user-roles'
-import { default as Router, responseBuilder } from 'lib/helpers/router'
+import UsersService from '@juquinha/lib/services/users'
+import UserRolesService from '@juquinha/lib/services/user-roles'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router'
 
 export const handler = async (event, context) => {
   return await new Router(event, context)

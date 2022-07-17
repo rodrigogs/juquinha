@@ -1,6 +1,6 @@
-import 'config/env'
+import '@juquinha/config/env'
 import faker from 'faker'
-import UsersService from 'lib/services/users'
+import UsersService from '@juquinha/lib/services/users'
 import { handler } from './put'
 
 describe('API: Users(PUT)', () => {

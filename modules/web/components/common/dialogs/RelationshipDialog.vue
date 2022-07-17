@@ -66,7 +66,7 @@ v-dialog(
 
 <script>
 import Vue from 'vue'
-import { pluralize , capitalizeFirstLetter, kebabToCamel } from 'lib/common/helpers/string'
+import { pluralize , capitalizeFirstLetter, kebabToCamel } from '@juquinha/lib/common/helpers/string'
 import CRUD from '@/components/CRUD'
 
 export default {

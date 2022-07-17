@@ -1,7 +1,7 @@
-const { STAGE } = require('config/env')
-const resolveDotenvFilePath = require('config/resolve-dotenv-file-path')
-const writeDotenv = require('config/write-dotenv')
-const resolveDotenv = require('config/resolve-dotenv')
+const { STAGE } = require('@juquinha/config/env')
+const resolveDotenvFilePath = require('@juquinha/config/resolve-dotenv-file-path')
+const writeDotenv = require('@juquinha/config/write-dotenv')
+const resolveDotenv = require('@juquinha/config/resolve-dotenv')
 const stripAnsi = require('strip-ansi')
 
 module.exports = ({ output: string }) => {

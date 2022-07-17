@@ -1,6 +1,6 @@
-import 'config/env'
+import '@juquinha/config/env'
 import faker from 'faker'
-import PermissionsService from 'lib/services/permissions'
+import PermissionsService from '@juquinha/lib/services/permissions'
 import { handler } from './put'
 
 describe('API: Permissions(PUT)', () => {

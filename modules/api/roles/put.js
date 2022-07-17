@@ -1,5 +1,5 @@
-import updateRole from 'lib/services/roles/update'
-import { default as Router, responseBuilder } from 'lib/helpers/router'
+import updateRole from '@juquinha/lib/services/roles/update'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router'
 
 export const handler = async (event, context) => {
   return await new Router(event, context)

@@ -6,7 +6,7 @@ v-container
 </template>
 
 <script>
-import i18n from 'lib/i18n'
+import i18n from '@juquinha/lib/i18n'
 import UsersCRUD from '@/components/users/UsersCRUD'
 
 export default {

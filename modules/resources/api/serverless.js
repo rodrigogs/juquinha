@@ -1,5 +1,5 @@
-const { APP_PREFIX, DOMAIN_NAME } = require('config/env')
-const RecipeBuilder = require('lib/helpers/recipe-builder')
+const { APP_PREFIX, DOMAIN_NAME } = require('@juquinha/config/env')
+const RecipeBuilder = require('@juquinha/lib/helpers/recipe-builder')
 
 // eslint-disable-next-line no-process-env
 const shouldCreateDomain = String(process.env.INIT).toLowerCase() === 'true' && DOMAIN_NAME.length > 0

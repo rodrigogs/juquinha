@@ -1,8 +1,8 @@
 #!/usr/bin/env nodejs
 const loading = require('loading-cli')
-const ensureDeploymentBucket = require('lib/helpers/ensure-deployment-bucket')
-const ensureWebAppBucket = require('lib/helpers/ensure-web-app-bucket')
-const runPnpmScript = require('lib/helpers/run-npm-script')
+const ensureDeploymentBucket = require('@juquinha/lib/helpers/ensure-deployment-bucket')
+const ensureWebAppBucket = require('@juquinha/lib/helpers/ensure-web-app-bucket')
+const runPnpmScript = require('@juquinha/lib/helpers/run-npm-script')
 const extractWebAppUrl = require('./extract-web-app-url')
 const extractApiUrl = require('./extract-api-url')
 const setupEnv = require('./setup-env')

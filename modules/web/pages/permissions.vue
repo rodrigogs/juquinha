@@ -6,7 +6,7 @@ v-container
 </template>
 
 <script>
-import i18n from 'lib/i18n'
+import i18n from '@juquinha/lib/i18n'
 import PermissionsCRUD from '@/components/permissions/PermissionsCRUD'
 
 export default {

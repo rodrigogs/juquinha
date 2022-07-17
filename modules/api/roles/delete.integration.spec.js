@@ -1,8 +1,8 @@
-import 'config/env'
+import '@juquinha/config/env'
 import faker from 'faker'
-import RolesService from 'lib/services/roles'
-import UsersService from 'lib/services/users'
-import UserRolesService from 'lib/services/user-roles'
+import RolesService from '@juquinha/lib/services/roles'
+import UsersService from '@juquinha/lib/services/users'
+import UserRolesService from '@juquinha/lib/services/user-roles'
 import { handler } from './delete'
 
 describe('API: Roles(DELETE)', () => {

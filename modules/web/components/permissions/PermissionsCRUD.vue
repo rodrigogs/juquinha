@@ -50,7 +50,7 @@ CRUD(
 <script>
 import Vue from 'vue'
 import { maxLength, minLength, required } from 'vuelidate/lib/validators'
-import { regex } from 'lib/common/validations'
+import { regex } from '@juquinha/lib/common/validations'
 import formatDate from 'date-fns/format'
 import CRUD from '@/components/CRUD'
 import RelationshipDialog from '@/components/common/dialogs/RelationshipDialog'

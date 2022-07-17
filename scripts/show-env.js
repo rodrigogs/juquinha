@@ -1,1 +1,1 @@
-console.log('Environment:\n', require('config/resolve-dotenv')())
+console.log('Environment:\n', require('@juquinha/config/resolve-dotenv')())

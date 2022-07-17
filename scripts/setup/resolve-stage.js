@@ -1,8 +1,8 @@
 const path = require('path')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
-const writeDotenv = require('config/write-dotenv')
-const resolveDotenv = require('config/resolve-dotenv')
+const writeDotenv = require('@juquinha/config/write-dotenv')
+const resolveDotenv = require('@juquinha/config/resolve-dotenv')
 
 module.exports = async (environment) => {
   let { STAGE } = environment
