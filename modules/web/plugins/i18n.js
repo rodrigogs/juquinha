@@ -1,4 +1,4 @@
-import i18n from '@juquinha/lib/i18n'
+import i18n from '@juquinha/lib/i18n/index.mjs'
 
 const i18nResolver = (term, params, options) =>
   i18n(term, params, {

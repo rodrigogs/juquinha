@@ -2,7 +2,7 @@
 module.exports = {
   testEnvironment: 'node',
   testMatch: [
-    '**/?(*.)+(spec).js',
+    '**/?(*.)+(spec|unit|integration).((m|c)?js|ts)',
   ],
   testPathIgnorePatterns: [
     'modules/web',
@@ -12,4 +12,9 @@ module.exports = {
   ],
   testTimeout: 20000,
   timers: 'fake',
+  presets: [
+    [
+      '@babel/preset-env',
+    ],
+  ],
 }

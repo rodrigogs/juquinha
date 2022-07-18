@@ -1,7 +1,7 @@
 import PermissionsService from '@juquinha/lib/services/permissions'
 import RolePermissionsService from '@juquinha/lib/services/role-permissions'
 
-import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router/index.mjs'
 
 export const handler = async (event, context) => {
   return await new Router(event, context)

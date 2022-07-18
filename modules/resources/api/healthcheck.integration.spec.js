@@ -1,15 +1,14 @@
-import pkg from '../../../package.json'
 import path from 'path'
-import unzip from '@juquinha/lib/helpers/unzip'
-import env from '@juquinha/config/env'
+import unzip from '@juquinha/lib/helpers/unzip.mjs'
+import { APP_PREFIX, APP_NAME } from '@juquinha/config/env'
 
 let handler = null
 
 describe('Healthcheck', function () {
   beforeAll(async () => {
     const serverlessDir = path.resolve(__dirname, '.serverless')
-    const zipFilePath = path.resolve(serverlessDir, `${env.APP_PREFIX}-resources-api.zip`)
-    const outputDir = path.resolve(serverlessDir, `${env.APP_PREFIX}-resources-api`)
+    const zipFilePath = path.resolve(serverlessDir, `${APP_PREFIX}-resources-api.zip`)
+    const outputDir = path.resolve(serverlessDir, `${APP_PREFIX}-resources-api`)
     await unzip(zipFilePath, outputDir)
     ; ({ handler } = await import(path.resolve(outputDir, 'healthcheck.js')))
   })
@@ -28,6 +27,8 @@ describe('Healthcheck', function () {
     }
     const response = await handler(event)
     expect(response.statusCode).toBe(200)
-    expect(response.body).toBe(`{"message":"${pkg.name}: ${pkg.version}"}`)
+
+    const body = JSON.parse(response.body)
+    expect(body.message).toBe(APP_NAME)
   })
 })
