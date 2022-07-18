@@ -1,6 +1,6 @@
-const core = require('@actions/core')
-const runNpmScript = require('@juquinha/lib/helpers/run-npm-script')
-const chalk = require('chalk')
+import core from '@actions/core'
+import runNpmScript from '@juquinha/lib/helpers/run-npm-script.mjs'
+import chalk from 'chalk'
 
 async function run () {
   try {

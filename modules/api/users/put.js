@@ -1,5 +1,5 @@
 import UsersService from '@juquinha/lib/services/users'
-import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router/index.mjs'
 
 export const handler = async (event, context) => {
   return await new Router(event, context)

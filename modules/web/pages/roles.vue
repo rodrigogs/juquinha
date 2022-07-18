@@ -6,7 +6,7 @@ v-container
 </template>
 
 <script>
-import i18n from '@juquinha/lib/i18n'
+import i18n from '@juquinha/lib/i18n/index.mjs'
 import RolesCRUD from '@/components/roles/RolesCRUD'
 
 export default {

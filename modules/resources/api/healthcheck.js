@@ -1,5 +1,5 @@
 import { name as pkgName, version as pkgVersion } from '../../../package.json'
-import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router/index.mjs'
 
 /**
  * @api {get} / Health check

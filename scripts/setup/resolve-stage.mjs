@@ -1,0 +1,44 @@
+import path from 'path'
+import chalk from 'chalk'
+import inquirer from 'inquirer'
+import writeDotenv from '@juquinha/config/write-dotenv.mjs'
+import resolveDotenv from '@juquinha/config/resolve-dotenv.mjs'
+
+export default async (environment) => {
+  let { STAGE } = environment
+  // If stage is not provided, prompt for it
+  if (!STAGE) {
+    const otherOption = chalk.yellow('other...')
+    ;({ STAGE } = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'STAGE',
+        message: 'Which stage would you like to use?',
+        choices: ['dev', 'prod', 'test', otherOption],
+      },
+    ]))
+
+    // If stage is other, prompt for it
+    if (STAGE === otherOption) {
+      ;({ STAGE } = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'STAGE',
+          message: 'Enter the stage name:',
+          validate: input => input.length > 0,
+        },
+      ]))
+    }
+
+    // Write the stage to the .env file
+    const fileName = {
+      dev: '.env', // Development defaults to .env for convenience
+    }[STAGE] || `.env.${STAGE}`
+    const filePath = path.join(process.cwd(), fileName)
+    await writeDotenv(filePath, { STAGE })
+  } else {
+    console.log(`Using stage: ${STAGE}`)
+  }
+
+  return resolveDotenv(STAGE).environment
+}

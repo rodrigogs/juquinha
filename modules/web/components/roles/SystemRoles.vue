@@ -1,20 +1,20 @@
 <template lang="pug">
-  span(class='system-roles')
-    .text-caption {{ property.title }}
-    v-container.ma-0.pa-0(fluid)
-      v-row(justify='space-around' )
-        v-switch(
-          v-model='selectedRoles.operator'
-          append-icon='mdi-pencil'
-          label='Operador'
-          v-bind='$attrs'
-        )
-        v-switch(
-          v-model='selectedRoles.doctor'
-          append-icon='mdi-doctor'
-          label='Médico'
-          v-bind='$attrs'
-        )
+span(class='system-roles')
+  .text-caption {{ property.title }}
+  v-container.ma-0.pa-0(fluid)
+    v-row(justify='space-around' )
+      v-switch(
+        v-model='selectedRoles.operator'
+        append-icon='mdi-pencil'
+        label='Operador'
+        v-bind='$attrs'
+      )
+      v-switch(
+        v-model='selectedRoles.doctor'
+        append-icon='mdi-doctor'
+        label='Médico'
+        v-bind='$attrs'
+      )
 </template>
 
 <script>

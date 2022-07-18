@@ -2,7 +2,7 @@ import listRoles from '@juquinha/lib/services/roles/list'
 import listRoleUsersByRoleId from '@juquinha/lib/services/user-roles/list-users-by-role-id'
 import listRolePermissionsByRoleId from '@juquinha/lib/services/role-permissions/list-permissions-by-role-id'
 import getOneRoleById from '@juquinha/lib/services/roles/get-one-by-id'
-import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router/index.mjs'
 
 export const handler = async (event, context) => {
   return await new Router(event, context)
