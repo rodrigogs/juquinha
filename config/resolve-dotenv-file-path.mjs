@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import dirname from './dirname.cjs'
+import dirname from './__dirname.cjs'
 
 export default (stage) => {
   if (!stage) throw new Error('stage is required')
@@ -15,5 +15,5 @@ export default (stage) => {
     if (fs.existsSync(devFile)) fileName = '.env.dev'
   }
 
-  return path.join(dirname, fileName)
+  return path.join(dirname, '..', fileName)
 }

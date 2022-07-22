@@ -19,6 +19,7 @@ module.exports = {
     'no-template-curly-in-string': 'off',
     'import/no-named-default': 'off',
     'import/no-commonjs': 'error',
+    'import/extensions': ['error', 'always'],
   },
   globals: {
     context: 'readonly',

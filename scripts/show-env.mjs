@@ -1,2 +1,3 @@
-// eslint-disable-next-line import/no-commonjs
-console.log('Environment:\n', require('@juquinha/config/resolve-dotenv')())
+(async () => {
+  console.log('Environment:\n', await (await import('@juquinha/config/resolve-dotenv.mjs')).default())
+})()

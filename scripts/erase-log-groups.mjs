@@ -1,8 +1,8 @@
 #!/usr/bin/env nodejs
-import '@juquinha/config/env'
+import '@juquinha/config/env.mjs'
 
 import AWS from 'aws-sdk'
-import promisePool from '@juquinha/lib/node_modules/@rodrigogs/promise-pool'
+import promisePool from '@juquinha/lib/node_modules/@rodrigogs/promise-pool/index.js'
 
 const cloudWatchLogs = new AWS.CloudWatchLogs()
 
@@ -56,12 +56,14 @@ const logGroupProcessor = (logGroup) =>
     processor: logStreamProcessor(logGroup),
   })
 
-try {
-  await promisePool({
-    generator: generateLogGroups({ logGroupNamePrefix: '/', limit: 50 }),
-    concurrency: 3,
-    processor: logGroupProcessor,
-  })
-} catch (err) {
-  console.error(err)
-}
+;(async () => {
+  try {
+    await promisePool({
+      generator: generateLogGroups({ logGroupNamePrefix: '/', limit: 50 }),
+      concurrency: 3,
+      processor: logGroupProcessor,
+    })
+  } catch (err) {
+    console.error(err)
+  }
+})()
