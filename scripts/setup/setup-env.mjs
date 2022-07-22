@@ -1,4 +1,4 @@
-import resolveStage from './resolve-stage.mjs'
+import resolveStage from '../helpers/resolve-stage.mjs'
 import ensureAWSCredentials from './ensure-aws-credentials.mjs'
 import ensureServerlessSettings from './ensure-serverless-credentials.mjs'
 import ensureAppSettings from './ensure-app-settings.mjs'

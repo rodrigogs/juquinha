@@ -1,0 +1,15 @@
+import UsersService from '@juquinha/lib/services/users/index.mjs'
+import { default as Router, responseBuilder } from '@juquinha/lib/helpers/router/index.mjs'
+
+export const handler = async (event, context) => {
+  return await new Router(event, context)
+
+    .put('/users/:id', (request) => {
+      const { pathParameters, body } = request
+      return UsersService.update(pathParameters.id, body).then((updatedUser) =>
+        responseBuilder.success.ok({ body: updatedUser }),
+      )
+    })
+
+    .dispatch()
+}

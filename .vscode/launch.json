@@ -1,5 +1,6 @@
 {
     "configurations": [
+
         {
             "type": "node",
             "name": "vscode-jest-tests",
@@ -14,7 +15,8 @@
                 "--watchAll=false"
             ],
             "env": {
-                "STAGE": "test"
+                "STAGE": "test",
+                "NODE_OPTIONS": "--experimental-vm-modules"
             }
         }
     ]

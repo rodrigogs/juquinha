@@ -1,11 +1,9 @@
 {
   "name": "@juquinha/lib",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
+  "description": "Juquinha library",
+  "main": "index.mjs",
+  "type": "module",
   "dependencies": {
     "@everestate/serverless-router": "^0.6.0",
     "@everestate/serverless-router-aws": "^0.3.0",

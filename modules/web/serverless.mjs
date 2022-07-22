@@ -1,11 +1,6 @@
-import { STAGE, APP_PREFIX, WEB_APP_BUCKET_NAME } from '@juquinha/config/env.mjs'
+import { APP_PREFIX, WEB_APP_BUCKET_NAME } from '@juquinha/config/env.mjs'
 import RecipeBuilder from '@juquinha/lib/helpers/recipe-builder.mjs'
-import path from 'path'
-import * as url from 'url'
-
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
-const rootDir = path.resolve(__dirname, '..', '..')
-const dotenvFile = `"${STAGE === 'dev' ? '.env' : path.join(rootDir, `.env.${STAGE}`)}"`
+import __dirname from './__dirname.cjs'
 
 export default new RecipeBuilder()
   .setService(`${APP_PREFIX}-web`)
@@ -17,8 +12,8 @@ export default new RecipeBuilder()
   })
   .setCustom('scriptHooks', {
     'before:package:createDeploymentArtifacts': [`npx pnpm run build`],
-    'after:deploy:finalize': [`(cd ${__dirname} && npx cross-env NO_CONFIRM=true STAGE=${STAGE} npx dotenv -f ${dotenvFile} sls client deploy)`],
-    'before:remove:remove': [`(cd ${__dirname} && npx cross-env NO_CONFIRM=true STAGE=${STAGE} npx dotenv -f ${dotenvFile} sls client remove)`],
+    'after:deploy:finalize': [`(cd ${__dirname} && npx cross-env NO_CONFIRM=true sls client deploy)`],
+    'before:remove:remove': [`(cd ${__dirname} && npx cross-env NO_CONFIRM=true sls client remove)`],
   })
   .addResource('DummyCloudWatchLogGroup', {
     Type: 'AWS::Logs::LogGroup',
