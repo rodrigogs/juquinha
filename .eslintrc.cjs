@@ -1,16 +1,13 @@
 module.exports = {
-  root: true,
   env: {
-    es2020: true,
+    es2021: true,
     node: true,
   },
-  plugins: ['node', 'import'],
   extends: [
     'standard',
-    'plugin:import/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 'latest',
     sourceType: 'module',
   },
   rules: {
