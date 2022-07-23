@@ -11,7 +11,7 @@ import resolveTestModes from './resolve-test-modes.mjs'
   const results = []
 
   if (testModes.UNIT) {
-    const { exitCode } = await runNpmScript('test:unit', { printOutput: true, rejectOnNonZeroExitCode: false })
+    const { exitCode } = await runNpmScript(['test:unit', '--colors'], { printOutput: true, rejectOnNonZeroExitCode: false })
     results.push({
       name: 'Unit',
       succeeded: exitCode === 0,
@@ -19,7 +19,7 @@ import resolveTestModes from './resolve-test-modes.mjs'
   }
 
   if (testModes.INTEGRATION) {
-    const { exitCode } = await runNpmScript('test:integration', { printOutput: true, rejectOnNonZeroExitCode: false })
+    const { exitCode } = await runNpmScript(['test:integration', '--colors'], { printOutput: true, rejectOnNonZeroExitCode: false })
     results.push({
       name: 'Integration',
       succeeded: exitCode === 0,

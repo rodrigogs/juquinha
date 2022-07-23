@@ -2,7 +2,6 @@ import faker from 'faker'
 import '@juquinha/config/env.mjs'
 import UsersService from '@juquinha/lib/services/users/index.mjs'
 import RolesService from '@juquinha/lib/services/roles/index.mjs'
-import UserRolesService from '@juquinha/lib/services/user-roles/index.mjs'
 import { handler } from './post.mjs'
 
 describe('API: Users(POST)', () => {
@@ -29,7 +28,7 @@ describe('API: Users(POST)', () => {
     expect(response.statusCode).toBe(201)
   })
 
-  it('removeRole', async () => {
+  it('createUserRole', async () => {
     const user = await UsersService.create({
       username: global.createRandomName().split(' ').join('').toLowerCase().substring(0, 15),
       name: global.createRandomName(),
@@ -40,10 +39,6 @@ describe('API: Users(POST)', () => {
     const role = await RolesService.create({
       name: global.createRandomName(),
       description: faker.random.words(),
-    })
-    await UserRolesService.create({
-      userId: user.id,
-      roleId: role.id,
     })
     const event = {
       path: `/users/${user.id}/roles`,

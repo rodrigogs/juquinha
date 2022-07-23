@@ -2,7 +2,6 @@ import faker from 'faker'
 import '@juquinha/config/env.mjs'
 import PermissionsService from '@juquinha/lib/services/permissions/index.mjs'
 import RolesService from '@juquinha/lib/services/roles/index.mjs'
-import RolePermissionsService from '@juquinha/lib/services/role-permissions/index.mjs'
 import { handler } from './post.mjs'
 
 describe('API: Roles(POST)', () => {
@@ -25,7 +24,7 @@ describe('API: Roles(POST)', () => {
     expect(response.statusCode).toBe(201)
   })
 
-  it('removePermissionRole', async () => {
+  it('createPermissionRole', async () => {
     const role = await RolesService.create({
       name: global.createRandomName(),
       description: faker.random.words(),
@@ -36,10 +35,6 @@ describe('API: Roles(POST)', () => {
       type: global.PERMISSION_TYPES[Math.floor(Math.random() * global.PERMISSION_TYPES.length)],
       method: global.PERMISSION_METHODS[Math.floor(Math.random() * global.PERMISSION_METHODS.length)],
       path: faker.internet.url(),
-    })
-    await RolePermissionsService.create({
-      permissionId: permission.id,
-      roleId: role.id,
     })
     const event = {
       path: `/roles/${role.id}/permissions`,
