@@ -8,10 +8,10 @@ export default new RecipeBuilder()
   .addPlugin('serverless-scriptable-plugin')
   .setCustom('client', {
     bucketName: WEB_APP_BUCKET_NAME,
-    distributionFolder: 'dist',
+    distributionFolder: '.output/public',
   })
   .setCustom('scriptHooks', {
-    'before:package:createDeploymentArtifacts': [`npx pnpm run build`],
+    'before:package:createDeploymentArtifacts': [`(cd ${__dirname} && npm run build && npm run generate)`],
     'after:deploy:finalize': [`(cd ${__dirname} && npx cross-env NO_CONFIRM=true sls client deploy)`],
     'before:remove:remove': [`(cd ${__dirname} && npx cross-env NO_CONFIRM=true sls client remove)`],
   })

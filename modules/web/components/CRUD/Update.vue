@@ -27,12 +27,12 @@ v-dialog.crud-dialog-z-index(
         slot(name='update.title' :context='context')
           v-col.flex-grow-1
             slot(name='title' :context='context')
-              span.white--text {{ $i18n('update') }} {{ context.entityName.toLowerCase() }}
+              span {{ $i18n('update') }} {{ context.entityName.toLowerCase() }}
           v-col.flex-grow-0.text-no-wrap
             slot(name='update.actions.extra' :context='context'): span
             v-tooltip(bottom)
               template(v-slot:activator='{ on: closeOn, attrs: closeAttrs }')
-                v-btn.white--text(icon @click='dialog = false' v-bind='closeAttrs' v-on='closeOn')
+                v-btn(icon @click='dialog = false' v-bind='closeAttrs' v-on='closeOn')
                   v-icon mdi-close
               span {{ $i18n('close') }}
     v-card-text

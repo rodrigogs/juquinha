@@ -1,47 +1,25 @@
 {
   "name": "sls-web",
-  "version": "1.0.0",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
-    "dev": "nuxi dev",
-    "build": "nuxi generate",
-    "start": "node .output/server/index.mjs",
-    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
-    "lint": "npx pnpm run lint:js && npx pnpm run lint:style",
-    "test:e2e": "nightwatch"
-  },
-  "dependencies": {
-    "@nuxtjs/axios": "^5.13.6",
-    "@nuxtjs/pwa": "^3.3.5",
-    "core-js": "^3.15.1",
-    "date-fns": "^2.26.0",
-    "nuxt-edge": "latest",
-    "pluralize": "^8.0.0",
-    "vue-the-mask": "^0.11.1",
-    "vuejs-noty": "^0.1.4",
-    "vuelidate": "^0.7.6",
-    "vuetify": "^2.5.5"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint --ext .js,.mjs,.cjs,.vue .",
+    "lint:fix": "eslint --fix --ext .js,.mjs,.cjs,.vue ."
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.14.7",
-    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27383827.b803fdb",
-    "@nuxt/types": "^2.15.7",
-    "@nuxtjs/eslint-config-typescript": "^6.0.1",
-    "@nuxtjs/eslint-module": "^3.0.2",
-    "@nuxtjs/stylelint-module": "^4.0.0",
-    "@nuxtjs/vuetify": "^1.12.1",
-    "chromedriver": "^91.0.1",
-    "eslint": "^7.29.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-nuxt": "^2.0.0",
-    "eslint-plugin-vue": "^7.12.1",
-    "nightwatch": "^1.7.6",
-    "prettier": "^2.3.2",
+    "@vuelidate/core": "2.0.0-alpha.43",
+    "@vuelidate/validators": "2.0.0-alpha.31",
+    "date-fns": "^2.29.1",
+    "eslint": "^8.20.0",
+    "eslint-plugin-vue": "^9.2.0",
+    "lodash": "^4.17.21",
+    "nuxt": "3.0.0-rc.6",
+    "pluralize": "^8.0.0",
     "pug": "^3.0.2",
-    "pug-plain-loader": "^1.1.0",
-    "stylelint": "^13.13.1",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-standard": "^22.0.0"
+    "vuetify": "^3.0.0-beta.5"
   }
 }

@@ -47,8 +47,8 @@
     "test:unit": "npx cross-env NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs \"^(.*/)*(.*\\.)*(unit)\\.(spec)\\.((m|c)?js|ts)$\"",
     "test:integration": "npx cross-env NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs \"^(.*/)*(.*\\.)*(integration)\\.(spec)\\.((m|c)?js|ts)$\"",
     "lint": "eslint --ext .js,.mjs,.cjs .",
-    "lint:web": "echo FIXME && exit 0; (cd modules/web && pnpm run lint:js)",
-    "lint:web:fix": "(cd modules/web && pnpm run lint:js -- --fix)",
+    "lint:web": "echo FIXME && exit 0; (cd modules/web && pnpm run lint)",
+    "lint:web:fix": "(cd modules/web && pnpm run lint:fix)",
     "lint:fix": "eslint --ext .js,.mjs,.cjs --fix . && pnpm run lint:web:fix"
   },
   "dependencies": {

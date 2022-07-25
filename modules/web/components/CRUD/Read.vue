@@ -115,9 +115,9 @@ v-row(no-gutters).fill-height
 
 <script>
 import Vue from 'vue'
-import Update from './Update'
-import Delete from './Delete'
-import Show from './Show'
+import Update from './update'
+import Delete from './delete'
+import Show from './show'
 
 export default {
   name: 'Read',

@@ -5,7 +5,7 @@ import resolveDotenvFilePath from '@juquinha/config/resolve-dotenv-file-path.mjs
 import resolveDotenv from '@juquinha/config/resolve-dotenv.mjs'
 
 export default async (currentEnv) => {
-  let { STAGE, APP_NAME, APP_PREFIX, DEPLOYMENT_BUCKET_NAME, WEB_APP_BUCKET_NAME, DEFAULT_LANGUAGE } = currentEnv
+  let { STAGE, APP_NAME, APP_PREFIX, DEPLOYMENT_BUCKET_NAME, WEB_APP_BUCKET_NAME } = currentEnv
   const filePath = await resolveDotenvFilePath(STAGE)
 
   if (!APP_NAME) {
@@ -66,21 +66,6 @@ export default async (currentEnv) => {
     ]))
     await writeDotenv(filePath, {
       WEB_APP_BUCKET_NAME,
-    })
-  }
-
-  if (!DEFAULT_LANGUAGE) {
-    ; ({ DEFAULT_LANGUAGE } = await inquirer.prompt([
-      {
-        type: 'list',
-        name: 'DEFAULT_LANGUAGE',
-        message: 'Which language would you like to use?',
-        choices: ['en', 'pt'],
-        default: 'en',
-      },
-    ]))
-    await writeDotenv(filePath, {
-      DEFAULT_LANGUAGE,
     })
   }
 

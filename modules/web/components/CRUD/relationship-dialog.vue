@@ -36,11 +36,11 @@ v-dialog(
     dialogs-max-width='500'
   )
     template(v-slot:title='{ context }')
-      span.white--text {{ context.pluralizedEntityName }} - {{ entity.name }}
+      span {{ context.pluralizedEntityName }} - {{ entity.name }}
     template(v-slot:actions.extra='{ context }')
       v-tooltip(bottom)
         template(v-slot:activator='{ on: closeOn, attrs: closeAttrs }')
-          v-btn.white--text.ml-2(
+          v-btn.ml-2(
             icon,
             @click='dialog = false',
             v-bind='closeAttrs',
@@ -211,7 +211,6 @@ export default {
   top: 6px;
   right: 5px;
 }
-
 .relationships-counter span {
   font-size: 8.5px;
   font-weight: bold;

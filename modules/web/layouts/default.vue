@@ -1,95 +1,76 @@
 <template lang="pug">
 v-app
-  // Side bar
-  v-navigation-drawer(v-model='drawer', app style='z-index: 1001')
-    v-list
-      v-list-item(three-line)
-        v-list-item-avatar
-          v-img(src='https://www.thoughtco.com/thmb/X2cGHhkP7pjFMhriHXkJXPQJsek=/3071x2056/filters:fill(auto,1)/5385967-LGPT-56a5205a5f9b58b7d0daf257.jpg' go='/')
-        v-list-item-content App Name
-          v-subheader v{{ version }}
-      template(v-if='!menuItems || !menuItems.length')
-        v-list-item(v-for='n in 5' :key='n')
-          v-skeleton-loader(type='sentences' min-width='100%')
-      template(v-else)
-        v-list-item(
-          v-for='(item, i) in menuItems'
-          :key='i'
-          :to='item.to'
-          router
-          exact
-        )
-          v-list-item-action
-            v-icon {{ item.icon }}
-          v-list-item-content
+  v-layout
+    // Side bar
+    v-navigation-drawer(app v-model='drawer' bottom)
+      v-list
+        v-list-item(lines='three')
+          v-list-item-avatar(start)
+            v-img(
+              src='https://m.bug.hr/_cache/6a807158c662a9937a31c64c967594b2.jpg'
+              go='/'
+            )
+          v-list-item-subtitle App Name
+        v-list-item(v-for='(item, i) in menuItems' :key='i')
+          v-list-item-avatar
+            v-icon(:icon='item.icon')
+          v-list-item-title
             v-list-item-title(v-text='item.title')
-  // Nav bar
-  v-app-bar(
-    app
-    fixed
-    collapse-on-scroll
-  )
-    v-app-bar-nav-icon(@click.stop='drawer = !drawer')
-    v-spacer
-    nuxt-link(to='/')
+    // Nav bar
+    v-app-bar(app elevation='1')
+      v-app-bar-nav-icon(variant='text' @click.stop='drawer = !drawer')
+      v-spacer
       v-toolbar-title My App
-    v-spacer
-  // Main content
-  v-main
-    nuxt
+    // Main content
+    v-main
+      slot
 </template>
 
-<script>
-import { version } from '../package.json'
+<script setup>
+const { $i18n } = useNuxtApp()
 
-export default {
-  data() {
-    return {
-      drawer: false,
-      version,
-    }
+const drawer = ref(null)
+const menuItems = ref([
+  {
+    icon: 'mdi-apps',
+    title: $i18n('dashboard'),
+    to: '/dashboard',
   },
-  computed: {
-    menuItems() {
-      return [
-        {
-          icon: 'mdi-apps',
-          title: this.$i18n('dashboard'),
-          to: '/dashboard',
-        },
-        {
-          icon: 'mdi-account-details',
-          title: this.$i18n('users'),
-          to: '/users',
-        },
-        {
-          icon: 'mdi-badge-account-horizontal-outline',
-          title: this.$i18n('roles'),
-          to: '/roles',
-        },
-        {
-          icon: 'mdi-security',
-          title: this.$i18n('permissions'),
-          to: '/permissions',
-        },
-      ]
-    },
+  {
+    icon: 'mdi-account-details',
+    title: $i18n('users'),
+    to: '/users',
   },
-}
+  {
+    icon: 'mdi-badge-account-horizontal-outline',
+    title: $i18n('roles'),
+    to: '/roles',
+  },
+  {
+    icon: 'mdi-security',
+    title: $i18n('permissions'),
+    to: '/permissions',
+  },
+])
 </script>
 
 <style>
+@import 'https://unpkg.com/@mdi/font@5.x/css/materialdesignicons.min.css';
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #dddde2 #8d8d92;
 }
+
 *::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
+
 *::-webkit-scrollbar-track {
   background: #dddde2;
 }
+
 *::-webkit-scrollbar-thumb {
   background-color: #8d8d92;
   border-radius: 20px;
@@ -104,5 +85,13 @@ export default {
 .text--break-on-word {
   white-space: pre-wrap !important;
   word-break: normal !important;
+}
+
+.v-card-title.primary {
+  background-color: #7caec9;
+}
+
+.v-card-title.secondary {
+  background-color: #ff9e80;
 }
 </style>

@@ -27,12 +27,12 @@ v-dialog.crud-dialog-z-index(
         slot(name='delete.title' :context='context')
           v-col.text--break-on-word.flex-grow-1
             slot(name='title' :context='context')
-              span.white--text {{ $i18n('delete') }} {{ context.entityName.toLowerCase() }}
+              span {{ $i18n('delete') }} {{ context.entityName.toLowerCase() }}
           v-col.flex-grow-0.text-no-wrap
             slot(name='delete.actions.extra' :context='context'): span
             v-tooltip(bottom)
               template(v-slot:activator='{ on: closeOn, attrs: closeAttrs }')
-                v-btn.white--text(
+                v-btn(
                   icon
                   @click='dialog = false'
                   v-bind='closeAttrs'
