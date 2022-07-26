@@ -8,53 +8,51 @@ v-form(ref='form' :readonly='readOnly' @submit.prevent="$emit('submit')")
         :key='index'
         :cols='fieldCols'
       )
-        slot(:name='`form.${property.name}`' :property='property' :action='action' :form='form' :errors.sync='errors[property.name]')
-          v-select(
-            v-if='property.enum && property.enum.length'
-            v-model='$v.form[property.name].$model'
-            :disabled='loading'
-            :label='property.title'
-            :error-messages.sync='errors[property.name]'
-            :items='property.enum.map((enumValue) => ({ text: $i18n(`${context.entity}.crud.form.${property.name}.enum.${enumValue}`), value: enumValue }))'
-            :hint="property.hint"
-            :return-object="false"
-            item-text='text'
-            item-value='value'
-            autocomplete='off'
-          )
-          v-text-field(
-            v-else
-            v-model='$v.form[property.name].$model'
-            :disabled='loading'
-            :type='resolveType(property)'
-            :label='property.title'
-            :error-messages.sync='errors[property.name]'
-            :hint="property.hint"
-          )
-    v-row(v-if='!readOnly')
-      v-spacer
-      v-btn(
-        :disabled='$v.form.$invalid'
-        :loading='loading'
-        type='submit'
-        small
-      ).mr-3.secondary {{ $i18n('save') }}
-        v-icon mdi-floppy
-      v-btn(
-        :disabled='loading'
-        @click="$emit('cancel')"
-        small
-      ).error {{ $i18n('cancel') }}
-        v-icon mdi-cancel
+    //-     slot(:name='`form.${property.name}`' :property='property' :action='action' :form='form' :errors.sync='errors[property.name]')
+    //-       v-select(
+    //-         v-if='property.enum && property.enum.length'
+    //-         v-model='$v.form[property.name].$model'
+    //-         :disabled='loading'
+    //-         :label='property.title'
+    //-         :error-messages.sync='errors[property.name]'
+    //-         :items='property.enum.map((enumValue) => ({ text: $i18n(`${context.entity}.crud.form.${property.name}.enum.${enumValue}`), value: enumValue }))'
+    //-         :hint="property.hint"
+    //-         :return-object="false"
+    //-         item-text='text'
+    //-         item-value='value'
+    //-         autocomplete='off'
+    //-       )
+    //-       v-text-field(
+    //-         v-else
+    //-         v-model='$v.form[property.name].$model'
+    //-         :disabled='loading'
+    //-         :type='resolveType(property)'
+    //-         :label='property.title'
+    //-         :error-messages.sync='errors[property.name]'
+    //-         :hint="property.hint"
+    //-       )
+    //- v-row(v-if='!readOnly')
+    //-   v-spacer
+    //-   v-btn(
+    //-     :disabled='$v.form.$invalid'
+    //-     :loading='loading'
+    //-     type='submit'
+    //-     small
+    //-   ).mr-3.secondary {{ $i18n('save') }}
+    //-     v-icon mdi-floppy
+    //-   v-btn(
+    //-     :disabled='loading'
+    //-     @click="$emit('cancel')"
+    //-     small
+    //-   ).error {{ $i18n('cancel') }}
+    //-     v-icon mdi-cancel
 </template>
 
 <script>
 import * as _ from 'lodash'
-import { validationMixin } from 'vuelidate'
 
 export default {
   name: 'Form',
-  components: { validationMixin },
   props: {
     value: { type: Object, required: true },
     context: { type: Object, required: true },
