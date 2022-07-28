@@ -24,13 +24,13 @@ v-row(no-gutters).fill-height
                       v-on='on'
                       @click='dismissSummary'
                     )
-                      v-icon mdi-close
+                      v-icon(icon='mdi-close')
                   span {{ $i18n('dismissSummary') }}
               slot(name='list.summary' :context='context'): span
           v-col(:cols='searchCols')
             v-text-field(
               v-model='search'
-              :append-icon="(this.context.searchType === 'remote' && search && search.length >= 3) ? 'mdi-magnify': undefined"
+              :append-icon="(context.searchType === 'remote' && search && search.length >= 3) ? 'mdi-magnify': undefined"
               :label="`${$i18n('search')} ${context.pluralizedEntityName.toLowerCase()}`"
               hide-details
               outlined
@@ -40,88 +40,98 @@ v-row(no-gutters).fill-height
               @click:clear='refresh(true)'
               @keydown.enter='search ? refresh() : refresh(true)'
             )
-      v-data-table.elevation-1(
+      //- v-table.elevation-1(
+      //-   :headers='headers'
+      //-   :items='items'
+      //-   :loading='true'
+      //-   :search="context.searchType === 'local' ? search : undefined"
+      //-   v-bind='$attrs'
+      //-   v-on='$listeners'
+      //-   :items-per-page='limit'
+      //-   disable-pagination
+      //-   hide-default-footer
+      //- )
+      v-table.elevation-1(
         :headers='headers'
         :items='items'
-        :loading='$fetchState.pending'
-        :search="this.context.searchType === 'local' ? search : undefined"
-        v-bind='$attrs'
-        v-on='$listeners'
+        :loading='true'
+        :search="context.searchType === 'local' ? search : undefined"
         :items-per-page='limit'
         disable-pagination
         hide-default-footer
       )
-        // Cols
-        template(v-for='header of headers' v-slot:[`item.${header.value}`]='scope')
-          slot(:name='`list.item.${header.value}`' :header='header' v-bind='scope')
-            span(v-if='!context.properties[header.value].enum') {{ scope.item[header.value] }}
-            span(v-else) {{ $i18n(`${context.entity}.crud.form.${header.value}.enum.${scope.item[header.value]}`) }}
-        // Actions
-        template(v-slot:item.actions='scope').action-column
-          slot(name='list.item.actions' v-bind='scope')
-            v-row.flex-nowrap(no-gutters)
-              slot(name='list.item.actions.extra' v-bind='scope'): v-col(cols='0')
+        thead: tr
+          // Cols
+          template(v-for='header of headers' v-slot:[`item.${header.value}`]='scope')
+          //-   slot(:name='`list.item.${header.value}`' :header='header' v-bind='scope')
+          //-     th
+          //-       span(v-if='!context.properties[header.value].enum') {{ scope.item[header.value] }}
+          //-       span(v-else) {{ $i18n(`${context.entity}.crud.form.${header.value}.enum.${scope.item[header.value]}`) }}
+          // Actions
+          //- template(v-slot:item.actions='scope').action-column
+          //-   slot(name='list.item.actions' v-bind='scope')
+          //-     th
+          //-       slot(name='list.item.actions.extra' v-bind='scope'): v-col(cols='0')
 
-              v-col
-                Show(
-                  v-if='context.hasActionRead'
-                  :context='context'
-                  :item='scope.item'
-                  v-bind='$attrs'
-                )
-                  template(v-for='(_, slot) of $scopedSlots' v-slot:[slot]='scope')
-                    slot(:name='slot' v-bind='scope')
-              v-col(v-if='context.hasActionUpdate')
-                Update(
-                  :context='context'
-                  :update-fn='updateFn'
-                  :item='scope.item'
-                  v-bind='$attrs'
-                  @updated='updateItem'
-                )
-                  template(v-for='(_, slot) of $scopedSlots' v-slot:[slot]='scope')
-                    slot(:name='slot' v-bind='scope')
-              v-col(v-if='context.hasActionDelete')
-                Delete(
-                  :context='context'
-                  :delete-fn='deleteFn'
-                  :item='scope.item'
-                  v-bind='$attrs'
-                  @deleted='removeItem(scope.item)'
-                )
-                  template(v-for='(_, slot) of $scopedSlots' v-slot:[slot]='scope')
-                    slot(:name='slot' v-bind='scope')
+      //-         v-col
+      //-           Show(
+      //-             v-if='context.hasActionRead'
+      //-             :context='context'
+      //-             :item='scope.item'
+      //-             v-bind='$attrs'
+      //-           )
+      //-             template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
+      //-               slot(:name='slot' v-bind='scope')
+      //-         v-col(v-if='context.hasActionUpdate')
+      //-           Update(
+      //-             :context='context'
+      //-             :update-fn='updateFn'
+      //-             :item='scope.item'
+      //-             v-bind='$attrs'
+      //-             @updated='updateItem'
+      //-           )
+      //-             template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
+      //-               slot(:name='slot' v-bind='scope')
+      //-         v-col(v-if='context.hasActionDelete')
+      //-           Delete(
+      //-             :context='context'
+      //-             :delete-fn='deleteFn'
+      //-             :item='scope.item'
+      //-             v-bind='$attrs'
+      //-             @deleted='removeItem(scope.item)'
+      //-           )
+      //-             template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
+      //-               slot(:name='slot' v-bind='scope')
 
-        template(v-slot:footer='scope')
-          v-divider
-          v-container(fluid)
-            v-row(no-gutters)
-              v-col(cols='10')
-                v-pagination(
-                  v-if='pagesCount'
-                  v-model='currentPage'
-                  color='secondary'
-                  circle
-                  :length='pagesCount'
-                )
-              v-col(cols='2')
-                v-combobox(
-                  v-model='limit'
-                  :label="$i18n('items.per.page')"
-                  :items='[5, 10, 20, 50]'
-                  hide-details
-                )
+      //-   template(v-slot:footer='scope')
+      //-     v-divider
+      //-     v-container(fluid)
+      //-       v-row(no-gutters)
+      //-         v-col(cols='10')
+      //-           v-pagination(
+      //-             v-if='pagesCount'
+      //-             v-model='currentPage'
+      //-             color='secondary'
+      //-             circle
+      //-             :length='pagesCount'
+      //-           )
+      //-         v-col(cols='2')
+      //-           v-combobox(
+      //-             v-model='limit'
+      //-             :label="$i18n('items.per.page')"
+      //-             :items='[5, 10, 20, 50]'
+      //-             hide-details
+      //-           )
 </template>
 
 <script>
-import Vue from 'vue'
-import Update from './update'
-import Delete from './delete'
-import Show from './show'
+// import Update from './update'
+// import Delete from './delete'
+// import Show from './show'
 
 export default {
   name: 'Read',
-  components: { Update, Delete, Show },
+  // components: { Update, Delete, Show },
   props: {
     readFn: { type: Function, required: true },
     updateFn: { type: Function, required: true },
@@ -138,26 +148,26 @@ export default {
       pagesCount: 0,
       lastKey: undefined,
       cardWidth: null,
-      showSummary:
-        String(
-          localStorage.getItem(`dismiss-${this.context.entity}-summary`)
-        ) !== 'true',
+      // showSummary:
+      //   String(
+      //     localStorage.getItem(`dismiss-${this.context.entity}-summary`)
+      //   ) !== 'true',
       hasActiveSearch: false,
     }
   },
   fetch() {
-    const params = {
-      filter: this.search,
-      limit: this.limit,
-      lastKey: this.pagesLastKeys[this.currentPage],
-    }
-    return this.readFn(params).then((response) => {
-      this.items = response.data
-      if (response.lastKey) {
-        this.pagesLastKeys[this.currentPage + 1] = response.lastKey
-        this.pagesCount = this.pagesLastKeys.length - 1
-      }
-    })
+    // const params = {
+    //   filter: this.search,
+    //   limit: this.limit,
+    //   lastKey: this.pagesLastKeys[this.currentPage],
+    // }
+    // return this.readFn(params).then((response) => {
+    //   this.items = response.data
+    //   if (response.lastKey) {
+    //     this.pagesLastKeys[this.currentPage + 1] = response.lastKey
+    //     this.pagesCount = this.pagesLastKeys.length - 1
+    //   }
+    // })
   },
   computed: {
     headers() {
@@ -204,7 +214,7 @@ export default {
       else return 12
     },
     hasSummarySlot() {
-      return !!this.$scopedSlots['list.summary']
+      return !!this.$slots['list.summary']
     },
   },
   watch: {
@@ -218,7 +228,7 @@ export default {
     },
   },
   mounted() {
-    Vue.nextTick(() => {
+    this.$nextTick(() => {
       const el = this.$refs.card
       if (el) this.cardWidth = el.$el.clientWidth
     })
@@ -229,19 +239,19 @@ export default {
   },
   methods: {
     refresh(clearing = false) {
-      if (this.context.searchType !== 'remote') return
-      if (!clearing && (!this.search || this.search.length < 3)) return
-      if (clearing) {
-        Vue.set(this, 'search', '')
-        if (!this.hasActiveSearch) return
-        this.hasActiveSearch = false
-      }
-      this.hasActiveSearch = true
-      this.$fetch()
+      // if (this.context.searchType !== 'remote') return
+      // if (!clearing && (!this.search || this.search.length < 3)) return
+      // if (clearing) {
+      //   this.search = ''
+      //   if (!this.hasActiveSearch) return
+      //   this.hasActiveSearch = false
+      // }
+      // this.hasActiveSearch = true
+      // this.$fetch()
     },
     dismissSummary() {
       this.showSummary = false
-      localStorage.setItem(`dismiss-${this.context.entity}-summary`, true)
+      // localStorage.setItem(`dismiss-${this.context.entity}-summary`, true)
     },
     updateItem(updatedItem) {
       const keyPropertyName = this.context.keyProperty.name

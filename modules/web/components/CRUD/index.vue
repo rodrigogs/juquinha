@@ -20,14 +20,14 @@ v-container.ma-0.pa-0#crud-container(fluid)
                   slot(:name='slot' v-bind='scope' :context='context')
               //- slot(name='actions.extra' :context='context'): span
         v-card-text
-          //- Read(
-          //-   ref='Read'
-          //-   :readFn="callApi('read')"
-          //-   :updateFn="callApi('update')"
-          //-   :deleteFn="callApi('delete')"
-          //-   :context='context'
-          //-   v-bind='resolvedAttrs'
-          //- )
+          Read(
+            ref='Read'
+            :readFn="callApi('read')"
+            :updateFn="callApi('update')"
+            :deleteFn="callApi('delete')"
+            :context='context'
+            v-bind='resolvedAttrs'
+          )
           //-   template(v-for='(_, slot) of $scopedSlots' v-slot:[slot]='scope')
           //-     slot(:name='slot' v-bind='scope' :context='context')
   //- Update(
@@ -47,7 +47,7 @@ v-container.ma-0.pa-0#crud-container(fluid)
 import pluralize from 'pluralize'
 import Create from './create'
 // import Delete from './delete'
-// import Read from './read'
+import Read from './read'
 // import Update from './update'
 
 /**
@@ -60,7 +60,7 @@ export default {
   components: {
     Create,
   //   Delete,
-  //   Read,
+    Read,
   //   Update,
   },
   props: {
