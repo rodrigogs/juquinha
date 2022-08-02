@@ -8,120 +8,113 @@ v-row(no-gutters).fill-height
             v-alert(
               v-if='hasSummarySlot && showSummary'
               type='info'
-              dense
-              outlined
-              dismissible
-              text
+              closable
             ).mb-0.text-caption
               template(v-slot:close)
                 v-tooltip(bottom)
-                  template(v-slot:activator='{ on }')
-                    v-btn.ml-3.info(
-                      icon
-                      ripple
-                      x-small
-                      dark
-                      v-on='on'
+                  template(v-slot:activator='{ props }')
+                    v-icon(
+                      icon='mdi-close'
+                      v-bind='props'
                       @click='dismissSummary'
                     )
-                      v-icon(icon='mdi-close')
                   span {{ $i18n('dismissSummary') }}
-              slot(name='list.summary' :context='context'): span
-          v-col(:cols='searchCols')
-            v-text-field(
-              v-model='search'
-              :append-icon="(context.searchType === 'remote' && search && search.length >= 3) ? 'mdi-magnify': undefined"
-              :label="`${$i18n('search')} ${context.pluralizedEntityName.toLowerCase()}`"
-              hide-details
-              outlined
-              dense
-              clearable
-              @click:append='refresh()'
-              @click:clear='refresh(true)'
-              @keydown.enter='search ? refresh() : refresh(true)'
-            )
-      //- v-table.elevation-1(
-      //-   :headers='headers'
-      //-   :items='items'
-      //-   :loading='true'
-      //-   :search="context.searchType === 'local' ? search : undefined"
-      //-   v-bind='$attrs'
-      //-   v-on='$listeners'
-      //-   :items-per-page='limit'
-      //-   disable-pagination
-      //-   hide-default-footer
-      //- )
-      v-table.elevation-1(
-        :headers='headers'
-        :items='items'
-        :loading='true'
-        :search="context.searchType === 'local' ? search : undefined"
-        :items-per-page='limit'
-        disable-pagination
-        hide-default-footer
-      )
-        thead: tr
-          // Cols
-          template(v-for='header of headers' v-slot:[`item.${header.value}`]='scope')
-          //-   slot(:name='`list.item.${header.value}`' :header='header' v-bind='scope')
-          //-     th
-          //-       span(v-if='!context.properties[header.value].enum') {{ scope.item[header.value] }}
-          //-       span(v-else) {{ $i18n(`${context.entity}.crud.form.${header.value}.enum.${scope.item[header.value]}`) }}
-          // Actions
-          //- template(v-slot:item.actions='scope').action-column
-          //-   slot(name='list.item.actions' v-bind='scope')
-          //-     th
-          //-       slot(name='list.item.actions.extra' v-bind='scope'): v-col(cols='0')
+  //-             slot(name='list.summary' :context='context'): span
+  //-         v-col(:cols='searchCols')
+  //-           v-text-field(
+  //-             v-model='search'
+  //-             :append-icon="(context.searchType === 'remote' && search && search.length >= 3) ? 'mdi-magnify': undefined"
+  //-             :label="`${$i18n('search')} ${context.pluralizedEntityName.toLowerCase()}`"
+  //-             hide-details
+  //-             outlined
+  //-             dense
+  //-             clearable
+  //-             @click:append='refresh()'
+  //-             @click:clear='refresh(true)'
+  //-             @keydown.enter='search ? refresh() : refresh(true)'
+  //-           )
+  //-     v-table.elevation-1(
+  //-       :headers='headers'
+  //-       :items='items'
+  //-       :loading='true'
+  //-       :search="context.searchType === 'local' ? search : undefined"
+  //-       v-bind='$attrs'
+  //-       v-on='$listeners'
+  //-       :items-per-page='limit'
+  //-       disable-pagination
+  //-       hide-default-footer
+  //-     )
+  //-     v-table.elevation-1(
+  //-       :headers='headers'
+  //-       :items='items'
+  //-       :loading='true'
+  //-       :search="context.searchType === 'local' ? search : undefined"
+  //-       :items-per-page='limit'
+  //-       disable-pagination
+  //-       hide-default-footer
+  //-     )
+  //-       thead: tr
+  //-         // Cols
+  //-         template(v-for='header of headers' v-slot:[`item.${header.value}`]='scope')
+  //-           slot(:name='`list.item.${header.value}`' :header='header' v-bind='scope')
+  //-             th
+  //-               span(v-if='!context.properties[header.value].enum') {{ scope.item[header.value] }}
+  //-               span(v-else) {{ $i18n(`${context.entity}.crud.form.${header.value}.enum.${scope.item[header.value]}`) }}
+  //-         // Actions
+  //-         template(v-slot:item.actions='scope').action-column
+  //-           slot(name='list.item.actions' v-bind='scope')
+  //-             th
+  //-               slot(name='list.item.actions.extra' v-bind='scope'): v-col(cols='0')
 
-      //-         v-col
-      //-           Show(
-      //-             v-if='context.hasActionRead'
-      //-             :context='context'
-      //-             :item='scope.item'
-      //-             v-bind='$attrs'
-      //-           )
-      //-             template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
-      //-               slot(:name='slot' v-bind='scope')
-      //-         v-col(v-if='context.hasActionUpdate')
-      //-           Update(
-      //-             :context='context'
-      //-             :update-fn='updateFn'
-      //-             :item='scope.item'
-      //-             v-bind='$attrs'
-      //-             @updated='updateItem'
-      //-           )
-      //-             template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
-      //-               slot(:name='slot' v-bind='scope')
-      //-         v-col(v-if='context.hasActionDelete')
-      //-           Delete(
-      //-             :context='context'
-      //-             :delete-fn='deleteFn'
-      //-             :item='scope.item'
-      //-             v-bind='$attrs'
-      //-             @deleted='removeItem(scope.item)'
-      //-           )
-      //-             template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
-      //-               slot(:name='slot' v-bind='scope')
+  //-             v-col
+  //-               Show(
+  //-                 v-if='context.hasActionRead'
+  //-                 :context='context'
+  //-                 :item='scope.item'
+  //-                 v-bind='$attrs'
+  //-               )
+  //-                 template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
+  //-                   slot(:name='slot' v-bind='scope')
+  //-             v-col(v-if='context.hasActionUpdate')
+  //-               Update(
+  //-                 :context='context'
+  //-                 :update-fn='updateFn'
+  //-                 :item='scope.item'
+  //-                 v-bind='$attrs'
+  //-                 @updated='updateItem'
+  //-               )
+  //-                 template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
+  //-                   slot(:name='slot' v-bind='scope')
+  //-             v-col(v-if='context.hasActionDelete')
+  //-               Delete(
+  //-                 :context='context'
+  //-                 :delete-fn='deleteFn'
+  //-                 :item='scope.item'
+  //-                 v-bind='$attrs'
+  //-                 @deleted='removeItem(scope.item)'
+  //-               )
+  //-                 template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
+  //-                   slot(:name='slot' v-bind='scope')
 
-      //-   template(v-slot:footer='scope')
-      //-     v-divider
-      //-     v-container(fluid)
-      //-       v-row(no-gutters)
-      //-         v-col(cols='10')
-      //-           v-pagination(
-      //-             v-if='pagesCount'
-      //-             v-model='currentPage'
-      //-             color='secondary'
-      //-             circle
-      //-             :length='pagesCount'
-      //-           )
-      //-         v-col(cols='2')
-      //-           v-combobox(
-      //-             v-model='limit'
-      //-             :label="$i18n('items.per.page')"
-      //-             :items='[5, 10, 20, 50]'
-      //-             hide-details
-      //-           )
+  //-       template(v-slot:footer='scope')
+  //-         v-divider
+  //-         v-container(fluid)
+  //-           v-row(no-gutters)
+  //-             v-col(cols='10')
+  //-               v-pagination(
+  //-                 v-if='pagesCount'
+  //-                 v-model='currentPage'
+  //-                 color='secondary'
+  //-                 circle
+  //-                 :length='pagesCount'
+  //-               )
+  //-             v-col(cols='2')
+  //-               v-combobox(
+  //-                 v-model='limit'
+  //-                 :label="$i18n('items.per.page')"
+  //-                 :items='[5, 10, 20, 50]'
+  //-                 hide-details
+  //-               )
 </template>
 
 <script>
@@ -148,58 +141,58 @@ export default {
       pagesCount: 0,
       lastKey: undefined,
       cardWidth: null,
-      // showSummary:
+      showSummary: true,
       //   String(
       //     localStorage.getItem(`dismiss-${this.context.entity}-summary`)
       //   ) !== 'true',
       hasActiveSearch: false,
     }
   },
-  fetch() {
-    // const params = {
-    //   filter: this.search,
-    //   limit: this.limit,
-    //   lastKey: this.pagesLastKeys[this.currentPage],
-    // }
-    // return this.readFn(params).then((response) => {
-    //   this.items = response.data
-    //   if (response.lastKey) {
-    //     this.pagesLastKeys[this.currentPage + 1] = response.lastKey
-    //     this.pagesCount = this.pagesLastKeys.length - 1
-    //   }
-    // })
-  },
+  // fetch() {
+  //   // const params = {
+  //   //   filter: this.search,
+  //   //   limit: this.limit,
+  //   //   lastKey: this.pagesLastKeys[this.currentPage],
+  //   // }
+  //   // return this.readFn(params).then((response) => {
+  //   //   this.items = response.data
+  //   //   if (response.lastKey) {
+  //   //     this.pagesLastKeys[this.currentPage + 1] = response.lastKey
+  //   //     this.pagesCount = this.pagesLastKeys.length - 1
+  //   //   }
+  //   // })
+  // },
   computed: {
-    headers() {
-      const propertiesToShow = this.context.properties
-        ? Object.keys(this.context.properties).filter(
-            (key) => this.context.properties[key].showInList
-          )
-        : undefined
-      const itemsHeaders = propertiesToShow
-        ? propertiesToShow.map((prop) => ({
-            text: this.$i18n(`${this.context.entity}.${prop}`),
-            value: prop,
-          }))
-        : Array.from(
-            this.items.reduce(
-              (props, item) => new Set([...props, ...Object.keys(item)]),
-              new Set()
-            )
-          ).map((prop) => ({
-            text: this.$i18n(`${this.context.entity}.${prop}`),
-            value: prop,
-          }))
-      return [
-        ...itemsHeaders,
-        {
-          title: '',
-          value: 'actions',
-          sortable: false,
-          width: 150,
-        },
-      ]
-    },
+      // headers() {
+      //   const propertiesToShow = this.context.properties
+      //     ? Object.keys(this.context.properties).filter(
+      //         (key) => this.context.properties[key].showInList
+      //       )
+      //     : undefined
+      //   const itemsHeaders = propertiesToShow
+      //     ? propertiesToShow.map((prop) => ({
+      //         text: this.$i18n(`${this.context.entity}.${prop}`),
+      //         value: prop,
+      //       }))
+      //     : Array.from(
+      //         this.items.reduce(
+      //           (props, item) => new Set([...props, ...Object.keys(item)]),
+      //           new Set()
+      //         )
+      //       ).map((prop) => ({
+      //         text: this.$i18n(`${this.context.entity}.${prop}`),
+      //         value: prop,
+      //       }))
+      //   return [
+      //     ...itemsHeaders,
+      //     {
+      //       title: '',
+      //       value: 'actions',
+      //       sortable: false,
+      //       width: 150,
+      //     },
+      //   ]
+      // },
     searchCols() {
       // xs
       if (this.cardWidth < 600) return 12
@@ -213,20 +206,21 @@ export default {
       else if (this.cardWidth > 1904) return 4
       else return 12
     },
-    hasSummarySlot() {
-      return !!this.$slots['list.summary']
-    },
+      hasSummarySlot() {
+        return true
+      //   return !!this.$slots['list.summary']
+      },
   },
-  watch: {
-    limit() {
-      this.pagesLastKeys = []
-      this.pagesCount = 0
-      this.$fetch()
-    },
-    currentPage() {
-      this.$fetch()
-    },
-  },
+  // watch: {
+  //   limit() {
+  //     this.pagesLastKeys = []
+  //     this.pagesCount = 0
+  //     this.$fetch()
+  //   },
+  //   currentPage() {
+  //     this.$fetch()
+  //   },
+  // },
   mounted() {
     this.$nextTick(() => {
       const el = this.$refs.card
@@ -238,35 +232,35 @@ export default {
     })
   },
   methods: {
-    refresh(clearing = false) {
-      // if (this.context.searchType !== 'remote') return
-      // if (!clearing && (!this.search || this.search.length < 3)) return
-      // if (clearing) {
-      //   this.search = ''
-      //   if (!this.hasActiveSearch) return
-      //   this.hasActiveSearch = false
-      // }
-      // this.hasActiveSearch = true
-      // this.$fetch()
-    },
-    dismissSummary() {
-      this.showSummary = false
-      // localStorage.setItem(`dismiss-${this.context.entity}-summary`, true)
-    },
-    updateItem(updatedItem) {
-      const keyPropertyName = this.context.keyProperty.name
-      const itemIndex = this.items.findIndex(
-        (item) => item[keyPropertyName] === updatedItem[keyPropertyName]
-      )
-      this.items.splice(itemIndex, 1, updatedItem)
-    },
-    removeItem(removingItem) {
-      const keyPropertyName = this.context.keyProperty.name
-      const itemIndex = this.items.findIndex(
-        (item) => item[keyPropertyName] === removingItem[keyPropertyName]
-      )
-      this.items.splice(itemIndex, 1)
-    },
+    // refresh(clearing = false) {
+    //   // if (this.context.searchType !== 'remote') return
+    //   // if (!clearing && (!this.search || this.search.length < 3)) return
+    //   // if (clearing) {
+    //   //   this.search = ''
+    //   //   if (!this.hasActiveSearch) return
+    //   //   this.hasActiveSearch = false
+    //   // }
+    //   // this.hasActiveSearch = true
+    //   // this.$fetch()
+    // },
+    // dismissSummary() {
+    //   this.showSummary = false
+    //   // localStorage.setItem(`dismiss-${this.context.entity}-summary`, true)
+    // },
+    // updateItem(updatedItem) {
+    //   const keyPropertyName = this.context.keyProperty.name
+    //   const itemIndex = this.items.findIndex(
+    //     (item) => item[keyPropertyName] === updatedItem[keyPropertyName]
+    //   )
+    //   this.items.splice(itemIndex, 1, updatedItem)
+    // },
+    // removeItem(removingItem) {
+    //   const keyPropertyName = this.context.keyProperty.name
+    //   const itemIndex = this.items.findIndex(
+    //     (item) => item[keyPropertyName] === removingItem[keyPropertyName]
+    //   )
+    //   this.items.splice(itemIndex, 1)
+    // },
   },
 }
 </script>
