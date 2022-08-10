@@ -4,23 +4,18 @@ v-dialog.crud-dialog-z-index(
   transition='dialog-bottom-transition'
   v-bind='attrs'
 )
-  //- template(v-slot:activator='scope')
-  //-   slot(
-  //-     name='list.items.actions.show.activator'
-  //-     :context='context'
-  //-     :item='item'
-  //-     v-bind='scope'
-  //-   )
-  //-     v-tooltip(bottom)
-  //-       template(v-slot:activator="tooltipScope")
-  //-         v-btn(
-  //-           icon
-  //-           v-on="tooltipScope.on"
-  //-           v-bind="tooltipScope.attrs"
-  //-           @click.prevent="scope.on.click"
-  //-         )
-  //-           v-icon(color="info") mdi-eye
-  //-       span {{ $i18n('show') }}
+  template(v-slot:activator='{ props: dialogProps }')
+    slot(
+      name='list.items.actions.show.activator'
+      :context='context'
+      :item='item'
+      v-bind='dialogProps'
+    )
+      v-tooltip(bottom)
+        template(v-slot:activator='{ props: tooltipProps }')
+          v-icon(v-bind='{ ...dialogProps, ...tooltipProps }' color='info') mdi-eye
+        span {{ $i18n('show') }}
+  //-
   //- v-card
   //-   v-card-title.primary
   //-     v-row(no-gutters)

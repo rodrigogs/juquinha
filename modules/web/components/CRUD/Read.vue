@@ -11,6 +11,11 @@ v-row(no-gutters).fill-height
               closable
               :close-label='$i18n("dismissSummary")'
             ).mb-0.text-caption
+              template(v-slot:close)
+                v-tooltip(bottom)
+                  template(v-slot:activator='{ props: tooltipProps }')
+                    v-icon(v-bind='tooltipProps' @click='showSummary = false') mdi-close
+                  span {{ $i18n('show') }}
               slot(name='list.summary' :context='context')
                 span
           v-col(:cols='searchCols')
