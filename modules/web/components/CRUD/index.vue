@@ -16,9 +16,9 @@ v-container.ma-0.pa-0#crud-container(fluid)
                 @created='$refs.Read.$fetch()'
                 v-bind='resolvedAttrs'
               )
-                //- template(v-for='(_, slot) of $scopedSlots' v-slot:[slot]='scope')
+                template(v-for='(_, slot) of slots' v-slot:[slot]='scope')
                   slot(:name='slot' v-bind='scope' :context='context')
-              //- slot(name='actions.extra' :context='context'): span
+              slot(name='actions.extra' :context='context'): span
         v-card-text
           Read(
             ref='Read'
@@ -28,215 +28,205 @@ v-container.ma-0.pa-0#crud-container(fluid)
             :context='context'
             v-bind='resolvedAttrs'
           )
+            template(v-for='(_, slot) of slots' v-slot:[slot]='scope')
+              slot(:name='slot' v-bind='scope' :context='context')
+          //- Update(
+          //-   ref='UpdateItem'
+          //-   v-else-if='item'
+          //-   :item='item'
+          //-   :update-fn="callApi('update')"
+          //-   :context='context'
+          //-   :maxWidth='resolvedAttrs.maxWidth'
+          //- )
           //-   template(v-for='(_, slot) of $scopedSlots' v-slot:[slot]='scope')
-          //-     slot(:name='slot' v-bind='scope' :context='context')
-  //- Update(
-  //-   ref='UpdateItem'
-  //-   v-else-if='item'
-  //-   :item='item'
-  //-   :update-fn="callApi('update')"
-  //-   :context='context'
-  //-   :maxWidth='resolvedAttrs.maxWidth'
-  //- )
-  //-   template(v-for='(_, slot) of $scopedSlots' v-slot:[slot]='scope')
-  //-     slot(:name='slot' v-bind='scope')
-  //- v-progress-circular(v-else indeterminate size='12' width='1')
+          //-     slot(:name='slot' v-bind='scope')
+          //- v-progress-circular(v-else indeterminate size='12' width='1')
 </template>
 
-<script>
+<script setup>
 import pluralize from 'pluralize'
 import Create from './create'
 // import Delete from './delete'
 import Read from './read'
 // import Update from './update'
 
-/**
- * slots:
- * form.<property.name>
- * item.<property.name>
- */
-export default {
-  name: 'CRUD',
-  components: {
-    Create,
-  //   Delete,
-    Read,
-  //   Update,
+const { $i18n } = useNuxtApp()
+const attrs = useAttrs()
+const slots = useSlots()
+
+const props = defineProps({
+  entityName: { type: String, required: true },
+  entityMale: { type: Boolean, required: false },
+  entityId: { type: String, required: false, default: () => undefined },
+  keyProperty: { type: String, required: false, default: () => null },
+  searchType: {
+    type: String,
+    enum: ['local', 'remote'],
+    required: false,
+    default: () => 'local',
   },
-  props: {
-    entityName: { type: String, required: true },
-    entityMale: { type: Boolean, required: false },
-    entityId: { type: String, required: false, default: () => undefined },
-    keyProperty: { type: String, required: false, default: () => null },
-    searchType: {
-      type: String,
-      enum: ['local', 'remote'],
-      required: false,
-      default: () => 'local',
-    },
-    actions: {
-      required: false,
-      type: Array,
-      default: () => ['create', 'read', 'update', 'delete'],
-    },
-    properties: {
-      type: Object,
-      required: true,
-    },
-    getFn: {
-      type: Function,
-      required: false,
-      default: undefined,
-    },
-    createFn: {
-      type: Function,
-      required: false,
-      default: undefined,
-    },
-    readFn: {
-      type: Function,
-      required: false,
-      default: undefined,
-    },
-    updateFn: {
-      type: Function,
-      required: false,
-      default: undefined,
-    },
-    deleteFn: {
-      type: Function,
-      required: false,
-      default: undefined,
-    },
+  actions: {
+    required: false,
+    type: Array,
+    default: () => ['create', 'read', 'update', 'delete'],
   },
-  data: () => ({
-    item: null,
-  }),
-  async fetch() {
-    if (this.entityId) {
-      this.item = await this.callApi('get')(this.entityId)
-      return this.$refs.UpdateItem && this.$refs.UpdateItem.open()
-    } else {
-      return this.$refs.Read && this.$refs.Read.$fetch()
-    }
+  properties: {
+    type: Object,
+    required: true,
   },
-  computed: {
-    pluralizedEntityName() {
-      // @see https://github.com/plurals/pluralize/issues/145
-      const probablyPluralized = pluralize.plural(this.entityName)
-      if (probablyPluralized.endsWith('s')) return probablyPluralized
-      return `${probablyPluralized}s`
-    },
-    context() {
-      let keyProperty
-      if (this.keyProperty) {
-        keyProperty = this.properties[this.keyProperty]
-        if (!keyProperty)
-          throw new Error(`Property not found for key "${this.keyProperty}"`)
-        keyProperty = { ...keyProperty, name: this.keyProperty }
-      } else {
-        const propertyName = Object.keys(this.properties).find(
-          (prop) => this.properties[prop].key
+  getFn: {
+    type: Function,
+    required: false,
+    default: undefined,
+  },
+  createFn: {
+    type: Function,
+    required: false,
+    default: undefined,
+  },
+  readFn: {
+    type: Function,
+    required: false,
+    default: undefined,
+  },
+  updateFn: {
+    type: Function,
+    required: false,
+    default: undefined,
+  },
+  deleteFn: {
+    type: Function,
+    required: false,
+    default: undefined,
+  },
+})
+
+const item = ref(null)
+
+const pluralizedEntityName = computed(() => {
+  // @see https://github.com/plurals/pluralize/issues/145
+  const probablyPluralized = pluralize.plural(props.entityName)
+  if (probablyPluralized.endsWith('s')) return probablyPluralized
+  return `${probablyPluralized}s`
+})
+
+function callApi(operation) {
+  const normalizedOperation = {
+    get: 'get',
+    create: 'create',
+    read: 'list',
+    update: 'update',
+    delete: 'delete',
+  }[operation]
+  return async (...params) => {
+    try {
+      // Overridings
+      switch (operation) {
+        case 'get':
+          if (props.getFn) return await props.getFn(...params)
+          break
+        case 'create':
+          if (props.createFn) return await props.createFn(...params)
+          break
+        case 'read':
+          if (props.readFn) return await props.readFn(...params)
+          break
+        case 'update':
+          if (props.updateFn) return await props.updateFn(...params)
+          break
+        case 'delete':
+          if (props.deleteFn) return await props.deleteFn(...params)
+      }
+      // Standard behaviour
+      const api = useApi(useFetch)
+      const apiSection = api[pluralizedEntityName.value]
+      if (!apiSection)
+        throw new Error(
+          `Api section not found for "${pluralizedEntityName.value}"`
         )
-        if (!propertyName)
-          throw new Error(
-            `Key property not found for entity ${this.entityName}`
-          )
-        keyProperty = { name: propertyName, ...this.properties[propertyName] }
-      }
-      const entityName = this.$i18n(this.entityName)
-      const pluralizedEntityName = this.$i18n(this.pluralizedEntityName)
-      return {
-        entity: this.entityName,
-        entityName,
-        entityMale: this.entityMale,
-        pluralizedEntity: this.pluralizedEntityName,
-        pluralizedEntityName,
-        properties: this.properties,
-        keyProperty,
-        hasActionCreate: !!this.actions.find((action) => action === 'create'),
-        hasActionRead: !!this.actions.find((action) => action === 'read'),
-        hasActionUpdate: !!this.actions.find((action) => action === 'update'),
-        hasActionDelete: !!this.actions.find((action) => action === 'delete'),
-        searchType: this.searchType,
-      }
-    },
-    resolvedAttrs() {
-      const attrs = this.$attrs
-      const width = attrs.dialogsWidth || attrs['dialogs-width']
-      const minWidth = attrs.dialogsMinWidth || attrs['dialogs-min-width']
-      const maxWidth = attrs.dialogsMaxWidth || attrs['dialogs-max-width']
-      return {
-        width,
-        minWidth,
-        maxWidth,
-      }
-    },
-  },
-  methods: {
-    callApi(operation) {
-      const normalizedOperation = {
-        get: 'get',
-        create: 'create',
-        read: 'list',
-        update: 'update',
-        delete: 'delete',
-      }[operation]
-      return async (...params) => {
-        try {
-          // Overridings
-          switch (operation) {
-            case 'get':
-              if (this.getFn) return await this.getFn(...params)
-              break
-            case 'create':
-              if (this.createFn) return await this.createFn(...params)
-              break
-            case 'read':
-              if (this.readFn) return await this.readFn(...params)
-              break
-            case 'update':
-              if (this.updateFn) return await this.updateFn(...params)
-              break
-            case 'delete':
-              if (this.deleteFn) return await this.deleteFn(...params)
-          }
-          // Standard behaviour
-          const apiSection = this.$api[this.pluralizedEntityName]
-          if (!apiSection)
-            throw new Error(
-              `Api section not found for "${this.pluralizedEntityName}"`
-            )
-          const apiMethod = apiSection[normalizedOperation]
-          if (!apiMethod)
-            throw new Error(
-              `Api method not found for "${this.pluralizedEntityName}.${normalizedOperation}"`
-            )
-          return await apiMethod(...params)
-        } catch (err) {
-          if (err && err.response) {
-            if (err.response.status === 401) {
-              this.$noty.error(this.$i18n('errors.unauthorized'), {
-                timeout: 15000,
-              })
-            } else if (err.response.status !== 500) {
-              this.$noty.error(err.response.data.message, {
-                timeout: 15000,
-              })
-            }
-          }
-          throw err
+      const apiMethod = apiSection[normalizedOperation]
+      if (!apiMethod)
+        throw new Error(
+          `Api method not found for "${pluralizedEntityName.value}.${normalizedOperation}"`
+        )
+      return apiMethod(...params)
+    } catch (err) {
+      if (err && err.response) {
+        if (err.response.status === 401) {
+          // this.$noty.error($i18n('errors.unauthorized'), {
+          //   timeout: 15000,
+          // })
+          // console.log($i18n('errors.unauthorized'))
+        } else if (err.response.status !== 500) {
+          // this.$noty.error(err.response.data.message, {
+          //   timeout: 15000,
+          // })
+          // console.log(err.response.data.message)
         }
       }
-    },
-  },
+      throw err
+    }
+  }
 }
+
+async function fetch() {
+  if (props.entityId) {
+    item.value = await callApi('get')(props.entityId)
+    return this.$refs.UpdateItem && this.$refs.UpdateItem.open()
+  } else {
+    return this.$refs.Read && this.$refs.Read.$fetch()
+  }
+}
+
+const context = computed(() => {
+  let keyProperty
+  if (props.keyProperty) {
+    keyProperty = props.properties[props.keyProperty]
+    if (!keyProperty)
+      throw new Error(`Property not found for key "${props.keyProperty}"`)
+    keyProperty = { ...keyProperty, name: props.keyProperty }
+  } else {
+    const propertyName = Object.keys(props.properties).find(
+      (prop) => props.properties[prop].key
+    )
+    if (!propertyName)
+      throw new Error(
+        `Key property not found for entity ${props.entityName}`
+      )
+    keyProperty = { name: propertyName, ...props.properties[propertyName] }
+  }
+  return {
+    entity: props.entityName,
+    entityName: $i18n(props.entityName),
+    pluralizedEntityName: $i18n(pluralizedEntityName.value),
+    entityMale: props.entityMale,
+    properties: props.properties,
+    keyProperty,
+    hasActionCreate: !!props.actions.find((action) => action === 'create'),
+    hasActionRead: !!props.actions.find((action) => action === 'read'),
+    hasActionUpdate: !!props.actions.find((action) => action === 'update'),
+    hasActionDelete: !!props.actions.find((action) => action === 'delete'),
+    searchType: props.searchType,
+  }
+})
+
+const resolvedAttrs = computed(() => {
+  const width = attrs.dialogsWidth || attrs['dialogs-width']
+  const minWidth = attrs.dialogsMinWidth || attrs['dialogs-min-width']
+  const maxWidth = attrs.dialogsMaxWidth || attrs['dialogs-max-width']
+  return {
+    width,
+    minWidth,
+    maxWidth,
+  }
+})
 </script>
 
 <style>
 .crud-dialog-z-index {
   z-index: 1854 !important;
 }
+
 .text--break-on-word {
   white-space: pre-wrap !important;
   word-break: normal !important;

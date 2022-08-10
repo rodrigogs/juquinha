@@ -4,18 +4,21 @@ v-app
     // Side bar
     v-navigation-drawer(app v-model='drawer' bottom)
       v-list
-        v-list-item(lines='three')
-          v-list-item-avatar(start)
-            v-img(
-              src='https://m.bug.hr/_cache/6a807158c662a9937a31c64c967594b2.jpg'
-              go='/'
-            )
-          v-list-item-subtitle App Name
-        v-list-item(v-for='(item, i) in menuItems' :key='i')
-          v-list-item-avatar
-            v-icon(:icon='item.icon')
-          v-list-item-title
-            v-list-item-title(v-text='item.title')
+        v-list-item(
+          prepend-avatar='https://m.bug.hr/_cache/6a807158c662a9937a31c64c967594b2.jpg'
+          title='App Name'
+          lines='three'
+        )
+      v-divider
+      v-list
+        v-list-item(
+          v-for='(item, i) in menuItems'
+          :key='i'
+          :to='item.to'
+          :prepend-icon='item.icon'
+          :title='item.title'
+          active-color='primary'
+        )
     // Nav bar
     v-app-bar(app elevation='1')
       v-app-bar-nav-icon(variant='text' @click.stop='drawer = !drawer')
@@ -34,7 +37,7 @@ const menuItems = ref([
   {
     icon: 'mdi-apps',
     title: $i18n('dashboard'),
-    to: '/dashboard',
+    to: '/',
   },
   {
     icon: 'mdi-account-details',

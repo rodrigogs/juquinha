@@ -1,8 +1,10 @@
 import path from 'path'
 import { defineNuxtConfig } from 'nuxt'
+import { API_URL } from '@juquinha/config/env.mjs'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  ssr: false,
   build: {
     transpile: ['vuetify'],
   },
@@ -13,6 +15,11 @@ export default defineNuxtConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+    },
+  },
+  runtimeConfig: {
+    public: {
+      API_URL: API_URL || 'http://localhost:3000/api',
     },
   },
 })

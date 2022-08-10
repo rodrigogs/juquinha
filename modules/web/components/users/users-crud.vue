@@ -7,8 +7,9 @@ CRUD(
   dialogsMaxWidth='900',
   searchType='remote'
 )
-  //- template(v-slot:list.item.updatedAt='{ item }') {{ formatDate(item.updatedAt) }}
-  //- template(v-slot:list.item.createdAt='{ item }') {{ formatDate(item.createdAt) }}
+  template(v-slot:list.summary) LOL
+  template(v-slot:list.item.updatedAt='{ item }') {{ formatDate(item.updatedAt) }}
+  template(v-slot:list.item.createdAt='{ item }') {{ formatDate(item.createdAt) }}
   //- template(v-slot:list.item.actions.extra='{ item }')
   //-   v-col
   //-     RelationshipDialog(
