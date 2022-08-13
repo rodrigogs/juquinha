@@ -9,16 +9,16 @@ v-container.ma-0.pa-0#crud-container(fluid)
               slot(name='title' :context='context')
                 span {{ context.pluralizedEntityName }}
             v-col.flex-grow-0.text-no-wrap
-              Create(
-                v-if='context.hasActionCreate'
-                :createFn="callApi('create')"
-                :context='context'
-                @created='$refs.Read.$fetch()'
-                v-bind='resolvedAttrs'
-              )
-                template(v-for='(_, slot) of slots' v-slot:[slot]='scope')
-                  slot(:name='slot' v-bind='scope' :context='context')
-              slot(name='actions.extra' :context='context'): span
+              //- Create(
+              //-   v-if='context.hasActionCreate'
+              //-   :createFn="callApi('create')"
+              //-   :context='context'
+              //-   @created='$refs.Read.$fetch()'
+              //-   v-bind='resolvedAttrs'
+              //- )
+              //-   template(v-for='(_, slot) of slots' v-slot:[slot]='scope')
+              //-     slot(:name='slot' v-bind='scope' :context='context')
+              //- slot(name='actions.extra' :context='context'): span
         v-card-text
           Read(
             ref='Read'
@@ -45,7 +45,7 @@ v-container.ma-0.pa-0#crud-container(fluid)
 
 <script setup>
 import pluralize from 'pluralize'
-import Create from './create'
+// import Create from './create'
 // import Delete from './delete'
 import Read from './read'
 // import Update from './update'

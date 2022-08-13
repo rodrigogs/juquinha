@@ -16,6 +16,7 @@ v-row(no-gutters).fill-height
                   template(v-slot:activator='{ props: tooltipProps }')
                     v-icon(v-bind='tooltipProps' @click='showSummary = false') mdi-close
                   span {{ $i18n('show') }}
+              // TODO Add documentation
               slot(name='list.summary' :context='context')
                 span
           v-col(:cols='searchCols')
@@ -42,17 +43,20 @@ v-row(no-gutters).fill-height
       )
         thead: tr
           // Cols
+          // TODO Add documentation
           slot(v-for='header of headers' :name='`list.header.${header.value}`' :header='header')
             th {{ header.text }}
         tbody
           tr(v-for='item of items')
             td(v-for='header of headers.filter((header) => context.properties[header.value])')
+              // TODO Add documentation
               slot(:name='`list.item.${header.value}`' :item='item' :header='header')
                 span(v-if='!context.properties[header.value].enum') {{ item[header.value] }}
                 span(v-else) {{ $i18n(`${context.entity}.crud.form.${header.value}.enum.${item[header.value]}`) }}
             // Actions
             td
-              slot(name='list.item.actions' :item='item')
+              // TODO Add documentation
+              slot(name='list.item.actions.show' :item='item')
                 Show(
                   v-if='context.hasActionRead'
                   :context='context'
@@ -61,30 +65,34 @@ v-row(no-gutters).fill-height
                 )
                   template(v-for='(_, slot) of slots' v-slot:[slot]='scope')
                     slot(:name='slot' v-bind='scope')
+              // TODO Add documentation
+              slot(name='list.item.actions.update' :item='item')
+                Update(
+                  v-if='context.hasActionUpdate'
+                  :context='context'
+                  :update-fn='updateFn'
+                  :item='item'
+                  v-bind='attrs'
+                  @updated='updateItem'
+                )
+                  template(v-for='(_, slot) of slots' v-slot:[slot]='scope')
+                    slot(:name='slot' v-bind='scope')
+              // TODO Add documentation
+              slot(name='list.item.actions.delete' :item='item')
+                Delete(
+                  :context='context'
+                  :delete-fn='deleteFn'
+                  :item='item'
+                  v-bind='attrs'
+                  @deleted='removeItem(item)'
+                )
+                  template(v-for='(_, slot) of slots' v-slot:[slot]='scope')
+                    slot(:name='slot' v-bind='scope')
+              // TODO Add documentation
               slot(name='list.item.actions.extra' :item='item')
                 span
-
-              //- td(v-if='context.hasActionUpdate')
-                //- Update(
-                //-   :context='context'
-                //-   :update-fn='updateFn'
-                //-   :item='scope.item'
-                //-   v-bind='$attrs'
-                //-   @updated='updateItem'
-                //- )
-                //-   template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
-                //-     slot(:name='slot' v-bind='scope')
-              //- td(v-if='context.hasActionDelete')
-                //- Delete(
-                //-   :context='context'
-                //-   :delete-fn='deleteFn'
-                //-   :item='scope.item'
-                //-   v-bind='$attrs'
-                //-   @deleted='removeItem(scope.item)'
-                //- )
-                //-   template(v-for='(_, slot) of $slots' v-slot:[slot]='scope')
-                //-     slot(:name='slot' v-bind='scope')
         tfoot
+          // TODO Add documentation
           slot(name='list.footer' :context='context')
             tr
               td(colspan='100%')
@@ -110,8 +118,8 @@ v-row(no-gutters).fill-height
 <script setup>
 import { nextTick } from 'vue'
 import { useLocalStorage } from '@vueuse/core'
-// import Update from './update'
-// import Delete from './delete'
+import Update from './update'
+import Delete from './delete'
 import Show from './show'
 
 const { $i18n } = useNuxtApp()
@@ -153,12 +161,12 @@ const headers = computed(() => {
       value: prop,
     }))
     : Array.from(
-      this.items.reduce(
+      items.value.reduce(
         (props, item) => new Set([...props, ...Object.keys(item)]),
         new Set()
       )
     ).map((prop) => ({
-      text: $i18n(`${this.context.entity}.${prop}`),
+      text: $i18n(`${props.context.entity}.${prop}`),
       value: prop,
     }))
   return [
@@ -228,36 +236,36 @@ async function fetch() {
 }
 
 function refresh(clearing = false) {
-    // if (this.context.searchType !== 'remote') return
-    // if (!clearing && (!this.search || this.search.length < 3)) return
-    // if (clearing) {
-    //   this.search = ''
-    //   if (!this.hasActiveSearch) return
-    //   this.hasActiveSearch = false
-    // }
-    // this.hasActiveSearch = true
-    // this.$fetch()
+  // if (this.context.searchType !== 'remote') return
+  // if (!clearing && (!this.search || this.search.length < 3)) return
+  // if (clearing) {
+  //   this.search = ''
+  //   if (!this.hasActiveSearch) return
+  //   this.hasActiveSearch = false
+  // }
+  // this.hasActiveSearch = true
+  // this.$fetch()
 }
 
 function dismissSummary() {
   showSummary.value = false
 }
 
-    // function updateItem(updatedItem) {
-    //   const keyPropertyName = this.context.keyProperty.name
-    //   const itemIndex = this.items.findIndex(
-    //     (item) => item[keyPropertyName] === updatedItem[keyPropertyName]
-    //   )
-    //   this.items.splice(itemIndex, 1, updatedItem)
-    // }
+function updateItem(updatedItem) {
+  const keyPropertyName = props.context.keyProperty.name
+  const itemIndex = items.value.findIndex(
+    (item) => item[keyPropertyName] === updatedItem[keyPropertyName]
+  )
+  items.value.splice(itemIndex, 1, updatedItem)
+}
 
-    // removeItem(removingItem) {
-    //   const keyPropertyName = this.context.keyProperty.name
-    //   const itemIndex = this.items.findIndex(
-    //     (item) => item[keyPropertyName] === removingItem[keyPropertyName]
-    //   )
-    //   this.items.splice(itemIndex, 1)
-    // }
+function removeItem(removingItem) {
+  const keyPropertyName = props.context.keyProperty.name
+  const itemIndex = items.value.findIndex(
+    (item) => item[keyPropertyName] === removingItem[keyPropertyName]
+  )
+  items.value.splice(itemIndex, 1)
+}
 </script>
 
 <style scoped>

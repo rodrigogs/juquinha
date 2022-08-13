@@ -2,15 +2,16 @@
 v-dialog.crud-dialog-z-index(
   v-model='dialog'
   transition='dialog-bottom-transition'
-  v-bind='$attrs'
+  v-bind='attrs'
 )
-  template(v-slot:activator='scope')
-    slot(name='list.items.actions.create.activator' :context='context' v-bind='scope')
+  template(v-slot:activator='{ props: dialogProps }')
+    // TODO Add documentation
+    slot(name='list.items.actions.create.activator' :context='context' v-bind='dialogProps')
       v-tooltip(bottom)
-        template(v-slot:activator='tooltipScope')
+        template(v-slot:activator='{ props: tooltipProps }')
           v-btn(
             v-if='context.hasActionCreate'
-            v-bind='tooltipScope.props'
+            v-bind='{ ...dialogProps, ...tooltipProps }'
             small
           ).primary {{ $i18n('create') }}
             v-icon(icon='mdi-plus')
@@ -18,11 +19,14 @@ v-dialog.crud-dialog-z-index(
   v-card
     v-card-title.primary
       v-row(no-gutters)
+        // TODO Add documentation
         slot(name='create.title' :context='context')
           v-col.flex-grow-1
+            // TODO Add documentation
             slot(name='title' :context='context')
               span.text--break-on-word {{ $i18n('create') }} {{ context.entityName.toLowerCase() }}
           v-col.flex-grow-0.text-no-wrap
+            // TODO Add documentation
             slot(name='create.actions.extra' :context='context'): span
             v-tooltip(bottom)
               template(v-slot:activator='{ props }')
@@ -39,57 +43,54 @@ v-dialog.crud-dialog-z-index(
         @submit='create'
         @cancel='cancel'
       )
-        //- template(v-for='(_, slot) of $scopedSlots' v-slot:[slot]='scope')
-          //- slot(:name='slot' v-bind='scope')
+        template(v-for='(_, slot) of slots' v-slot:[slot]='scope')
+          slot(:name='slot' v-bind='scope')
 </template>
 
-<script>
+<script setup>
+import { nextTick } from 'vue'
 import { v4 as uuid } from 'uuid'
 import Form from './_form'
 
-export default {
-  name: 'Create',
-  components: {
-    Form,
-  },
-  props: {
-    createFn: { type: Function, required: true },
-    context: { type: Object, required: true },
-  },
-  data: () => ({
-    dialog: null,
-    loading: false,
-    form: {},
-    itemKey: uuid(),
-  }),
-  watch: {
-    dialog() {
-      Vue.nextTick(() => {
-        Vue.set(this, 'itemKey', uuid())
-        Vue.set(this, 'form', {})
-      })
-    },
-  },
-  methods: {
-    async create() {
-      try {
-        this.loading = true
-        const entity = await this.createFn(this.form)
-        this.$noty.success(this.$i18n('crud.create.success', { entityName: this.context.entityName.toLowerCase() }))
-        this.$emit('created', entity)
-        this.dialog = false
-      } catch (err) {
-        this.$emit('create-error', err)
-        this.$noty.error(this.$i18n('crud.create.error', { entityName: this.context.entityName.toLowerCase() }))
-        // eslint-disable-next-line no-console
-        console.error(err)
-      } finally {
-        this.loading = false
-      }
-    },
-    cancel() {
-      this.dialog = false
-    },
-  },
+const slots = useSlots()
+const attrs = useAttrs()
+
+const emit = defineEmits()
+const props = defineProps({
+  createFn: { type: Function, required: true },
+  context: { type: Object, required: true },
+})
+
+const dialog = ref(null)
+const loading = ref(false)
+const form = ref({})
+const itemKey = ref(uuid())
+
+watch(dialog, () => {
+  nextTick(() => {
+    itemKey.value = uuid()
+    form.value = {}
+  })
+})
+
+async function create() {
+  try {
+    loading.value = true
+    entity.value = await this.createFn(this.form)
+    // this.$noty.success(this.$i18n('crud.create.success', { entityName: this.context.entityName.toLowerCase() }))
+    emit('created', entity)
+    dialog.value = false
+  } catch (err) {
+    emit('create-error', err)
+    // this.$noty.error(this.$i18n('crud.create.error', { entityName: this.context.entityName.toLowerCase() }))
+    // eslint-disable-next-line no-console
+    console.error(err)
+  } finally {
+    loading.value = false
+  }
+}
+
+function cancel() {
+  dialog.value = false
 }
 </script>
