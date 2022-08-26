@@ -9,22 +9,22 @@
     "@everestate/serverless-router-aws": "^0.3.0",
     "@rodrigogs/promise-pool": "^2.0.0",
     "adm-zip": "^0.5.9",
-    "aws-sdk": "^2.871.0",
-    "axios": "^0.21.1",
-    "date-fns": "^2.21.3",
+    "aws-sdk": "^2.1203.0",
+    "axios": "^0.27.2",
+    "date-fns": "^2.29.2",
     "deepmerge": "^4.2.2",
-    "dynamoose": "^3.0.0-beta.5",
-    "execa": "^5.1.1",
-    "lowdb": "^1.0.0",
-    "mustache": "^4.0.1",
-    "nedb-promises": "^4.1.0",
+    "dynamoose": "^3.0.2",
+    "execa": "^6.1.0",
+    "lowdb": "^3.0.0",
+    "mustache": "^4.2.0",
+    "nedb-promises": "^6.1.0",
     "pluralize": "^8.0.0",
     "tinyurl": "^1.1.7",
     "url-glob": "^1.0.3",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "mock-fs": "^4.13.0"
+    "mock-fs": "^5.1.4"
   },
   "jest": {
     "testEnvironment": "node"

@@ -11,16 +11,16 @@
     "lint:fix": "eslint --fix --ext .js,.mjs,.cjs,.vue ."
   },
   "devDependencies": {
-    "@vuelidate/core": "2.0.0-alpha.43",
+    "@vuelidate/core": "2.0.0-alpha.44",
     "@vuelidate/validators": "2.0.0-alpha.31",
-    "@vueuse/core": "^9.1.0",
-    "date-fns": "^2.29.1",
-    "eslint": "^8.20.0",
-    "eslint-plugin-vue": "^9.2.0",
+    "@vueuse/core": "^9.1.1",
+    "date-fns": "^2.29.2",
+    "eslint": "^8.22.0",
+    "eslint-plugin-vue": "^9.4.0",
     "lodash": "^4.17.21",
     "nuxt": "3.0.0-rc.8",
     "pluralize": "^8.0.0",
     "pug": "^3.0.2",
-    "vuetify": "^3.0.0-beta.7"
+    "vuetify": "^3.0.0-beta.9"
   }
 }
