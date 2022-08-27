@@ -8,6 +8,7 @@ if (environment.STAGE === 'dev') Error.stackTraceLimit = Infinity
 const getEnv = (envName, defaultValue) => environment[envName] || defaultValue
 
 export const {
+  USE_SERVERLESS_DASHBOARD = getEnv('USE_SERVERLESS_DASHBOARD', ''),
   ORG_NAME = getEnv('ORG_NAME', undefined),
   APP_NAME = getEnv('APP_NAME', 'juquinha'),
   APP_PREFIX = getEnv('APP_PREFIX', 'ju'),

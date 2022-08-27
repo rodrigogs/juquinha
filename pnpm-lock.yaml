@@ -9,10 +9,10 @@ importers:
       '@babel/preset-env': ^7.18.10
       '@juquinha/config': workspace:config
       '@juquinha/lib': workspace:lib
-      '@rodrigogs/serverless': 3.21.0-patched
+      '@rodrigogs/serverless': 3.22.0-patched
       '@rodrigogs/serverless-finch': ^3.0.0
       chalk: ^5.0.1
-      eslint: ^8.22.0
+      eslint: ^8.23.0
       eslint-config-standard: ^17.0.0
       eslint-plugin-import: ^2.26.0
       eslint-plugin-n: ^15.2.5
@@ -33,14 +33,14 @@ importers:
       '@actions/core': 1.9.1
       '@babel/core': 7.18.13
       '@babel/preset-env': 7.18.10_@babel+core@7.18.13
-      '@rodrigogs/serverless': 3.21.0-patched
+      '@rodrigogs/serverless': 3.22.0-patched
       '@rodrigogs/serverless-finch': 3.0.0
       chalk: 5.0.1
-      eslint: 8.22.0
-      eslint-config-standard: 17.0.0_e2brn7tkp6qxostmvf2l67odqm
-      eslint-plugin-import: 2.26.0_eslint@8.22.0
-      eslint-plugin-n: 15.2.5_eslint@8.22.0
-      eslint-plugin-promise: 6.0.1_eslint@8.22.0
+      eslint: 8.23.0
+      eslint-config-standard: 17.0.0_ci7jzfiysajw25w4iodapaa2cq
+      eslint-plugin-import: 2.26.0_eslint@8.23.0
+      eslint-plugin-n: 15.2.5_eslint@8.23.0
+      eslint-plugin-promise: 6.0.1_eslint@8.23.0
       faker: 5.5.3
       inquirer: 9.1.0
       jest: 29.0.1
@@ -2307,6 +2307,23 @@ packages:
       - supports-color
     dev: true
 
+  /@eslint/eslintrc/1.3.1:
+    resolution: {integrity: sha512-OhSY22oQQdw3zgPOOwdoj01l/Dzl1Z+xyUP33tkSN+aqyEhymJCcPHyXt+ylW8FSe0TfRC2VG+ROQOapD0aZSQ==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dependencies:
+      ajv: 6.12.6
+      debug: 4.3.4
+      espree: 9.4.0
+      globals: 13.17.0
+      ignore: 5.2.0
+      import-fresh: 3.3.0
+      js-yaml: 4.1.0
+      minimatch: 3.1.2
+      strip-json-comments: 3.1.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@everestate/serverless-router-aws/0.3.0:
     resolution: {integrity: sha512-jmNLDegBPQyfMPVPhN/HwTAkSLmnLHMWgplsFGQEDh57lrlJduIF3Ehprokpv5SBh3rKtnglq27CBZgZKOYq7g==}
     engines: {node: '>=8.10.0'}
@@ -2594,6 +2611,11 @@ packages:
 
   /@humanwhocodes/gitignore-to-minimatch/1.0.2:
     resolution: {integrity: sha512-rSqmMJDdLFUsyxR6FMtD00nfQKKLFb1kv+qBbOVKqErvloEIJLo5bDTJTQNTYgeyp78JsA7u/NPi5jT1GR/MuA==}
+    dev: true
+
+  /@humanwhocodes/module-importer/1.0.1:
+    resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
+    engines: {node: '>=12.22'}
     dev: true
 
   /@humanwhocodes/object-schema/1.2.1:
@@ -3392,8 +3414,8 @@ packages:
       - supports-color
     dev: true
 
-  /@rodrigogs/serverless/3.21.0-patched:
-    resolution: {integrity: sha512-HSEnuiZl7quK0pEVEQOzjKutx7qU/zKP3MfwkO67cQDm0TCNBjA20WlqpUw08zbqkMF2JyvNYuX7REVAP4SwaA==}
+  /@rodrigogs/serverless/3.22.0-patched:
+    resolution: {integrity: sha512-TsStpDksJ719Fk/le8J4tVb0bEy/bFzbtGAu+FoOOQFKmFWXZIZqk3jA8kij+kjYp6R2Y9LWRn+iZTHUW9Fneg==}
     engines: {node: '>=12.0'}
     hasBin: true
     requiresBuild: true
@@ -3404,7 +3426,7 @@ packages:
       ajv: 8.11.0
       ajv-formats: 2.1.1
       archiver: 5.3.1
-      aws-sdk: 2.1181.0
+      aws-sdk: 2.1203.0
       bluebird: 3.7.2
       cachedir: 2.3.0
       chalk: 4.1.2
@@ -3412,13 +3434,13 @@ packages:
       ci-info: 3.3.2
       cli-progress-footer: 2.3.2
       d: 1.0.1
-      dayjs: 1.11.4
+      dayjs: 1.11.5
       decompress: 4.2.1
       dotenv: 10.0.0
       dotenv-expand: 5.1.0
       essentials: 1.2.0
       ext: 1.6.0
-      fastest-levenshtein: 1.0.14
+      fastest-levenshtein: 1.0.16
       filesize: 8.0.7
       fs-extra: 9.1.0
       get-stdin: 8.0.0
@@ -3447,7 +3469,7 @@ packages:
       supports-color: 8.1.1
       tar: 6.1.11
       timers-ext: 0.1.7
-      type: 2.6.0
+      type: 2.7.2
       untildify: 4.0.0
       uuid: 8.3.2
       yaml-ast-parser: 0.0.43
@@ -3582,7 +3604,7 @@ packages:
       flat: 5.0.2
       fs-extra: 9.1.0
       js-yaml: 4.1.0
-      jszip: 3.10.0
+      jszip: 3.10.1
       lodash: 4.17.21
       memoizee: 0.4.15
       ncjsm: 4.3.1
@@ -3591,7 +3613,7 @@ packages:
       open: 7.4.2
       semver: 7.3.7
       simple-git: 3.10.0_supports-color@8.1.1
-      type: 2.6.0
+      type: 2.7.2
       uuid: 8.3.2
       yamljs: 0.3.0
     transitivePeerDependencies:
@@ -6501,8 +6523,8 @@ packages:
     resolution: {integrity: sha512-0VNbwmWJDS/G3ySwFSJA3ayhbURMTJLtwM2DTxf9CWondCnh6DTNlO9JgRSq6ibf4eD0lfMJNBxUdEAHHix+bA==}
     engines: {node: '>=0.11'}
 
-  /dayjs/1.11.4:
-    resolution: {integrity: sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g==}
+  /dayjs/1.11.5:
+    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
     dev: true
 
   /debug/2.6.9:
@@ -7573,7 +7595,7 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-standard/17.0.0_e2brn7tkp6qxostmvf2l67odqm:
+  /eslint-config-standard/17.0.0_ci7jzfiysajw25w4iodapaa2cq:
     resolution: {integrity: sha512-/2ks1GKyqSOkH7JFvXJicu0iMpoojkwB+f5Du/1SC0PtBL+s8v30k9njRZ21pm2drKYm2342jFnGWzttxPmZVg==}
     peerDependencies:
       eslint: ^8.0.1
@@ -7581,10 +7603,10 @@ packages:
       eslint-plugin-n: ^15.0.0
       eslint-plugin-promise: ^6.0.0
     dependencies:
-      eslint: 8.22.0
-      eslint-plugin-import: 2.26.0_eslint@8.22.0
-      eslint-plugin-n: 15.2.5_eslint@8.22.0
-      eslint-plugin-promise: 6.0.1_eslint@8.22.0
+      eslint: 8.23.0
+      eslint-plugin-import: 2.26.0_eslint@8.23.0
+      eslint-plugin-n: 15.2.5_eslint@8.23.0
+      eslint-plugin-promise: 6.0.1_eslint@8.23.0
     dev: true
 
   /eslint-config-strongloop/2.1.0:
@@ -7642,18 +7664,18 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-es/4.1.0_eslint@8.22.0:
+  /eslint-plugin-es/4.1.0_eslint@8.23.0:
     resolution: {integrity: sha512-GILhQTnjYE2WorX5Jyi5i4dz5ALWxBIdQECVQavL6s7cI76IZTDWleTHkxz/QT3kvcs2QlGHvKLYsSlPOlPXnQ==}
     engines: {node: '>=8.10.0'}
     peerDependencies:
       eslint: '>=4.19.1'
     dependencies:
-      eslint: 8.22.0
+      eslint: 8.23.0
       eslint-utils: 2.1.0
       regexpp: 3.2.0
     dev: true
 
-  /eslint-plugin-import/2.26.0_eslint@8.22.0:
+  /eslint-plugin-import/2.26.0_eslint@8.23.0:
     resolution: {integrity: sha512-hYfi3FXaM8WPLf4S1cikh/r4IxnO6zrhZbEGz2b660EJRbuxgpDS5gkCuYgGWg2xxh2rBuIr4Pvhve/7c31koA==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -7667,7 +7689,7 @@ packages:
       array.prototype.flat: 1.3.0
       debug: 2.6.9
       doctrine: 2.1.0
-      eslint: 8.22.0
+      eslint: 8.23.0
       eslint-import-resolver-node: 0.3.6
       eslint-module-utils: 2.7.3_ulu2225r2ychl26a37c6o2rfje
       has: 1.0.3
@@ -7683,16 +7705,16 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-n/15.2.5_eslint@8.22.0:
+  /eslint-plugin-n/15.2.5_eslint@8.23.0:
     resolution: {integrity: sha512-8+BYsqiyZfpu6NXmdLOXVUfk8IocpCjpd8nMRRH0A9ulrcemhb2VI9RSJMEy5udx++A/YcVPD11zT8hpFq368g==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
       builtins: 5.0.1
-      eslint: 8.22.0
-      eslint-plugin-es: 4.1.0_eslint@8.22.0
-      eslint-utils: 3.0.0_eslint@8.22.0
+      eslint: 8.23.0
+      eslint-plugin-es: 4.1.0_eslint@8.23.0
+      eslint-utils: 3.0.0_eslint@8.23.0
       ignore: 5.2.0
       is-core-module: 2.10.0
       minimatch: 3.1.2
@@ -7700,13 +7722,13 @@ packages:
       semver: 7.3.7
     dev: true
 
-  /eslint-plugin-promise/6.0.1_eslint@8.22.0:
+  /eslint-plugin-promise/6.0.1_eslint@8.23.0:
     resolution: {integrity: sha512-uM4Tgo5u3UWQiroOyDEsYcVMOo7re3zmno0IZmB5auxoaQNIceAbXEkSt8RNrKtaYehARHG06pYK6K1JhtP0Zw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
     dependencies:
-      eslint: 8.22.0
+      eslint: 8.23.0
     dev: true
 
   /eslint-plugin-vue/9.4.0_eslint@8.22.0:
@@ -7775,6 +7797,16 @@ packages:
       eslint: '>=5'
     dependencies:
       eslint: 8.22.0
+      eslint-visitor-keys: 2.1.0
+    dev: true
+
+  /eslint-utils/3.0.0_eslint@8.23.0:
+    resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
+    engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
+    peerDependencies:
+      eslint: '>=5'
+    dependencies:
+      eslint: 8.23.0
       eslint-visitor-keys: 2.1.0
     dev: true
 
@@ -7890,6 +7922,54 @@ packages:
       - supports-color
     dev: true
 
+  /eslint/8.23.0:
+    resolution: {integrity: sha512-pBG/XOn0MsJcKcTRLr27S5HpzQo4kLr+HjLQIyK4EiCsijDl/TB+h5uEuJU6bQ8Edvwz1XWOjpaP2qgnXGpTcA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    hasBin: true
+    dependencies:
+      '@eslint/eslintrc': 1.3.1
+      '@humanwhocodes/config-array': 0.10.4
+      '@humanwhocodes/gitignore-to-minimatch': 1.0.2
+      '@humanwhocodes/module-importer': 1.0.1
+      ajv: 6.12.6
+      chalk: 4.1.2
+      cross-spawn: 7.0.3
+      debug: 4.3.4
+      doctrine: 3.0.0
+      escape-string-regexp: 4.0.0
+      eslint-scope: 7.1.1
+      eslint-utils: 3.0.0_eslint@8.23.0
+      eslint-visitor-keys: 3.3.0
+      espree: 9.4.0
+      esquery: 1.4.0
+      esutils: 2.0.3
+      fast-deep-equal: 3.1.3
+      file-entry-cache: 6.0.1
+      find-up: 5.0.0
+      functional-red-black-tree: 1.0.1
+      glob-parent: 6.0.2
+      globals: 13.17.0
+      globby: 11.1.0
+      grapheme-splitter: 1.0.4
+      ignore: 5.2.0
+      import-fresh: 3.3.0
+      imurmurhash: 0.1.4
+      is-glob: 4.0.3
+      js-yaml: 4.1.0
+      json-stable-stringify-without-jsonify: 1.0.1
+      levn: 0.4.1
+      lodash.merge: 4.6.2
+      minimatch: 3.1.2
+      natural-compare: 1.4.0
+      optionator: 0.9.1
+      regexpp: 3.2.0
+      strip-ansi: 6.0.1
+      strip-json-comments: 3.1.1
+      text-table: 0.2.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /esniff/1.1.0:
     resolution: {integrity: sha512-vmHXOeOt7FJLsqofvFk4WB3ejvcHizCd8toXXwADmYfd02p2QwHRgkUbhYDX54y08nqk818CUTWipgZGlyN07g==}
     dependencies:
@@ -7908,6 +7988,15 @@ packages:
 
   /espree/9.3.3:
     resolution: {integrity: sha512-ORs1Rt/uQTqUKjDdGCyrtYxbazf5umATSf/K4qxjmZHORR6HJk+2s/2Pqe+Kk49HHINC/xNIrGfgh8sZcll0ng==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dependencies:
+      acorn: 8.8.0
+      acorn-jsx: 5.3.2_acorn@8.8.0
+      eslint-visitor-keys: 3.3.0
+    dev: true
+
+  /espree/9.4.0:
+    resolution: {integrity: sha512-DQmnRpLj7f6TgN/NYb0MTzJXL+vJF9h3pHy4JhCIs3zwcgez8xmGg3sXHcEO97BrmO2OSvCwMdfdlyl+E9KjOw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       acorn: 8.8.0
@@ -8218,8 +8307,8 @@ packages:
     hasBin: true
     dev: false
 
-  /fastest-levenshtein/1.0.14:
-    resolution: {integrity: sha512-tFfWHjnuUfKE186Tfgr+jtaFc0mZTApEgKDOeyN+FwOqRkO/zK/3h1AiRd8u8CY53owL3CUmGr/oI9p/RdyLTA==}
+  /fastest-levenshtein/1.0.16:
+    resolution: {integrity: sha512-eRnCtTTtGZFpQCwhJiUOuxPQWRXVKYDn0b2PeHfXL6/Zi53SLAzAHfVhVWK2AryC/WH05kGfxhFIPvTF0SXQzg==}
     engines: {node: '>= 4.9.1'}
     dev: true
 
@@ -10916,15 +11005,6 @@ packages:
       promise: 7.3.1
     dev: true
 
-  /jszip/3.10.0:
-    resolution: {integrity: sha512-LDfVtOLtOxb9RXkYOwPyNBTQDL4eUbqahtoY6x07GiDJHwSYvn8sHHIw8wINImV3MqbMNve2gSuM1DDqEKk09Q==}
-    dependencies:
-      lie: 3.3.0
-      pako: 1.0.11
-      readable-stream: 2.3.7
-      setimmediate: 1.0.5
-    dev: true
-
   /jszip/3.10.1:
     resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
     dependencies:
@@ -12059,7 +12139,7 @@ packages:
       memoizee: 0.4.15
       node-fetch: 2.6.7
       semver: 7.3.7
-      type: 2.6.0
+      type: 2.7.2
       validate-npm-package-name: 3.0.0
     transitivePeerDependencies:
       - encoding
@@ -15387,6 +15467,10 @@ packages:
 
   /type/2.6.0:
     resolution: {integrity: sha512-eiDBDOmkih5pMbo9OqsqPRGMljLodLcwd5XD5JbtNB0o89xZAwynY9EdCDsJU7LtcVCClu9DvM7/0Ep1hYX3EQ==}
+    dev: true
+
+  /type/2.7.2:
+    resolution: {integrity: sha512-dzlvlNlt6AXU7EBSfpAscydQ7gXB+pPGsPnfJnZpiNJBDj7IaJzQlBZYGdEi4R9HmPdBv2XmWJ6YUtoTa7lmCw==}
     dev: true
 
   /typedarray-to-buffer/3.1.5:

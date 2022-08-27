@@ -5,8 +5,13 @@ import resolveDotenvFilePath from '@juquinha/config/resolve-dotenv-file-path.mjs
 import resolveDotenv from '@juquinha/config/resolve-dotenv.mjs'
 
 export default async (currentEnv) => {
-  const { STAGE, SERVERLESS_ACCESS_KEY, ORG } = currentEnv
+  const { STAGE, SERVERLESS_ACCESS_KEY, ORG, USE_SERVERLESS_DASHBOARD } = currentEnv
   const filePath = await resolveDotenvFilePath(STAGE)
+
+  if (USE_SERVERLESS_DASHBOARD.toLowerCase() === 'false') {
+    console.log(chalk.yellow('Serverless dashboard is disabled'))
+    return currentEnv
+  }
 
   if (SERVERLESS_ACCESS_KEY && ORG) {
     console.log(chalk.green(`Serverless credentials found in ${filePath} file`))
@@ -25,38 +30,43 @@ export default async (currentEnv) => {
     },
   ]).then(({ useServerlessDashboard }) => useServerlessDashboard)
 
-  if (!useServerlessDashboard) return currentEnv
-
-  console.log(chalk.yellow('You can get or create your access key at https://app.serverless.com/YOUR-ORG/settings/accessKeys'))
-  const org = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'org',
-      message: 'Enter your Serverless org:',
-      validate: input => input.length > 0,
-    },
-  ]).then(({ org }) => org)
-
-  if (org) {
-    const serverlessAccessKey = await inquirer.prompt([
+  if (!useServerlessDashboard) {
+    await writeDotenv(filePath, {
+      USE_SERVERLESS_DASHBOARD: 'false',
+    })
+  } else {
+    console.log(chalk.yellow('You can get or create your access key at https://app.serverless.com/YOUR-ORG/settings/accessKeys'))
+    const org = await inquirer.prompt([
       {
-        type: 'password',
-        name: 'serverlessAccessKey',
-        message: 'Enter your Serverless access key:',
+        type: 'input',
+        name: 'org',
+        message: 'Enter your Serverless org:',
         validate: input => input.length > 0,
       },
-    ]).then(({ serverlessAccessKey }) => serverlessAccessKey)
+    ]).then(({ org }) => org)
 
-    if (!serverlessAccessKey) {
-      console.log(chalk.yellow('You chose not to use serverless dashboard.'))
-      return currentEnv
+    if (org) {
+      const serverlessAccessKey = await inquirer.prompt([
+        {
+          type: 'password',
+          name: 'serverlessAccessKey',
+          message: 'Enter your Serverless access key:',
+          validate: input => input.length > 0,
+        },
+      ]).then(({ serverlessAccessKey }) => serverlessAccessKey)
+
+      if (!serverlessAccessKey) {
+        console.log(chalk.yellow('You chose not to use serverless dashboard.'))
+        return currentEnv
+      }
+
+      // Write the serverless access key to the .env file
+      await writeDotenv(filePath, {
+        ORG: org,
+        USE_SERVERLESS_DASHBOARD: 'true',
+        SERVERLESS_ACCESS_KEY: serverlessAccessKey,
+      })
     }
-
-    // Write the serverless access key to the .env file
-    await writeDotenv(filePath, {
-      ORG: org,
-      SERVERLESS_ACCESS_KEY: serverlessAccessKey,
-    })
   }
 
   // Reload the .env file
