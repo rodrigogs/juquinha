@@ -1,4 +1,5 @@
 const removeUndefined = (object) => {
+  if (!object) return object
   const result = {}
   for (const key of Object.keys(object)) {
     if (object[key] !== undefined) {

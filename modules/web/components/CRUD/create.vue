@@ -55,7 +55,6 @@ import Form from './_form'
 const slots = useSlots()
 const attrs = useAttrs()
 
-const emit = defineEmits()
 const props = defineProps({
   createFn: { type: Function, required: true },
   context: { type: Object, required: true },

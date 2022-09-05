@@ -1,6 +1,6 @@
 <template lang="pug">
 v-dialog.crud-dialog-z-index(
-  v-model='value'
+  v-model='modelValue'
   transition='dialog-bottom-transition'
   v-bind='attrs'
   :color='actionConfig.color'
@@ -14,7 +14,11 @@ v-dialog.crud-dialog-z-index(
     )
       v-tooltip(bottom)
         template(v-slot:activator='{ props: tooltipProps }')
-          v-icon(v-bind='{ ...dialogProps, ...tooltipProps }' :color='actionConfig.color' :icon='actionConfig.icon')
+          v-icon(
+            v-bind='{ ...dialogProps, ...tooltipProps }'
+            :color='actionConfig.color'
+            :icon='actionConfig.icon'
+          )
         span {{ actionConfig.title }}
 
   // TODO Add documentation
@@ -32,10 +36,11 @@ v-dialog.crud-dialog-z-index(
                   span {{ $i18n(action) }} {{ context.entityName.toLowerCase() }}
               v-col.flex-grow-0.text-no-wrap
                 // TODO Add documentation
-                slot(name=`${action}.actions.extra` :context='context'): span
+                slot(name=`${action}.actions.extra` :context='context')
+                  span
                 v-tooltip(bottom)
                   template(v-slot:activator='{ props }')
-                    v-icon(@click='dialog = false' v-bind='props' icon='mdi-close')
+                    v-icon(@click='$emit("update:modelValue", false)' v-bind='props' icon='mdi-close')
                   span {{ $i18n('close') }}
       // TODO Add documentation
       slot(name=`list.items.actions.${action}.card-text` :context='context' :item='item')
@@ -51,10 +56,8 @@ const { $i18n } = useNuxtApp()
 
 const attrs = useAttrs()
 
-const dialog = ref(null)
-
 const props = defineProps({
-  value: { type: Boolean, required: true },
+  modelValue: { type: Boolean, required: true },
   action: { type: String, required: true, enum: ['show', 'create', 'update'] },
   context: {
     type: Object,
