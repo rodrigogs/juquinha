@@ -21,8 +21,8 @@
   ],
   "scripts": {
     "setup": "npx pnpm run bootstrap && npx cross-env INIT=true node scripts/setup/index.mjs",
-    "bootstrap": "npx pnpm recursive install",
-    "clean": "rm -rf node_modules && npx pnpm -r exec -- rm -rf node_modules && npx pnpm -r exec -- rm -rf .serverless",
+    "bootstrap": "npx pnpm@7 recursive install",
+    "clean": "rm -rf node_modules && npx pnpm@7 -r exec -- rm -rf node_modules && npx pnpm@7 -r exec -- rm -rf .serverless",
     "build": "pnpm -r --filter sls-* exec -- sls package",
     "build:api": "pnpm -r --filter sls-api-* exec -- sls package",
     "build:resources": "pnpm -r --filter sls-resources-* exec -- sls package",
