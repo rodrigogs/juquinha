@@ -60,7 +60,7 @@ jobs:
         restore-keys: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
     - uses: pnpm/action-setup@v2.0.1
       with:
-        version: 6.x
+        version: 7.x
     - run: pnpm run bootstrap
     - run: pnpm run test:unit
 
@@ -98,7 +98,7 @@ jobs:
         restore-keys: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
     - uses: pnpm/action-setup@v2.0.1
       with:
-        version: 6.x
+        version: 7.x
     - run: pnpm run bootstrap
     - run: pnpm run deploy
 
@@ -136,7 +136,7 @@ jobs:
         restore-keys: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
     - uses: pnpm/action-setup@v2.0.1
       with:
-        version: 6.x
+        version: 7.x
     - run: pnpm run bootstrap
     - run: pnpm run build
     - uses: actions/javascript-action@v1
