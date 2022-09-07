@@ -9,11 +9,11 @@
     "@everestate/serverless-router-aws": "^0.3.0",
     "@rodrigogs/promise-pool": "^2.0.0",
     "adm-zip": "^0.5.9",
-    "aws-sdk": "^2.1203.0",
+    "aws-sdk": "^2.1211.0",
     "axios": "^0.27.2",
     "date-fns": "^2.29.2",
     "deepmerge": "^4.2.2",
-    "dynamoose": "^3.0.2",
+    "dynamoose": "^3.1.0",
     "execa": "^6.1.0",
     "lowdb": "^3.0.0",
     "mustache": "^4.2.0",
@@ -21,7 +21,7 @@
     "pluralize": "^8.0.0",
     "tinyurl": "^1.1.7",
     "url-glob": "^1.0.3",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "mock-fs": "^5.1.4"

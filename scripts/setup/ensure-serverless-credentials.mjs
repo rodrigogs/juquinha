@@ -5,7 +5,7 @@ import resolveDotenvFilePath from '@juquinha/config/resolve-dotenv-file-path.mjs
 import resolveDotenv from '@juquinha/config/resolve-dotenv.mjs'
 
 export default async (currentEnv) => {
-  const { STAGE, SERVERLESS_ACCESS_KEY, ORG, USE_SERVERLESS_DASHBOARD } = currentEnv
+  const { STAGE, SERVERLESS_ACCESS_KEY, ORG, USE_SERVERLESS_DASHBOARD = '' } = currentEnv
   const filePath = await resolveDotenvFilePath(STAGE)
 
   if (USE_SERVERLESS_DASHBOARD.toLowerCase() === 'false') {
